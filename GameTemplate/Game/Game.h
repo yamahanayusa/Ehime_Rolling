@@ -4,6 +4,7 @@
 
 class Player;
 class Timer;
+class Score;
 
 class Game : public IGameObject
 {
@@ -16,6 +17,7 @@ public:
 
 private:
 	Timer* m_timer;
+	Score* m_resultScore;
 	ModelRender m_modelRender;
 	Vector3 m_pos;
 };
