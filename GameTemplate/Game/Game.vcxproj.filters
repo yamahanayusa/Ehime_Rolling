@@ -15,7 +15,6 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Gameover.cpp" />
-    <ClCompile Include="Chest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -26,6 +25,5 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Gameover.h" />
-    <ClInclude Include="Chest.h" />
   </ItemGroup>
 </Project>
