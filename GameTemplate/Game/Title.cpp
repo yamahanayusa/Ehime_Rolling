@@ -5,7 +5,7 @@
 Title::Title()
 {
 	//‰æ‘œ‚ğ“Ç‚İ‚Ş
-	spriteRender.Init("Assets/sprite/Gamestart.dds", 1920.0f, 1080.0f);
+	spriteRender.Init("Assets/sprite/Title.dds", 1920.0f, 1080.0f);
 }
 
 Title::~Title()
