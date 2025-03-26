@@ -225,8 +225,10 @@
   <ItemGroup>
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -240,7 +242,9 @@
   <ItemGroup>
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameClear.h" />
     <ClInclude Include="Gameover.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="system\system.h" />

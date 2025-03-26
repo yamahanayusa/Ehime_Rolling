@@ -5,6 +5,8 @@
 #include "Score.h"
 #include "Chest.h"
 #include "GameOver.h"
+#include "GameClear.h"
+
 
 bool Game::Start()
 {
