@@ -22,6 +22,10 @@ bool Title::Start()
 
 void Title::Update()
 {
+	if (FindGO<Game>("game") == nullptr) {
+		m_game=NewGO<Game>(0, "game");
+	}
+
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
 		m_game->m_gameState = m_game->enStageSelect;
