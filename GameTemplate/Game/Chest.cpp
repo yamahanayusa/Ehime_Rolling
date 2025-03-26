@@ -33,10 +33,7 @@ void Chest::Update()
 	//ベクトルの長さが120.0fより小さかったら。
 	//if (diff.Length() <= 120.0f)
 	//{
-	//	m_player->m_coinCount += 1;
-
-	//	//自身を削除する。
-	//	DeleteGO(this);
+	//	m_player->m_chestCount += 1;
 	//}
 }
 
