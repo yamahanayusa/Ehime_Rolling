@@ -49,7 +49,7 @@ void Game::Newkansuu()
 	case Game::enResult:
 		DeleteGO(m_timer);
 		DeleteGO(m_chest);
-		NewGO<Gameover>(0, "Gameover");
+		NewGO<GameClear>(0, "GameClear");
 		break;
 	default:
 		break;

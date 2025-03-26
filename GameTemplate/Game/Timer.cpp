@@ -33,13 +33,6 @@ void Timer::Update()
 		m_fontRender.SetColor({ 1.0f,0.0f,0.0f,1.0f });
 	}
 
-	if (m_timer <= 9.0f)
-	{
-		NewGO<GameClear>(0, "GaneClear");
-		DeleteGO(this);
-		DeleteGO(m_game);
-	}
-
 	if (m_timer <= 0.0f)
 	{
 		m_game->m_gameState = m_game->enResult;
