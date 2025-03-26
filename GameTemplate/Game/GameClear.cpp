@@ -16,7 +16,7 @@ GameClear::~GameClear()
 bool GameClear::Start()
 {
 
-	//spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
+	spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	m_game = FindGO<Game>("game");
 	return true;
 }
