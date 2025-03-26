@@ -5,7 +5,7 @@
 Title::Title()
 {
 	//‰æ‘œ‚ğ“Ç‚İ‚Ş
-	spriteRender.Init("Assets/sprite/Title.dds", 1920.0f, 1080.0f);
+	m_spriteRender.Init("Assets/sprite/Title.dds", 1920.0f, 1080.0f);
 }
 
 Title::~Title()
@@ -13,21 +13,25 @@ Title::~Title()
 
 }
 
+bool Title::Start()
+{
+	m_game = FindGO<Game>("game");
+
+	return true;
+}
+
 void Title::Update()
 {
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		if (g_pad[0]->IsTrigger(enButtonA))
-		{
-			NewGO<Game>(0, "game");
-			DeleteGO(this);
-			DeleteGO(m_game);
-		}
+		m_game->m_gameState = m_game->enStageSelect;
+		m_game->Newkansuu();
+		DeleteGO(this);
 	}
 }
 
 void Title::Render(RenderContext& rc)
 {
 	//‰æ‘œ‚ğ•`‰æ‚·‚éB
-	spriteRender.Draw(rc);
+	m_spriteRender.Draw(rc);
 }

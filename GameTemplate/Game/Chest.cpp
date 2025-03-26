@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Chest.h"
+#include "Game.h"
 
 Chest::Chest()
 {
@@ -13,8 +14,17 @@ Chest::~Chest()
 
 bool Chest::Start()
 {
+	//アニメーションクリップをロード。
+	m_animationClips[enAnimationClip_Open].Load("Assets/animData/ChestOpen.tka");
+	m_animationClips[enAnimationClip_Open].SetLoopFlag(false);
+	m_animationClips[enAnimationClip_Close].Load("Assets/animData/ChestClose.tka");
+	m_animationClips[enAnimationClip_Close].SetLoopFlag(true);
+
+	m_game = FindGO<Game>("game");
+
 	//モデルの表示。
-	m_modelRender.Init("Assets/modelData/Chest.tkm");
+	m_modelRender.Init("Assets/modelData/Chest.tkm", m_animationClips, enAnimationClip_Num, enModelUpAxisZ);
+	
 
 	return true;
 }
@@ -23,6 +33,8 @@ void Chest::Update()
 {
 	//移動処理。
 	Move();
+
+	PlayAnimation();
 
 	//絵描きさんの更新処理。
 	m_modelRender.Update();
@@ -41,6 +53,28 @@ void Chest::Move()
 {
 	//絵描きさんに座標を教える。
 	m_modelRender.SetPosition(m_position);
+
+	if (g_pad[0]->IsTrigger(enButtonB))
+	{
+		m_chestState = 1;
+	}
+}
+
+void Chest::PlayAnimation()
+{
+	switch (m_chestState) {
+	case 0:
+		m_modelRender.PlayAnimation(enAnimationClip_Close);
+		break;
+	case 1:
+		m_modelRender.PlayAnimation(enAnimationClip_Open);
+		if (m_modelRender.IsPlayingAnimation() == false) {
+			m_game->m_gameState = m_game->enResult;
+			m_game->Newkansuu();
+		}
+		break;
+	}
+		
 }
 
 void Chest::Render(RenderContext& rc)
