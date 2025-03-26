@@ -34,9 +34,8 @@ void Timer::Update()
 
 	if (m_timer <= 0.0f)
 	{
-		NewGO<Gameover>(0, "Gameover");
-		DeleteGO(this);
-		DeleteGO(m_game);
+		m_game->m_gameState = m_game->enResult;
+		m_game->Newkansuu();
 	}
 }
 
