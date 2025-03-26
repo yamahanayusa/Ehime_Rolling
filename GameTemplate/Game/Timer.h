@@ -1,5 +1,6 @@
 #pragma once
 class Game;
+class GameClear;
 class Timer :public IGameObject
 {
 public:

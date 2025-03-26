@@ -3,6 +3,7 @@
 #include "Title.h"
 #include "Timer.h"
 #include "Score.h"
+#include "GameClear.h"
 
 
 bool Game::Start()
