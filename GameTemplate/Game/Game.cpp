@@ -10,7 +10,7 @@
 
 bool Game::Start()
 {
-	Newkansuu();
+	GameTransition();
 	return true;
 }
 
@@ -30,7 +30,7 @@ void Game::Render(RenderContext& rc)
 
 }
 
-void Game::Newkansuu()
+void Game::GameTransition()
 {
 	switch (m_gameState)
 	{
@@ -39,7 +39,7 @@ void Game::Newkansuu()
 		break;
 	case Game::enStageSelect:
 		m_gameState = enInGame;
-		Newkansuu();
+		GameTransition();
 		break;
 	case Game::enInGame:
 		m_resultScore = NewGO<Score>(0, "Score");
@@ -49,7 +49,10 @@ void Game::Newkansuu()
 	case Game::enResult:
 		DeleteGO(m_timer);
 		DeleteGO(m_chest);
-		NewGO<GameClear>(0, "GameClear");
+		m_gameClear = NewGO<GameClear>(0, "gameClear");
+		break;
+	case Game::enGameOver:
+		m_gameOver = NewGO<GameOver>(0, "gameOver");
 		break;
 	default:
 		break;

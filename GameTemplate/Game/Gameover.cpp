@@ -1,19 +1,19 @@
 #include "stdafx.h"
-#include "Gameover.h"
+#include "GameOver.h"
 #include "Title.h"
 #include "Game.h"
 
-Gameover::Gameover()
+GameOver::GameOver()
 {
 
 }
 
-Gameover::~Gameover()
+GameOver::~GameOver()
 {
 
 }
 
-bool Gameover::Start()
+bool GameOver::Start()
 {
 	//ゲームオーバーの画像を読み込む
 	spriteRender.Init("Assets/sprite/Gameover.dds", 1920.0f, 1080.0f);
@@ -21,7 +21,7 @@ bool Gameover::Start()
 	return true;
 }
 
-void Gameover::Update()
+void GameOver::Update()
 {
 	//Aボタンが押されたら
 	if (g_pad[0]->IsTrigger(enButtonA))
@@ -35,7 +35,7 @@ void Gameover::Update()
 }
 
 //描画処理
-void Gameover::Render(RenderContext& rc)
+void GameOver::Render(RenderContext& rc)
 {
 	spriteRender.Draw(rc);
 }
