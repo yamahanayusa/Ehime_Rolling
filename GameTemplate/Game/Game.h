@@ -7,6 +7,7 @@ class Timer;
 class Score;
 class Chest;
 class GameOver;
+class GameClear;
 class Title;
 
 class Game : public IGameObject
@@ -17,13 +18,14 @@ public:
 	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
-	void Newkansuu();
+	void GameTransition();
 
 	enum EnGameState{
 		enTitle,
 		enStageSelect,
 		enInGame,
-		enResult
+		enResult,
+		enGameOver
 	};
 	EnGameState m_gameState = enTitle;
 
@@ -31,6 +33,8 @@ private:
 	Title* m_title;
 	Chest* m_chest;
 	Timer* m_timer;
+	GameOver* m_gameOver;
+	GameClear* m_gameClear;
 	Score* m_resultScore;
 	Vector3 m_pos;
 };

@@ -1,10 +1,10 @@
 #pragma once
 class Game;
-class Gameover :public IGameObject
+class GameOver :public IGameObject
 {
 public:
-	Gameover();
-	~Gameover();
+	GameOver();
+	~GameOver();
 	bool Start() override;
 	//XVˆ—
 	void Update();

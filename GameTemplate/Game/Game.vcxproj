@@ -226,7 +226,7 @@
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameClear.cpp" />
-    <ClCompile Include="Gameover.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -243,7 +243,7 @@
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameClear.h" />
-    <ClInclude Include="Gameover.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="stdafx.h" />

@@ -70,7 +70,7 @@ void Chest::PlayAnimation()
 		m_modelRender.PlayAnimation(enAnimationClip_Open);
 		if (m_modelRender.IsPlayingAnimation() == false) {
 			m_game->m_gameState = m_game->enResult;
-			m_game->Newkansuu();
+			m_game->GameTransition();
 		}
 		break;
 	}

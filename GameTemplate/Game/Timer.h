@@ -1,12 +1,12 @@
 #pragma once
 class Game;
-class GameClear;
 class Timer :public IGameObject
 {
 public:
 	Timer();
 	~Timer();
 
+	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
 
