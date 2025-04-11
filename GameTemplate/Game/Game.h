@@ -9,6 +9,7 @@ class Chest;
 class GameOver;
 class GameClear;
 class Title;
+class Stage;
 
 class Game : public IGameObject
 {
@@ -36,6 +37,7 @@ private:
 	GameOver* m_gameOver;
 	GameClear* m_gameClear;
 	Score* m_resultScore;
+	Stage* m_stage = nullptr;
 	Vector3 m_pos;
 };
 
