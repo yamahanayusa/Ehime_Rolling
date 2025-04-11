@@ -14,11 +14,11 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
-    <ClCompile Include="Gameover.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="GameCamera.cpp" />
-    <ClCompile Include="Stage01.cpp" />
+    <ClCompile Include="GameClear.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -28,10 +28,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
-    <ClInclude Include="Gameover.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="Chest.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="GameCamera.h" />
-    <ClInclude Include="Stage01.h" />
+    <ClInclude Include="GameClear.h" />
   </ItemGroup>
 </Project>

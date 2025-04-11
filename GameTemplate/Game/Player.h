@@ -1,68 +1,68 @@
 #pragma once
 
-//ƒNƒ‰ƒXéŒ¾
+//ã‚¯ãƒ©ã‚¹å®£è¨€
 class Game;
-class Collision;
-//class GameCamera;
 
+//2025/03/04
 
 class Player : public IGameObject
 {
 public:
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ãƒˆ
+	enum EnPlayerState {
+		//ã“ã“ã‹ã‚‰ä¸‹ã«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’æ›¸ã
+		enPlayerState_Idle,//å¾…æ©Ÿ
 
+
+	};
+public:
 	Player();
 	~Player();
-	//ƒXƒ^[ƒg
+	//ã‚¹ã‚¿ãƒ¼ãƒˆ
 	bool Start();
-	//ƒAƒbƒvƒf[ƒg
+	//ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	void Update();
-	//ƒŒƒ“ƒ_[
+	//ãƒ¬ãƒ³ãƒ€ãƒ¼
 	void Render(RenderContext& rc);
-
-	//ƒZƒbƒgƒ|ƒWƒVƒ‡ƒ“
+	//ã‚»ãƒƒãƒˆãƒã‚¸ã‚·ãƒ§ãƒ³
 	void SetPosition(const Vector3& position)
 	{
-		m_ballPosition = position;
+		m_position = position;
 	}
-	//À•W‚ğæ“¾
+
+	//åº§æ¨™ã‚’å–å¾—
 	const Vector3& GetPosition() const
 	{
-		return m_ballPosition;
-	}
-	//‰ñ“]‚ğİ’è
-	void SetRotation(const Quaternion& rotation)
-	{
-		m_ballRotation = rotation;
+		return m_position;
 	}
 
-	CharacterController& GetCharacterController()
-	{
-		return m_characterController;
-	}
-	void AddMoveSpeed(const Vector3& addMoveSpeed)
-	{
-		m_ballSpeed += addMoveSpeed;
-	}
-	const float             g = 9.8f;//d—Í
-	CharacterController     m_charaCon;//ƒLƒƒƒ‰ƒRƒ“
-	ModelRender m_ballRender;//ƒ{[ƒ‹ƒŒƒ“ƒ_[
-	Vector3 m_ballPosition;//ƒ{[ƒ‹‚Ìƒ|ƒWƒVƒ‡ƒ“
-	RigidBody m_rigidBody;// „‘Ì
-	SphereCollider m_sphereCollider;// ƒ{[ƒ‹‚ÌŒ`ó
-	Quaternion m_ballRotation;//ƒ{[ƒ‹ƒ[ƒe[ƒVƒ‡ƒ“i‰ñ“])
-	RigidBodyInitData rbInitData;
-	Vector3                 m_ballSpeed;//ƒXƒs[ƒh
-	//Game* m_game;
-	CharacterController	    m_characterController;
-	Vector3					m_forward = Vector3::AxisZ;
-
+	//ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
 private:
-	//ˆÚ“®ˆ—
-	//void Move();
-	//‰ñ“]ˆ—
-	void Rotation();
-	//ƒWƒƒƒ“ƒvˆ—
+	//ç§»å‹•å‡¦ç†
+	void Move();
+
+
+
+	//ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
 	void PlayerJump();
 
-};
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+	enum EnAnimationClip {
 
+
+		enAnimationClip_Idle,//å¾…æ©Ÿ
+		enAnimationClip_Num,//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ•°
+	};
+
+
+
+	AnimationClip  m_animationClips[enAnimationClip_Num];//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒªãƒƒãƒ—
+	float Playerposition;  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
+	float velocity;  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é€Ÿåº¦
+	ModelRender m_modelRender;//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼
+	Vector3 m_scale = Vector3::One;//ã‚¹ã‚±ãƒ¼ãƒ«
+	CharacterController   m_charaCon;//ã‚­ãƒ£ãƒ©ã‚³ãƒ³
+	Vector3               m_moveSpeed;//ã‚¹ãƒ”ãƒ¼ãƒ‰
+	Game* m_game = nullptr;
+	Vector3               m_position;//ãƒã‚¸ã‚·ãƒ§ãƒ³
+};

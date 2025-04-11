@@ -1,11 +1,13 @@
 #pragma once
 class Game;
-class GameOver :public IGameObject
+//ゲームクリア
+class GameClear :public IGameObject
 {
 public:
-	GameOver();
-	~GameOver();
-	bool Start() override;
+	GameClear();
+	~GameClear();
+
+	bool Start()override;
 	//更新処理
 	void Update();
 	//描画処理

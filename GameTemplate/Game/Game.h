@@ -5,25 +5,37 @@
 class Player;
 class Timer;
 class Score;
-class Stage01;
-class GameCamera;
+class Chest;
+class GameOver;
+class GameClear;
+class Title;
 
 class Game : public IGameObject
 {
 public:
-	Game() {}
+	Game();
 	~Game();
 	bool Start();
 	void Update();
-	//void Render(RenderContext& rc);
+	void Render(RenderContext& rc);
+	void GameTransition();
+
+	enum EnGameState{
+		enTitle,
+		enStageSelect,
+		enInGame,
+		enResult,
+		enGameOver
+	};
+	EnGameState m_gameState = enTitle;
 
 private:
-	GameCamera* m_gamecamera;
-	Player* m_player;
-	Stage01* m_stage01;
+	Title* m_title;
+	Chest* m_chest;
 	Timer* m_timer;
+	GameOver* m_gameOver;
+	GameClear* m_gameClear;
 	Score* m_resultScore;
-	ModelRender m_modelRender;
 	Vector3 m_pos;
 };
 

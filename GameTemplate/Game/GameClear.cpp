@@ -1,27 +1,28 @@
 #include "stdafx.h"
-#include "GameOver.h"
+#include "GameClear.h"
 #include "Title.h"
 #include "Game.h"
 
-GameOver::GameOver()
+GameClear::GameClear()
 {
 
 }
 
-GameOver::~GameOver()
+GameClear::~GameClear()
 {
 
 }
 
-bool GameOver::Start()
+bool GameClear::Start()
 {
-	//ゲームオーバーの画像を読み込む
-	spriteRender.Init("Assets/sprite/Gameover.dds", 1920.0f, 1080.0f);
+
+	spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	m_game = FindGO<Game>("game");
 	return true;
 }
 
-void GameOver::Update()
+//更新処理
+void GameClear::Update()
 {
 	//Aボタンが押されたら
 	if (g_pad[0]->IsTrigger(enButtonA))
@@ -35,7 +36,7 @@ void GameOver::Update()
 }
 
 //描画処理
-void GameOver::Render(RenderContext& rc)
+void GameClear::Render(RenderContext& rc)
 {
 	spriteRender.Draw(rc);
 }

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Game.h"
-//#include "GameCamera.h"
-//2025/03/06XV
+#include <cmath>
 
 Player::Player()
 {
@@ -16,84 +15,58 @@ Player::~Player()
 
 bool Player::Start()
 {
-	//ƒvƒŒƒCƒ„[‚Ì•\¦
-	m_ballRender.Init("Assets/modelData/light.tkm");
-	m_ballPosition.Set(0.0f, 300.0f, 0.0f);
-	m_ballRender.SetPosition(Vector3(m_ballPosition));
-	m_ballRender.SetScale(5.0f, 5.0f, 5.0f);
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+
+	//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’åˆæœŸåŒ–
+	m_modelRender.Init("", m_animationClips, enAnimationClip_Num);
+
+	m_modelRender.SetPosition(m_position);
+	m_modelRender.SetScale(m_scale);
+
+	m_charaCon.Init(
+		2.0f,			//åŠå¾„ã€‚
+		10.0f,			//é«˜ã•ã€‚
+		m_position		//åº§æ¨™ã€‚
+	);
+	m_game = FindGO<Game>("game");
 	return true;
 }
 
 void Player::Update()
 {
-	//ˆÚ“®ˆ—
-	//Move();
+	//ç§»å‹•å‡¦ç†
+	Move();
 
-	//ƒWƒƒƒ“ƒvˆ—
-	//PlayerJump();
-	//‰ñ“]ˆ—
-	Rotation();
-	//ƒ‚ƒfƒ‹‚ÌXV
-	m_ballRender.Update();
+	//ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
+	PlayerJump();
+	m_modelRender.Update();
+}
 
+void Player::Render(RenderContext& rc)
+{
+	m_modelRender.Draw(rc);
+}
+
+void Player::Move()
+{
 
 }
 
 void Player::PlayerJump()
 {
+	//ã‚‚ã—åœ°é¢ã«ä»˜ã„ã¦ã„ãŸã‚‰
 	if (m_charaCon.IsOnGround())
 	{
-		//Bƒ{ƒ^ƒ“„‚µ‚½‚ç
+		//Bãƒœã‚¿ãƒ³æ¨ã—ãŸã‚‰
 		if (g_pad[0]->IsTrigger(enButtonB))
 		{
-			//ƒWƒƒƒ“ƒv‚·‚é
-			m_ballSpeed.y = 120.0f;
+			//ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
+			m_moveSpeed.y = 120.0f;
 		}
 	}
-	//•‚‚¢‚Ä‚¢‚½‚ç
+	//æµ®ã„ã¦ã„ã‚‹ã¨ã
 	else
 	{
-		//d—Í
-		//PhysicsWorld::GetInstance()->SetGravity({ 0, -980.0f, 0.0f });
-		m_ballSpeed.y -= g;
-
+		m_moveSpeed.y -= 10;
 	}
-	Vector3 modelPosition = m_ballPosition;
-	//‚¿‚å‚Á‚Æ‚¾‚¯ƒ‚ƒfƒ‹‚ÌÀ•W‚ğ‹“‚°‚éB
-	modelPosition.y += 2.5f;
-	m_ballRender.SetPosition(modelPosition);
-
-}
-
-void Player::Rotation()
-{
-	if (fabsf(m_ballSpeed.x) < 0.001f
-		&& fabsf(m_ballSpeed.z) < 0.001f) {
-		//m_moveSpeed.x‚Æm_moveSpeed.z‚Ìâ‘Î’l‚ª‚Æ‚à‚É0.001ˆÈ‰º‚Æ‚¢‚¤‚±‚Æ‚Í
-		//‚±‚ÌƒtƒŒ[ƒ€‚Å‚ÍƒLƒƒƒ‰‚ÍˆÚ“®‚µ‚Ä‚¢‚È‚¢‚Ì‚Åù‰ñ‚·‚é•K—v‚Í‚È‚¢B
-		return;
-	}
-	//atan2‚ÍtanƒÆ‚Ì’l‚ğŠp“x(ƒ‰ƒWƒAƒ“’PˆÊ)‚É•ÏŠ·‚µ‚Ä‚­‚ê‚éŠÖ”B
-	//m_moveSpeed.x / m_moveSpeed.z‚ÌŒ‹‰Ê‚ÍtanƒÆ‚É‚È‚éB
-	//atan2‚ğg—p‚µ‚ÄAŠp“x‚ğ‹‚ß‚Ä‚¢‚éB
-	//‚±‚ê‚ª‰ñ“]Šp“x‚É‚È‚éB
-	float angle = atan2(-m_ballSpeed.x, m_ballSpeed.z);
-	//atan‚ª•Ô‚µ‚Ä‚­‚éŠp“x‚Íƒ‰ƒWƒAƒ“’PˆÊ‚È‚Ì‚Å
-	//SetRotationDeg‚Å‚Í‚È‚­SetRotation‚ğg—p‚·‚éB
-	m_ballRotation.SetRotationY(-angle);
-
-	//‰ñ“]‚ğİ’è‚·‚éB
-	m_ballRender.SetRotation(m_ballRotation);
-
-	//ƒvƒŒƒCƒ„[‚Ì³–ÊƒxƒNƒgƒ‹‚ğŒvZ‚·‚éB
-	m_forward = Vector3::AxisZ;
-	m_ballRotation.Apply(m_forward);
-}
-
-//•`‰æˆ—B
-void Player::Render(RenderContext& rc)
-{
-	//•`‰æ‚·‚éB
-
-	m_ballRender.Draw(rc);
 }

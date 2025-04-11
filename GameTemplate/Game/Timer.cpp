@@ -1,14 +1,21 @@
 #include "stdafx.h"
 #include "Timer.h"
 #include "Game.h"
-#include "Gameover.h"
 
 Timer::Timer()
 {
+
 }
 
 Timer::~Timer()
 {
+
+}
+
+bool Timer::Start()
+{
+	m_game = FindGO<Game>("game");
+	return true;
 }
 
 void Timer::Update()
@@ -34,9 +41,8 @@ void Timer::Update()
 
 	if (m_timer <= 0.0f)
 	{
-		NewGO<Gameover>(0, "Gameover");
-		DeleteGO(this);
-		DeleteGO(m_game);
+		m_game->m_gameState = m_game->enGameOver;
+		m_game->GameTransition();
 	}
 }
 

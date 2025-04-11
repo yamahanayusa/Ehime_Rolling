@@ -6,6 +6,7 @@ public:
 	Timer();
 	~Timer();
 
+	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
 
