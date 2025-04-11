@@ -15,19 +15,18 @@ Player::~Player()
 
 bool Player::Start()
 {
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒ[ƒh‚·‚é
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 
-
-	//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[‚ğ‰Šú‰»
+	//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’åˆæœŸåŒ–
 	m_modelRender.Init("", m_animationClips, enAnimationClip_Num);
 
 	m_modelRender.SetPosition(m_position);
 	m_modelRender.SetScale(m_scale);
 
 	m_charaCon.Init(
-		2.0f,			//”¼ŒaB
-		10.0f,			//‚‚³B
-		m_position		//À•WB
+		2.0f,			//åŠå¾„ã€‚
+		10.0f,			//é«˜ã•ã€‚
+		m_position		//åº§æ¨™ã€‚
 	);
 	m_game = FindGO<Game>("game");
 	return true;
@@ -35,10 +34,10 @@ bool Player::Start()
 
 void Player::Update()
 {
-	//ˆÚ“®ˆ—
+	//ç§»å‹•å‡¦ç†
 	Move();
 
-	//ƒWƒƒƒ“ƒvˆ—
+	//ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
 	PlayerJump();
 	m_modelRender.Update();
 }
@@ -55,20 +54,19 @@ void Player::Move()
 
 void Player::PlayerJump()
 {
-	//‚à‚µ’n–Ê‚É•t‚¢‚Ä‚¢‚½‚ç
+	//ã‚‚ã—åœ°é¢ã«ä»˜ã„ã¦ã„ãŸã‚‰
 	if (m_charaCon.IsOnGround())
 	{
-		//Bƒ{ƒ^ƒ“„‚µ‚½‚ç
+		//Bãƒœã‚¿ãƒ³æ¨ã—ãŸã‚‰
 		if (g_pad[0]->IsTrigger(enButtonB))
 		{
-			//ƒWƒƒƒ“ƒv‚·‚é
+			//ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
 			m_moveSpeed.y = 120.0f;
 		}
 	}
-	//•‚‚¢‚Ä‚¢‚é‚Æ‚«
+	//æµ®ã„ã¦ã„ã‚‹ã¨ã
 	else
 	{
 		m_moveSpeed.y -= 10;
 	}
 }
-

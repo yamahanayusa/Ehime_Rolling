@@ -1,71 +1,68 @@
 #pragma once
 
-
-//ƒNƒ‰ƒXéŒ¾
+//ã‚¯ãƒ©ã‚¹å®£è¨€
 class Game;
 
 //2025/03/04
 
-
 class Player : public IGameObject
 {
 public:
-	//ƒvƒŒƒCƒ„[‚ÌƒXƒe[ƒg
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ãƒˆ
 	enum EnPlayerState {
-		//‚±‚±‚©‚ç‰º‚ÉƒXƒe[ƒg‚ğ‘‚­
-		enPlayerState_Idle,//‘Ò‹@
+		//ã“ã“ã‹ã‚‰ä¸‹ã«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’æ›¸ã
+		enPlayerState_Idle,//å¾…æ©Ÿ
 
 
 	};
 public:
 	Player();
 	~Player();
-	//ƒXƒ^[ƒg
+	//ã‚¹ã‚¿ãƒ¼ãƒˆ
 	bool Start();
-	//ƒAƒbƒvƒf[ƒg
+	//ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	void Update();
-	//ƒŒƒ“ƒ_[
+	//ãƒ¬ãƒ³ãƒ€ãƒ¼
 	void Render(RenderContext& rc);
-	//ƒZƒbƒgƒ|ƒWƒVƒ‡ƒ“
+	//ã‚»ãƒƒãƒˆãƒã‚¸ã‚·ãƒ§ãƒ³
 	void SetPosition(const Vector3& position)
 	{
 		m_position = position;
 	}
 
-	//À•W‚ğæ“¾
+	//åº§æ¨™ã‚’å–å¾—
 	const Vector3& GetPosition() const
 	{
 		return m_position;
 	}
 
-	//ƒvƒ‰ƒCƒx[ƒg
+	//ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
 private:
-	//ˆÚ“®ˆ—
+	//ç§»å‹•å‡¦ç†
 	void Move();
 
 
 
-	//ƒWƒƒƒ“ƒvˆ—
+	//ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
 	void PlayerJump();
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 	enum EnAnimationClip {
 
 
-		enAnimationClip_Idle,//‘Ò‹@
-		enAnimationClip_Num,//ƒAƒjƒ[ƒVƒ‡ƒ“”
+		enAnimationClip_Idle,//å¾…æ©Ÿ
+		enAnimationClip_Num,//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ•°
 	};
 
 
 
-	AnimationClip  m_animationClips[enAnimationClip_Num];//ƒAƒjƒ[ƒVƒ‡ƒ“ƒNƒŠƒbƒv
-	float Playerposition;  // ƒvƒŒƒCƒ„[‚ÌˆÊ’u
-	float velocity;  // ƒvƒŒƒCƒ„[‚Ì‘¬“x
-	ModelRender m_modelRender;//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[
-	Vector3 m_scale = Vector3::One;//ƒXƒP[ƒ‹
-	CharacterController   m_charaCon;//ƒLƒƒƒ‰ƒRƒ“
-	Vector3               m_moveSpeed;//ƒXƒs[ƒh
+	AnimationClip  m_animationClips[enAnimationClip_Num];//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒªãƒƒãƒ—
+	float Playerposition;  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
+	float velocity;  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é€Ÿåº¦
+	ModelRender m_modelRender;//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼
+	Vector3 m_scale = Vector3::One;//ã‚¹ã‚±ãƒ¼ãƒ«
+	CharacterController   m_charaCon;//ã‚­ãƒ£ãƒ©ã‚³ãƒ³
+	Vector3               m_moveSpeed;//ã‚¹ãƒ”ãƒ¼ãƒ‰
 	Game* m_game = nullptr;
-	Vector3               m_position;//ƒ|ƒWƒVƒ‡ƒ“
+	Vector3               m_position;//ãƒã‚¸ã‚·ãƒ§ãƒ³
 };
-

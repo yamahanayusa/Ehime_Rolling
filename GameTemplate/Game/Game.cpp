@@ -7,7 +7,6 @@
 #include "GameOver.h"
 #include "GameClear.h"
 
-
 Game::Game()
 {
 
@@ -17,6 +16,7 @@ Game::~Game()
 {
 	DeleteGO(m_timer);
 	DeleteGO(m_resultScore);
+	DeleteGO(m_stage01);
 }
 
 bool Game::Start()
