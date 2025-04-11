@@ -68,6 +68,7 @@ void Chest::PlayAnimation()
 		break;
 	case 1:
 		m_modelRender.PlayAnimation(enAnimationClip_Open);
+		//アニメーションが再生し終わったらリザルトを出す
 		if (m_modelRender.IsPlayingAnimation() == false) {
 			m_game->m_gameState = m_game->enResult;
 			m_game->GameTransition();

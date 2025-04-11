@@ -13,7 +13,7 @@ class Title;
 class Game : public IGameObject
 {
 public:
-	Game() {}
+	Game();
 	~Game();
 	bool Start();
 	void Update();
