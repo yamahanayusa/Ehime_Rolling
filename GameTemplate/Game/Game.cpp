@@ -16,7 +16,6 @@ Game::~Game()
 {
 	DeleteGO(m_timer);
 	DeleteGO(m_resultScore);
-	DeleteGO(m_stage01);
 }
 
 bool Game::Start()
