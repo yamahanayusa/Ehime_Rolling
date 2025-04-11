@@ -8,16 +8,21 @@
 #include "GameClear.h"
 
 
-bool Game::Start()
+Game::Game()
 {
-	GameTransition();
-	return true;
+
 }
 
 Game::~Game()
 {
 	DeleteGO(m_timer);
 	DeleteGO(m_resultScore);
+}
+
+bool Game::Start()
+{
+	GameTransition();
+	return true;
 }
 
 void Game::Update()
@@ -52,6 +57,8 @@ void Game::GameTransition()
 		m_gameClear = NewGO<GameClear>(0, "gameClear");
 		break;
 	case Game::enGameOver:
+		DeleteGO(m_timer);
+		DeleteGO(m_chest);
 		m_gameOver = NewGO<GameOver>(0, "gameOver");
 		break;
 	default:
