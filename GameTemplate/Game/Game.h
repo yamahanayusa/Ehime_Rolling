@@ -8,6 +8,7 @@ class Score;
 class Chest;
 class GameOver;
 class GameClear;
+class GameCamera;
 class Title;
 class Stage;
 
@@ -39,6 +40,7 @@ private:
 	Score* m_resultScore;
 	Stage* m_stage = nullptr;
 	Player* m_player = nullptr;
+	GameCamera* m_gamecamera = nullptr;
 	Vector3 m_pos;
 };
 
