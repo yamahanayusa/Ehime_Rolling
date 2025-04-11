@@ -6,6 +6,7 @@
 #include "Chest.h"
 #include "GameOver.h"
 #include "GameClear.h"
+#include "GameCamera.h"
 #include "Stage.h"
 #include "Player.h"
 
@@ -24,6 +25,7 @@ Game::~Game()
 
 bool Game::Start()
 {
+	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameTransition();
 	//“–‚½‚è”»’è
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
@@ -59,6 +61,7 @@ void Game::GameTransition()
 		m_chest = NewGO<Chest>(0, "chest");
 		m_player= NewGO<Player>(0, "player");
 		m_stage = NewGO<Stage>(0, "stage");
+		m_gamecamera = NewGO<GameCamera>(0,"gamecamera");
 		break;
 	case Game::enResult:
 		DeleteGO(m_timer);
