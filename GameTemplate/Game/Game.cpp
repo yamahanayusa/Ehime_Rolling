@@ -7,6 +7,7 @@
 #include "GameOver.h"
 #include "GameClear.h"
 #include "Stage.h"
+#include "Player.h"
 
 Game::Game()
 {
@@ -15,6 +16,7 @@ Game::Game()
 
 Game::~Game()
 {
+	DeleteGO(m_player);
 	DeleteGO(m_timer);
 	DeleteGO(m_resultScore);
 	DeleteGO(m_stage);
@@ -23,6 +25,10 @@ Game::~Game()
 bool Game::Start()
 {
 	GameTransition();
+	//“–‚½‚è”»’è
+	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
+	//d—Í‚ÌÝ’è
+	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2980.0f,0.0f });
 	return true;
 }
 
@@ -51,6 +57,7 @@ void Game::GameTransition()
 		m_resultScore = NewGO<Score>(0, "Score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_chest = NewGO<Chest>(0, "chest");
+		m_player= NewGO<Player>(0, "player");
 		m_stage = NewGO<Stage>(0, "stage");
 		break;
 	case Game::enResult:

@@ -38,6 +38,7 @@ private:
 	GameClear* m_gameClear;
 	Score* m_resultScore;
 	Stage* m_stage = nullptr;
+	Player* m_player = nullptr;
 	Vector3 m_pos;
 };
 
