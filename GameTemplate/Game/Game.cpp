@@ -6,6 +6,7 @@
 #include "Chest.h"
 #include "GameOver.h"
 #include "GameClear.h"
+#include "Stage.h"
 
 Game::Game()
 {
@@ -16,6 +17,7 @@ Game::~Game()
 {
 	DeleteGO(m_timer);
 	DeleteGO(m_resultScore);
+	DeleteGO(m_stage);
 }
 
 bool Game::Start()
@@ -49,6 +51,7 @@ void Game::GameTransition()
 		m_resultScore = NewGO<Score>(0, "Score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_chest = NewGO<Chest>(0, "chest");
+		m_stage = NewGO<Stage>(0, "stage");
 		break;
 	case Game::enResult:
 		DeleteGO(m_timer);
