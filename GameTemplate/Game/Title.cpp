@@ -29,7 +29,7 @@ void Title::Update()
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
 		m_game->m_gameState = m_game->enStageSelect;
-		m_game->GameTransition();
+		m_game->GameStateUpdate();
 		DeleteGO(this);
 	}
 }

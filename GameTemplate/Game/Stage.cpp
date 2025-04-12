@@ -15,7 +15,7 @@ Stage::~Stage()
 bool Stage::Start()
 {
 
-	m_bgModelRendedr.SetScale(5.0f, 5.0f, 5.0f);
+	m_bgModelRendedr.SetScale(7.0f, 7.0f, 7.0f);
 	m_bgModelRendedr.Init("Assets/Stage01/stage 1.tkm");
 
 	m_bgObject.CreateFromModel(m_bgModelRendedr.GetModel(), m_bgModelRendedr.GetWorldMatrix(0));

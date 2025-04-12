@@ -21,6 +21,7 @@
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="IceFloor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -37,5 +38,6 @@
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="IceFloor.h" />
   </ItemGroup>
 </Project>
