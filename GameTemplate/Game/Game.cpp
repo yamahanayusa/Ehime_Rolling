@@ -9,6 +9,7 @@
 #include "GameCamera.h"
 #include "Stage.h"
 #include "Player.h"
+#include "IceFloor.h"
 
 Game::Game()
 {
@@ -21,16 +22,17 @@ Game::~Game()
 	DeleteGO(m_timer);
 	DeleteGO(m_resultScore);
 	DeleteGO(m_stage);
+	DeleteGO(m_iceFloor);
 }
 
 bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
-	GameTransition();
+	GameStateUpdate();
 	//“–‚½‚è”»’è
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//d—Í‚ÌÝ’è
-	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2980.0f,0.0f });
+	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-4000.0f,0.0f });
 	return true;
 }
 
@@ -44,7 +46,7 @@ void Game::Render(RenderContext& rc)
 
 }
 
-void Game::GameTransition()
+void Game::GameStateUpdate()
 {
 	switch (m_gameState)
 	{
@@ -53,7 +55,7 @@ void Game::GameTransition()
 		break;
 	case Game::enStageSelect:
 		m_gameState = enInGame;
-		GameTransition();
+		GameStateUpdate();
 		break;
 	case Game::enInGame:
 		m_resultScore = NewGO<Score>(0, "Score");
@@ -61,6 +63,7 @@ void Game::GameTransition()
 		m_chest = NewGO<Chest>(0, "chest");
 		m_player= NewGO<Player>(0, "player");
 		m_stage = NewGO<Stage>(0, "stage");
+		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
 		m_gamecamera = NewGO<GameCamera>(0,"gamecamera");
 		break;
 	case Game::enResult:

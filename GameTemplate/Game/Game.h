@@ -11,6 +11,7 @@ class GameClear;
 class GameCamera;
 class Title;
 class Stage;
+class IceFloor;
 
 class Game : public IGameObject
 {
@@ -20,7 +21,7 @@ public:
 	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
-	void GameTransition();
+	void GameStateUpdate();
 
 	enum EnGameState{
 		enTitle,
@@ -41,6 +42,7 @@ private:
 	Stage* m_stage = nullptr;
 	Player* m_player = nullptr;
 	GameCamera* m_gamecamera = nullptr;
+	IceFloor* m_iceFloor = nullptr;
 	Vector3 m_pos;
 };
 
