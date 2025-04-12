@@ -1,5 +1,7 @@
 #pragma once
 
+class Player;
+
 class Stage : public IGameObject
 {
 public:
@@ -21,4 +23,5 @@ private:
 	ModelRender m_bgModelRendedr;
 	Quaternion m_bgRotation;
 	PhysicsStaticObject m_bgObject;
+	Player* m_player = nullptr;
 };
