@@ -44,12 +44,9 @@ void Stage::Rotation()
 	if (m_player == nullptr) {
 		return;
 	}
-	
+
 	// 背景の回転
 	//左右方向の傾き
-	addRot.SetRotationZ(g_pad[0]->GetLStickXF() * 0.006f);
-	m_bgRotation.Multiply(addRot);
-	m_bgObject.GetBody()->SetPositionAndRotation(Vector3::Zero, m_bgRotation);
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
@@ -70,9 +67,8 @@ void Stage::Rotation()
 	addRot.SetRotation(mFinal);
 
 	m_bgRotation.Multiply(addRot);
-	
+
 	//上下方向の傾き
-	addLot.SetRotationX(g_pad[0]->GetLStickYF() * -0.006f);
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
