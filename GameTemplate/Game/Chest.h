@@ -20,18 +20,19 @@ public:
 		enAnimationClip_Open,									//chestが空いているとき。
 		enAnimationClip_Num,
 	};
-	Game*			m_game;										//ゲーム。
-	//Player* m_player;											//プレイヤー。
 
+	Game*			m_game;										//ゲーム。
+	Score*          m_score;
+    Timer*			m_timer;
+	//Player* m_player;											//プレイヤー。
+   
 	AnimationClip	m_animationClips[enAnimationClip_Num];		//アニメーション。
 	ModelRender		m_modelRender;								//モデルレンダ―。
 	Vector3			m_position;									//座標。
 	Vector3			m_firstPosition;							//最初の座標。
 
 	int m_chestState = 0;										//chestのステート。
-	Score* m_score;
+    int m_tortalScore = 0;
 	bool m_clearFlag = false;
-	Timer* m_timer;
-	int m_tortalScore = 0;
 };
 
