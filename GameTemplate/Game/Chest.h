@@ -2,6 +2,8 @@
 
 //class Player;
 class Game;
+class Score;
+class Timer;
 class Chest :public IGameObject
 {
 public:
@@ -27,5 +29,9 @@ public:
 	Vector3			m_firstPosition;							//最初の座標。
 
 	int m_chestState = 0;										//chestのステート。
+	Score* m_score;
+	bool m_clearFlag = false;
+	Timer* m_timer;
+	int m_tortalScore = 0;
 };
 
