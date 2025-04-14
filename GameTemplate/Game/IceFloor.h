@@ -2,7 +2,7 @@
 
 class Player;
 
-class IceFloor: public IGameObject
+class IceFloor : public IGameObject
 {
 public:
 	IceFloor();
@@ -14,13 +14,14 @@ public:
 	void Render(RenderContext& rc);
 
 	//âÒì]Çê›íËÇ∑ÇÈ
-	Quaternion					addRot;
-	Quaternion					addLot;
+	Quaternion addRot;
+	Quaternion addLot;
 
 	ModelRender					m_modelRender;
 
 private:
 	Quaternion					m_Rotation;
 	PhysicsStaticObject			m_Object;
+	Player* m_player = nullptr;
 };
 
