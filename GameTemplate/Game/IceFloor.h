@@ -14,8 +14,8 @@ public:
 	void Render(RenderContext& rc);
 
 	//‰ñ“]‚ğİ’è‚·‚é
-	Quaternion addRot;
-	Quaternion addLot;
+	Quaternion					addRot;
+	Quaternion					addLot;
 
 	ModelRender					m_modelRender;
 

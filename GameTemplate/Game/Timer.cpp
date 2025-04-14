@@ -41,7 +41,7 @@ void Timer::Update()
 
 	if (m_timer <= 0.0f)
 	{
-		m_game->m_gameState = m_game->enGameOver;
+		m_game->m_gameState = m_game->enTimeOver;
 		m_game->GameStateUpdate();
 	}
 }

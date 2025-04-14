@@ -39,12 +39,12 @@ void Stage::Rotation()
 
 	// ”wŒi‚Ì‰ñ“]
 	//¶‰E•ûŒü‚ÌŒX‚«
-	addRot.SetRotationZ(g_pad[0]->GetLStickXF() * 0.005f);
+	addRot.SetRotationZ(g_pad[0]->GetLStickXF() * 0.006f);
 	m_bgRotation.Multiply(addRot);
 	m_bgObject.GetBody()->SetPositionAndRotation(Vector3::Zero, m_bgRotation);
 
 	//ã‰º•ûŒü‚ÌŒX‚«
-	addLot.SetRotationX(g_pad[0]->GetLStickYF() * -0.005f);
+	addLot.SetRotationX(g_pad[0]->GetLStickYF() * -0.006f);
 	m_bgRotation.Multiply(addLot);
 	//
 	m_bgModelRendedr.SetRotation(m_bgRotation);

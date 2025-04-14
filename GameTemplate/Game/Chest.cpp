@@ -24,8 +24,7 @@ bool Chest::Start()
 
 	//ƒ‚ƒfƒ‹‚Ì•\¦B
 	m_modelRender.Init("Assets/modelData/Chest.tkm", m_animationClips, enAnimationClip_Num, enModelUpAxisZ);
-	
-
+	m_modelRender.SetScale(3.0f, 3.0f, 3.0f);
 	return true;
 }
 

@@ -4,6 +4,7 @@
 #include "Timer.h"
 #include "Score.h"
 #include "Chest.h"
+#include "TimeOver.h"
 #include "GameOver.h"
 #include "GameClear.h"
 #include "GameCamera.h"
@@ -65,11 +66,19 @@ void Game::GameStateUpdate()
 		m_stage = NewGO<Stage>(0, "stage");
 		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
 		m_gamecamera = NewGO<GameCamera>(0,"gamecamera");
+		m_chest = NewGO<Chest>(0, "Chest");
+		m_chest->m_position = { -400.0f,0.0f,-500.0f };
+		m_chest->m_firstPosition = m_chest->m_position;
 		break;
 	case Game::enResult:
 		DeleteGO(m_timer);
 		DeleteGO(m_chest);
 		m_gameClear = NewGO<GameClear>(0, "gameClear");
+		break;
+	case Game::enTimeOver:
+		DeleteGO(m_timer);
+		DeleteGO(m_chest);
+		m_timeOver = NewGO<TimeOver>(0, "timeOver");
 		break;
 	case Game::enGameOver:
 		DeleteGO(m_timer);
