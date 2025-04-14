@@ -36,6 +36,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	//Gameクラスのオブジェクトを作成。
 	NewGO<Game>(0, "game");
 
+	//skyCube
+	SkyCube* skyCube = NewGO<SkyCube>(0);
+	skyCube->SetType(enSkyCubeType_SpaceToon_2);
+	skyCube->SetScale(300.0f);
 	//////////////////////////////////////
 	// 初期化を行うコードを書くのはここまで！！！
 	//////////////////////////////////////
