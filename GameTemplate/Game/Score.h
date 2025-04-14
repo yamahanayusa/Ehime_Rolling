@@ -14,18 +14,18 @@ public:
 	void ResultScore();
 	void Render(RenderContext& rc);
 
+    GameClear* m_gameClear;
+	Timer* m_timer;
+	Chest* m_chest;
+	Score* m_score;
 	FontRender m_resultRender;
 	SpriteRender spriteRender;
 	FontRender m_ScoreFontRender;
 
 	//ƒƒ“ƒo•Ï”
 	int m_resultScore = 0;
-	GameClear* m_gameClear;
-	bool m_clearFlag = false;
-	Timer* m_timer;
 	int m_tortalScore = 0;
-	Chest* m_chest;
-	Score* m_score;
+	bool m_clearFlag = false;
 	const int m_timerStop = 0;
 };
 
