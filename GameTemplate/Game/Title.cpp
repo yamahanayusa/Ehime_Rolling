@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Title.h"
 #include "Game.h"
+#include "Score.h"
 
 Title::Title()
 {
@@ -31,6 +32,7 @@ void Title::Update()
 		m_game->m_gameState = m_game->enStageSelect;
 		m_game->GameStateUpdate();
 		DeleteGO(this);
+		//DeleteGO(m_resultScore);
 	}
 }
 

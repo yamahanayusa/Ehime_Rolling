@@ -15,27 +15,27 @@ GameOver::~GameOver()
 
 bool GameOver::Start()
 {
-	//ƒQ[ƒ€ƒI[ƒo[‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
-	spriteRender.Init("Assets/sprite/GameOver.dds", 1920.0f, 1080.0f);
+	//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®ç”»åƒã‚’èª­ã¿è¾¼ã‚€
+	m_spriteRender.Init("Assets/sprite/Gameover.dds", 1920.0f, 1080.0f);
 	m_game = FindGO<Game>("game");
 	return true;
 }
 
 void GameOver::Update()
 {
-	//Aƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç
+	//Aãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		//ƒ^ƒCƒgƒ‹‚ÌƒIƒuƒWƒFƒNƒg‚ğ‚Â‚­‚é
+		//ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã¤ãã‚‹
 		NewGO<Title>(0, "title");
-		//©g‚ğíœ‚·‚é
+		//è‡ªèº«ã‚’å‰Šé™¤ã™ã‚‹
 		DeleteGO(this);
 		DeleteGO(m_game);
 	}
 }
 
-//•`‰æˆ—
+//æç”»å‡¦ç†
 void GameOver::Render(RenderContext& rc)
 {
-	spriteRender.Draw(rc);
+	m_spriteRender.Draw(rc);
 }

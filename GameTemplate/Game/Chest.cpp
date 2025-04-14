@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Chest.h"
 #include "Game.h"
+#include "Score.h"
+#include "Timer.h" 
 
 Chest::Chest()
 {
@@ -21,6 +23,8 @@ bool Chest::Start()
 	m_animationClips[enAnimationClip_Close].SetLoopFlag(true);
 
 	m_game = FindGO<Game>("game");
+	m_score = FindGO<Score>("Score");
+	m_timer = FindGO<Timer>("timer");
 
 	//ƒ‚ƒfƒ‹‚Ì•\Ž¦B
 	m_modelRender.Init("Assets/modelData/Chest.tkm", m_animationClips, enAnimationClip_Num, enModelUpAxisZ);
@@ -56,6 +60,12 @@ void Chest::Move()
 	if (g_pad[0]->IsTrigger(enButtonB))
 	{
 		m_chestState = 1;
+		m_clearFlag = true;
+		if (m_clearFlag == true)
+		{
+			const int m_timerStop  = m_timer->m_timer;
+			m_tortalScore = m_score->m_resultScore + m_timerStop;
+		}
 	}
 }
 
