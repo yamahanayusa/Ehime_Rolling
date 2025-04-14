@@ -1,5 +1,6 @@
 #pragma once
 
+class Game;
 class Player : public IGameObject
 {
 public:
@@ -13,7 +14,7 @@ public:
 	//レンダー
 	void Render(RenderContext& rc);
 
-	Vector3                     m_position;//座標。
+	Vector3                 m_position;//座標。
 	Vector3                 m_scale = Vector3::One;//スケール
 	CharacterController     m_charaCon;//キャラコン
 	Vector3                 m_moveSpeed;//移動速度
@@ -21,7 +22,7 @@ public:
 	// 剛体の位置と回転を取得する
 	Vector3 rbPos;
 	Quaternion rbRot;
-
+	Game* m_game;
 
 private:
 	RigidBody m_rigidBody;	// 剛体

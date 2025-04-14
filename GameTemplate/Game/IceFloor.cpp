@@ -33,12 +33,12 @@ void IceFloor::Rotation()
 {
 	// ”wŒi‚Ì‰ñ“]
 	//¶‰E•ûŒü‚ÌŒX‚«
-	addRot.SetRotationZ(g_pad[0]->GetLStickXF() * 0.005f);
+	addRot.SetRotationZ(g_pad[0]->GetLStickXF() * 0.006f);
 	m_Rotation.Multiply(addRot);
 	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_Rotation);
 
 	//ã‰º•ûŒü‚ÌŒX‚«
-	addLot.SetRotationX(g_pad[0]->GetLStickYF() * -0.005f);
+	addLot.SetRotationX(g_pad[0]->GetLStickYF() * -0.006f);
 	m_Rotation.Multiply(addLot);
 	//
 	m_modelRender.SetRotation(m_Rotation);

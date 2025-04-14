@@ -27,17 +27,17 @@ bool Stage::Start()
 
 void Stage::Update()
 {
-	//‰ñ“]ˆ—
+	//å›è»¢å‡¦ç†
 	Rotation();
 
-	//ƒ‚ƒfƒ‹‚ÌXVˆ—B
+	//ãƒ¢ãƒ‡ãƒ«ã®æ›´æ–°å‡¦ç†ã€‚
 	m_bgModelRendedr.Update();
 }
 
 void Stage::Rotation()
 {
 	Matrix mBias, mRot, mBiasInv, mFinal;
-	// ”wŒi‚ğƒvƒŒƒCƒ„[‹óŠÔ‚ÉˆÚ“®‚³‚¹‚és—ñ‚ğŒvZ‚·‚é
+	// èƒŒæ™¯ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç©ºé–“ã«ç§»å‹•ã•ã›ã‚‹è¡Œåˆ—ã‚’è¨ˆç®—ã™ã‚‹
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
@@ -45,30 +45,34 @@ void Stage::Rotation()
 		return;
 	}
 	
-	// ”wŒi‚Ì‰ñ“]
-	//¶‰E•ûŒü‚ÌŒX‚«
+	// èƒŒæ™¯ã®å›è»¢
+	//å·¦å³æ–¹å‘ã®å‚¾ã
+	addRot.SetRotationZ(g_pad[0]->GetLStickXF() * 0.006f);
+	m_bgRotation.Multiply(addRot);
+	m_bgObject.GetBody()->SetPositionAndRotation(Vector3::Zero, m_bgRotation);
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
 	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.005f);
-	// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ªŒ´“_‚É—ˆ‚é‚æ‚¤‚É”wŒi‚ğ“®‚©‚·s—ñ‚ğì¬‚·‚é
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒåŸç‚¹ã«æ¥ã‚‹ã‚ˆã†ã«èƒŒæ™¯ã‚’å‹•ã‹ã™è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
 	mBiasInv = mBias;
-	// “®‚©‚µ‚½”wŒi‚ğ‚à‚Æ‚É–ß‚·s—ñ‚ğì¬
+	// å‹•ã‹ã—ãŸèƒŒæ™¯ã‚’ã‚‚ã¨ã«æˆ»ã™è¡Œåˆ—ã‚’ä½œæˆ
 	mBiasInv.Inverse();
-	// ’Ç‰Á‚Å‰ñ“]‚³‚¹‚és—ñ‚ğì¬
+	// è¿½åŠ ã§å›è»¢ã•ã›ã‚‹è¡Œåˆ—ã‚’ä½œæˆ
 	mRot.MakeRotationFromQuaternion(addRot);
-	// ˆÚ“®‚³‚¹‚½”wŒi‚ğ‰ñ“]‚³‚¹‚é
+	// ç§»å‹•ã•ã›ãŸèƒŒæ™¯ã‚’å›è»¢ã•ã›ã‚‹
 	mFinal.Multiply(mBias, mRot);
-	// ”wŒi‚ÌˆÊ’u‚ğ–ß‚·
+	// èƒŒæ™¯ã®ä½ç½®ã‚’æˆ»ã™
 	mFinal.Multiply(mFinal, mBiasInv);
 
-	// ÅI“I‚Éo—ˆã‚ª‚Á‚½s—ñ‚©‚ç‰ñ“]ƒNƒH[ƒ^ƒjƒIƒ“‚ğì‚é
+	// æœ€çµ‚çš„ã«å‡ºæ¥ä¸ŠãŒã£ãŸè¡Œåˆ—ã‹ã‚‰å›è»¢ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ä½œã‚‹
 	addRot.SetRotation(mFinal);
 
 	m_bgRotation.Multiply(addRot);
 	
-	//ã‰º•ûŒü‚ÌŒX‚«
+	//ä¸Šä¸‹æ–¹å‘ã®å‚¾ã
+	addLot.SetRotationX(g_pad[0]->GetLStickYF() * -0.006f);
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
@@ -83,12 +87,12 @@ void Stage::Rotation()
 	//
 	m_bgObject.GetBody()->SetPositionAndRotation(Vector3::Zero, m_bgRotation);
 	m_bgModelRendedr.SetRotation(m_bgRotation);
-	//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[‚ÌƒAƒbƒvƒf[ƒg
+	//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	m_bgModelRendedr.Update();
 }
 
 void Stage::Render(RenderContext& rc)
 {
-	//ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é
+	//ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹
 	m_bgModelRendedr.Draw(rc);
 }

@@ -6,6 +6,7 @@ class Player;
 class Timer;
 class Score;
 class Chest;
+class TimeOver;
 class GameOver;
 class GameClear;
 class GameCamera;
@@ -28,6 +29,7 @@ public:
 		enStageSelect,
 		enInGame,
 		enResult,
+		enTimeOver,
 		enGameOver
 	};
 	EnGameState m_gameState = enTitle;
@@ -36,6 +38,7 @@ private:
 	Title* m_title;
 	Chest* m_chest;
 	Timer* m_timer;
+	TimeOver* m_timeOver;
 	GameOver* m_gameOver;
 	GameClear* m_gameClear;
 	Score* m_resultScore;

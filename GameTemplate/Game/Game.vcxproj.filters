@@ -14,7 +14,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Title.cpp" />
-    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="TimeOver.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -22,6 +22,7 @@
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="IceFloor.cpp" />
+    <ClCompile Include="GameOver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -31,7 +32,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
-    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="TimeOver.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Player.h" />
@@ -39,5 +40,6 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="IceFloor.h" />
+    <ClInclude Include="GameOver.h" />
   </ItemGroup>
 </Project>

@@ -1,27 +1,27 @@
 #include "stdafx.h"
-#include "GameOver.h"
+#include "TimeOver.h"
 #include "Title.h"
 #include "Game.h"
 
-GameOver::GameOver()
+TimeOver::TimeOver()
 {
 
 }
 
-GameOver::~GameOver()
+TimeOver::~TimeOver()
 {
 
 }
 
-bool GameOver::Start()
+bool TimeOver::Start()
 {
 	//ゲームオーバーの画像を読み込む
-	spriteRender.Init("Assets/sprite/GameOver.dds", 1920.0f, 1080.0f);
+	spriteRender.Init("Assets/sprite/TimeOver.dds", 1920.0f, 1080.0f);
 	m_game = FindGO<Game>("game");
 	return true;
 }
 
-void GameOver::Update()
+void TimeOver::Update()
 {
 	//Aボタンが押されたら
 	if (g_pad[0]->IsTrigger(enButtonA))
@@ -35,7 +35,7 @@ void GameOver::Update()
 }
 
 //描画処理
-void GameOver::Render(RenderContext& rc)
+void TimeOver::Render(RenderContext& rc)
 {
 	spriteRender.Draw(rc);
 }
