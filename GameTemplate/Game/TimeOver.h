@@ -1,10 +1,10 @@
 #pragma once
 class Game;
-class GameOver :public IGameObject
+class TimeOver :public IGameObject
 {
 public:
-	GameOver();
-	~GameOver();
+	TimeOver();
+	~TimeOver();
 	bool Start() override;
 	//更新処理
 	void Update();
@@ -12,9 +12,7 @@ public:
 	void Render(RenderContext& rc);
 
 	//メンバ変数
-	SpriteRender m_spriteRender; //スプライトレンダー
+	SpriteRender spriteRender; //スプライトレンダー
 	Game* m_game;
 };
-
-
 

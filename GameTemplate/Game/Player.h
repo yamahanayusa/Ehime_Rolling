@@ -1,71 +1,32 @@
 #pragma once
 
-
-//ƒNƒ‰ƒXéŒ¾
 class Game;
-
-//2025/03/04
-
-
 class Player : public IGameObject
 {
 public:
-	//ƒvƒŒƒCƒ„[‚ÌƒXƒe[ƒg
-	enum EnPlayerState {
-		//‚±‚±‚©‚ç‰º‚ÉƒXƒe[ƒg‚ğ‘‚­
-		enPlayerState_Idle,//‘Ò‹@
 
-
-	};
-public:
 	Player();
 	~Player();
-	//ƒXƒ^[ƒg
+	//ã‚¹ã‚¿ãƒ¼ãƒˆ
 	bool Start();
-	//ƒAƒbƒvƒf[ƒg
+	//ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	void Update();
-	//ƒŒƒ“ƒ_[
+	//ãƒ¬ãƒ³ãƒ€ãƒ¼
 	void Render(RenderContext& rc);
-	//ƒZƒbƒgƒ|ƒWƒVƒ‡ƒ“
-	void SetPosition(const Vector3& position)
-	{
-		m_position = position;
-	}
 
-	//À•W‚ğæ“¾
-	const Vector3& GetPosition() const
-	{
-		return m_position;
-	}
+	Vector3                 m_position;//åº§æ¨™ã€‚
+	Vector3                 m_scale = Vector3::One;//ã‚¹ã‚±ãƒ¼ãƒ«
+	CharacterController     m_charaCon;//ã‚­ãƒ£ãƒ©ã‚³ãƒ³
+	Vector3                 m_moveSpeed;//ç§»å‹•é€Ÿåº¦
+	Vector3                 m_ballPosition;
+	// å‰›ä½“ã®ä½ç½®ã¨å›è»¢ã‚’å–å¾—ã™ã‚‹
+	Vector3 rbPos;
+	Quaternion rbRot;
+	Game* m_game;
 
-	//ƒvƒ‰ƒCƒx[ƒg
 private:
-	//ˆÚ“®ˆ—
-	void Move();
-
-
-
-	//ƒWƒƒƒ“ƒvˆ—
-	void PlayerJump();
-
-	//ƒAƒjƒ[ƒVƒ‡ƒ“
-	enum EnAnimationClip {
-
-
-		enAnimationClip_Idle,//‘Ò‹@
-		enAnimationClip_Num,//ƒAƒjƒ[ƒVƒ‡ƒ“”
-	};
-
-
-
-	AnimationClip  m_animationClips[enAnimationClip_Num];//ƒAƒjƒ[ƒVƒ‡ƒ“ƒNƒŠƒbƒv
-	float Playerposition;  // ƒvƒŒƒCƒ„[‚ÌˆÊ’u
-	float velocity;  // ƒvƒŒƒCƒ„[‚Ì‘¬“x
-	ModelRender m_modelRender;//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[
-	Vector3 m_scale = Vector3::One;//ƒXƒP[ƒ‹
-	CharacterController   m_charaCon;//ƒLƒƒƒ‰ƒRƒ“
-	Vector3               m_moveSpeed;//ƒXƒs[ƒh
-	Game* m_game = nullptr;
-	Vector3               m_position;//ƒ|ƒWƒVƒ‡ƒ“
+	RigidBody m_rigidBody;	// å‰›ä½“
+	ModelRender m_ballRender;
+	SphereCollider m_sphereCollider; // ãƒœãƒ¼ãƒ«ã®å½¢çŠ¶
+	RigidBodyInitData rbInitData;
 };
-

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Game.h"
-#include <cmath>
 
 Player::Player()
 {
@@ -15,60 +14,48 @@ Player::~Player()
 
 bool Player::Start()
 {
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒ[ƒh‚·‚é
+	//èƒŒæ™¯
+	m_ballRender.Init("Assets/modelData/light.tkm");
+	m_ballPosition.Set(0.0f, 300.0f, 0.0f);
+	m_ballRender.SetPosition(m_ballPosition);
+	m_ballRender.SetScale(1.7f, 1.7f, 1.7f);
 
+	//çƒä½“ã®å¤§ãã•
+	m_sphereCollider.Create(17.0f);
+	//RigidBodyInitData rbInitData;
+	rbInitData.collider = &m_sphereCollider;
+	rbInitData.mass = 10000000.0f;
+	rbInitData.pos = m_ballPosition;
+	rbInitData.rot = Quaternion::Identity;
+	rbInitData.restitution = -100;
 
-	//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[‚ğ‰Šú‰»
-	m_modelRender.Init("", m_animationClips, enAnimationClip_Num);
+	m_rigidBody.Init(rbInitData);
+	m_rigidBody.SetFriction(1);
 
-	m_modelRender.SetPosition(m_position);
-	m_modelRender.SetScale(m_scale);
-
-	m_charaCon.Init(
-		2.0f,			//”¼ŒaB
-		10.0f,			//‚‚³B
-		m_position		//À•WB
-	);
 	m_game = FindGO<Game>("game");
 	return true;
 }
 
 void Player::Update()
 {
-	//ˆÚ“®ˆ—
-	Move();
+	m_rigidBody.GetPositionAndRotation(rbPos, rbRot);
+	// å–å¾—ã—ãŸä½ç½®ã¨å›è»¢ã‚’åæ˜ ã•ã›ã‚‹ã€‚
+	m_ballRender.SetPosition(rbPos);
+	m_ballRender.SetRotation(rbRot);
 
-	//ƒWƒƒƒ“ƒvˆ—
-	PlayerJump();
-	m_modelRender.Update();
+	m_ballRender.Update();
+	m_ballRender.SetPosition(rbPos);	
+
+	if (rbPos.y <= -3000.0f) 
+	{
+		m_game->m_gameState = m_game->enGameOver;
+		m_game->GameStateUpdate();
+	}
 }
 
+
+//æç”»å‡¦ç†ã€‚
 void Player::Render(RenderContext& rc)
 {
-	m_modelRender.Draw(rc);
+	m_ballRender.Draw(rc);
 }
-
-void Player::Move()
-{
-
-}
-
-void Player::PlayerJump()
-{
-	//‚à‚µ’n–Ê‚É•t‚¢‚Ä‚¢‚½‚ç
-	if (m_charaCon.IsOnGround())
-	{
-		//Bƒ{ƒ^ƒ“„‚µ‚½‚ç
-		if (g_pad[0]->IsTrigger(enButtonB))
-		{
-			//ƒWƒƒƒ“ƒv‚·‚é
-			m_moveSpeed.y = 120.0f;
-		}
-	}
-	//•‚‚¢‚Ä‚¢‚é‚Æ‚«
-	else
-	{
-		m_moveSpeed.y -= 10;
-	}
-}
-

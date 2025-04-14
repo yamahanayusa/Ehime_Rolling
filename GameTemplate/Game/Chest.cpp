@@ -28,8 +28,7 @@ bool Chest::Start()
 
 	//モデルの表示。
 	m_modelRender.Init("Assets/modelData/Chest.tkm", m_animationClips, enAnimationClip_Num, enModelUpAxisZ);
-	
-
+	m_modelRender.SetScale(3.0f, 3.0f, 3.0f);
 	return true;
 }
 
@@ -78,9 +77,10 @@ void Chest::PlayAnimation()
 		break;
 	case 1:
 		m_modelRender.PlayAnimation(enAnimationClip_Open);
+		//アニメーションが再生し終わったらリザルトを出す
 		if (m_modelRender.IsPlayingAnimation() == false) {
 			m_game->m_gameState = m_game->enResult;
-			m_game->GameTransition();
+			m_game->GameStateUpdate();
 		}
 		break;
 	}
