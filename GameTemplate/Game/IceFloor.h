@@ -9,8 +9,7 @@ public:
 	~IceFloor();
 	bool Start();
 	void Update();
-	//‰ñ“]ˆ—
-	void Rotation();
+	void Rotation();//‰ñ“]ˆ—B
 	void Render(RenderContext& rc);
 
 	//‰ñ“]‚ğİ’è‚·‚é
