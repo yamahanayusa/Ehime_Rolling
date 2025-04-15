@@ -18,18 +18,18 @@ Chest::~Chest()
 bool Chest::Start()
 {
 	//アニメーションクリップをロード。
-	m_animationClips[enAnimationClip_Open].Load("Assets/animData/ChestOpen.tka");
+	/*m_animationClips[enAnimationClip_Open].Load("Assets/animData/ChestOpen.tka");
 	m_animationClips[enAnimationClip_Open].SetLoopFlag(false);
 	m_animationClips[enAnimationClip_Close].Load("Assets/animData/ChestClose.tka");
-	m_animationClips[enAnimationClip_Close].SetLoopFlag(true);
+	m_animationClips[enAnimationClip_Close].SetLoopFlag(true);*/
 
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("Score");
 	m_timer = FindGO<Timer>("timer");
 
 	//モデルの表示。
-	m_modelRender.SetScale(3.0f, 3.0f, 3.0f);
-	m_modelRender.Init("Assets/modelData/Chest.tkm", m_animationClips, enAnimationClip_Num, enModelUpAxisZ);
+	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
+	m_modelRender.Init("Assets/modelData/flag.tkm");//,m_animationClips, enAnimationClip_Num, enModelUpAxisZ
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	
 	return true;
@@ -38,12 +38,13 @@ bool Chest::Start()
 void Chest::Update()
 {
 	//移動処理。
-	Move();
+	//Move();
 
 	//回転処理。
 	Rotation();
 
-	PlayAnimation();
+	//アニメーション処理。
+	//PlayAnimation();
 
 	//絵描きさんの更新処理。
 	m_modelRender.Update();
@@ -60,15 +61,18 @@ void Chest::Update()
 			const int m_timerStop  = m_timer->m_timer;
 			m_tortalScore = m_score->m_resultScore + m_timerStop;
 		}
-		m_chestState = 1;
+		//m_chestState = 1;
+		m_game->m_gameState = m_game->enResult;
+		m_game->GameStateUpdate();
+		DeleteGO(this);
 	}
 }
 
-void Chest::Move()
-{
-	//絵描きさんに座標を教える。
-	m_modelRender.SetPosition(m_position);
-}
+//void Chest::Move()
+//{
+//	//絵描きさんに座標を教える。
+//	m_modelRender.SetPosition(m_position);
+//}
 
 void Chest::Rotation()
 {
@@ -117,27 +121,27 @@ void Chest::Rotation()
 
 	m_Rotation.Multiply(addLot);
 	//
-	m_Object.GetBody()->SetPositionAndRotation(m_position, m_Rotation);
+	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_Rotation);//m_position
 	m_modelRender.SetRotation(m_Rotation);
 	m_modelRender.Update();
 }
 
-void Chest::PlayAnimation()
-{
-	switch (m_chestState) {
-	case 0:
-		m_modelRender.PlayAnimation(enAnimationClip_Close);
-		break;
-	case 1:
-		m_modelRender.PlayAnimation(enAnimationClip_Open);
-		//アニメーションが再生し終わったらリザルトを出す
-		if (m_modelRender.IsPlayingAnimation() == false) {
-			m_game->m_gameState = m_game->enResult;
-			m_game->GameStateUpdate();
-		}
-		break;
-	}
-}
+//void Chest::PlayAnimation()
+//{
+//	switch (m_chestState) {
+//	case 0:
+//		m_modelRender.PlayAnimation(enAnimationClip_Close);
+//		break;
+//	case 1:
+//		m_modelRender.PlayAnimation(enAnimationClip_Open);
+//		//アニメーションが再生し終わったらリザルトを出す
+//		if (m_modelRender.IsPlayingAnimation() == false) {
+//			m_game->m_gameState = m_game->enResult;
+//			m_game->GameStateUpdate();
+//		}
+//		break;
+//	}
+//}
 
 void Chest::Render(RenderContext& rc)
 {
