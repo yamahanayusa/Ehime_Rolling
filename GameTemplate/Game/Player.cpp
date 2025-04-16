@@ -42,7 +42,9 @@ void Player::Update()
 	// 取得した位置と回転を反映させる。
 	m_ballRender.SetPosition(rbPos);
 	m_ballRender.SetRotation(rbRot);
+
 	m_ballRender.Update();
+	m_ballRender.SetPosition(rbPos);	
 
 	if (rbPos.y <= -3000.0f) 
 	{

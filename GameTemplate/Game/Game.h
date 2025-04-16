@@ -21,8 +21,8 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void GameStateUpdate();
 	void Render(RenderContext& rc);
+	void GameStateUpdate();
 
 	enum EnGameState{
 		enTitle,
@@ -41,7 +41,7 @@ private:
 	TimeOver* m_timeOver;
 	GameOver* m_gameOver;
 	GameClear* m_gameClear;
-	Score* m_score;
+	Score* m_resultScore;
 	Stage* m_stage = nullptr;
 	Player* m_player = nullptr;
 	GameCamera* m_gamecamera = nullptr;
