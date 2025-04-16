@@ -18,7 +18,6 @@ bool IceFloor::Start()
 	m_modelRender.Init("Assets/modelData/icefloor.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
-
 	return true;
 }
 
