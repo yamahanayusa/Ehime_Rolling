@@ -4,6 +4,7 @@
 class Game;
 class Score;
 class Timer;
+class Player;
 class Chest :public IGameObject
 {
 public:
@@ -11,9 +12,10 @@ public:
 	~Chest();
 	bool Start();
 	void Update();												//更新。
-	void Render(RenderContext& rc);								//描画。
-	void Move();												//移動。
+	void Move();
+	void Rotation();//移動。
 	void PlayAnimation();										//アニメーション。
+	void Render(RenderContext& rc);								//描画。
 
 	enum EnAnimationClip {										//アニメーションクリップ
 		enAnimationClip_Close,									//chestが閉じているとき。
@@ -24,8 +26,10 @@ public:
 	Game*			m_game;										//ゲーム。
 	Score*          m_score;
     Timer*			m_timer;
-	//Player* m_player;											//プレイヤー。
-   
+	Player* m_player;											//プレイヤー。
+	Quaternion		addRot;
+	Quaternion		addLot;
+
 	AnimationClip	m_animationClips[enAnimationClip_Num];		//アニメーション。
 	ModelRender		m_modelRender;								//モデルレンダ―。
 	Vector3			m_position;									//座標。
@@ -34,5 +38,9 @@ public:
 	int m_chestState = 0;										//chestのステート。
     int m_tortalScore = 0;
 	bool m_clearFlag = false;
+
+private:
+	Quaternion					m_Rotation;
+	PhysicsStaticObject			m_Object;
 };
 

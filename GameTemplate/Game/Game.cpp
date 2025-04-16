@@ -4,6 +4,7 @@
 #include "Timer.h"
 #include "Score.h"
 #include "Chest.h"
+#include "Mikan.h"
 #include "TimeOver.h"
 #include "GameOver.h"
 #include "GameClear.h"
@@ -19,11 +20,11 @@ Game::Game()
 
 Game::~Game()
 {
+	DeleteGO(m_chest);
 	DeleteGO(m_player);
-	DeleteGO(m_timer);
-	DeleteGO(m_resultScore);
 	DeleteGO(m_stage);
 	DeleteGO(m_iceFloor);
+	DeleteGO(m_mikan);
 }
 
 bool Game::Start()
@@ -42,11 +43,6 @@ void Game::Update()
 
 }
 
-void Game::Render(RenderContext& rc)
-{
-
-}
-
 void Game::GameStateUpdate()
 {
 	switch (m_gameState)
@@ -59,33 +55,40 @@ void Game::GameStateUpdate()
 		GameStateUpdate();
 		break;
 	case Game::enInGame:
-		m_resultScore = NewGO<Score>(0, "Score");
+		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
-		m_chest = NewGO<Chest>(0, "chest");
-		m_player= NewGO<Player>(0, "player");
+		m_player = NewGO<Player>(0, "player");
 		m_stage = NewGO<Stage>(0, "stage");
 		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
-		m_gamecamera = NewGO<GameCamera>(0,"gamecamera");
-		m_chest = NewGO<Chest>(0, "Chest");
-		m_chest->m_position = { -400.0f,0.0f,-500.0f };
+		m_gamecamera = NewGO<GameCamera>(0, "gamecamera");
+		m_mikan = NewGO<Mikan>(0, "mikan");
+		m_mikan->m_position = { 400.0f,0.0f,-400.0f };
+		m_mikan->m_firstPosition = m_mikan->m_position;
+		m_chest = NewGO<Chest>(0, "chest");
+		m_chest->m_position = { 400.0f,0.0f,-500.0f };
 		m_chest->m_firstPosition = m_chest->m_position;
 		break;
 	case Game::enResult:
 		DeleteGO(m_timer);
-		DeleteGO(m_chest);
+		DeleteGO(m_score);
 		m_gameClear = NewGO<GameClear>(0, "gameClear");
 		break;
 	case Game::enTimeOver:
 		DeleteGO(m_timer);
-		DeleteGO(m_chest);
+		DeleteGO(m_score);
 		m_timeOver = NewGO<TimeOver>(0, "timeOver");
 		break;
 	case Game::enGameOver:
 		DeleteGO(m_timer);
-		DeleteGO(m_chest);
+		DeleteGO(m_score);
 		m_gameOver = NewGO<GameOver>(0, "gameOver");
 		break;
 	default:
 		break;
 	}
+}
+	
+void Game::Render(RenderContext & rc)
+{
+
 }
