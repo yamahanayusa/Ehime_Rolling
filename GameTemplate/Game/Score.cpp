@@ -19,7 +19,7 @@ Score::~Score()
 
 bool Score::Start()
 {
-	m_score = FindGO<Score>("score");
+	m_score = FindGO<Score>("Score");
 	m_chest = FindGO<Chest>("chest");
 	return true;
 }
