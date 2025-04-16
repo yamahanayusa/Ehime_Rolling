@@ -6,6 +6,7 @@ class Player;
 class Timer;
 class Score;
 class Chest;
+class Mikan;
 class TimeOver;
 class GameOver;
 class GameClear;
@@ -21,8 +22,8 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void Render(RenderContext& rc);
 	void GameStateUpdate();
+	void Render(RenderContext& rc);
 
 	enum EnGameState{
 		enTitle,
@@ -38,10 +39,11 @@ private:
 	Title* m_title;
 	Chest* m_chest;
 	Timer* m_timer;
+	Mikan* m_mikan;
 	TimeOver* m_timeOver;
 	GameOver* m_gameOver;
 	GameClear* m_gameClear;
-	Score* m_resultScore;
+	Score* m_score;
 	Stage* m_stage = nullptr;
 	Player* m_player = nullptr;
 	GameCamera* m_gamecamera = nullptr;
