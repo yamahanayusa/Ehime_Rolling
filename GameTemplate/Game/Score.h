@@ -3,6 +3,7 @@ class GameClear;
 class Game;
 class Timer;
 class Chest;
+class Mikan;
 class Score :public IGameObject
 {
 public:
@@ -18,6 +19,7 @@ public:
 	Timer* m_timer;
 	Chest* m_chest;
 	Score* m_score;
+	Mikan* m_mikan;
 	FontRender m_resultRender;
 	SpriteRender spriteRender;
 	FontRender m_ScoreFontRender;

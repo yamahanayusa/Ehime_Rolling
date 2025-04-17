@@ -29,7 +29,7 @@ bool Mikan::Start()
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	m_game = FindGO<Game>("game");
-	m_score = FindGO<Score>("Score");
+	m_score = FindGO<Score>("score");
 	return true;
 }
 
@@ -50,6 +50,7 @@ void Mikan::Update()
 	//ベクトルの長さが120.0fより小さかったら。
 	if (diff.Length() <= 120.0f)
 	{
+		m_score->m_resultScore += 100;
 		DeleteGO(this);
 	}
 
