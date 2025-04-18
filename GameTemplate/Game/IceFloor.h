@@ -11,6 +11,8 @@ public:
 	void Update();
 	//‰ñ“]ˆ—
 	void Rotation();
+	//ŠŠ‚éˆ—
+	void Slide();
 	void Render(RenderContext& rc);
 
 	//‰ñ“]‚ğİ’è‚·‚é
@@ -18,7 +20,9 @@ public:
 	Quaternion addLot;
 
 	ModelRender					m_modelRender;
-
+	Vector3 m_position;
+	Vector3 m_virtualposition = { 980.0f,0.0f,1200.0f };
+	Vector3 m_icepos = m_virtualposition - m_position;
 private:
 	Quaternion					m_Rotation;
 	PhysicsStaticObject			m_Object;

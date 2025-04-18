@@ -14,6 +14,7 @@ IceFloor::~IceFloor()
 
 bool IceFloor::Start()
 {
+	m_modelRender.SetPosition(m_position);
 	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
 	m_modelRender.Init("Assets/modelData/icefloor.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
@@ -26,6 +27,12 @@ void IceFloor::Update()
 {
 	//‰ñ“]ˆ—
 	Rotation();
+
+
+	//ŠŠ‚éˆ—
+	Slide();
+
+
 
 	m_modelRender.Update();
 }
@@ -81,6 +88,20 @@ void IceFloor::Rotation()
 	m_modelRender.SetRotation(m_Rotation);
 	m_modelRender.Update();
 }
+
+void IceFloor::Slide()
+{
+	//ƒvƒŒƒCƒ„[‚Æ•X‚Ì“¹‚Ì‹——£Š´‚ð‹‚ß‚é
+	Vector3 distance = m_player->rbPos - m_icepos;
+	if (distance.Length() < 150.0f)
+	{
+
+		m_player->rbInitData.mass = 0.0f;
+		m_player->rbInitData.restitution = 1000;
+		m_player->m_rigidBody.SetFriction(0);
+	}
+}
+
 
 void IceFloor::Render(RenderContext& rc)
 {

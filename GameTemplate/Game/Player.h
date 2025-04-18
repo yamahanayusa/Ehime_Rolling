@@ -24,10 +24,11 @@ public:
 	Vector3 rbPos;
 	Quaternion rbRot;
 	Game* m_game;
-
-private:
+	RigidBodyInitData rbInitData;
 	RigidBody m_rigidBody;	// 剛体
+private:
+
 	ModelRender m_ballRender;
 	SphereCollider m_sphereCollider; // ボールの形状
-	RigidBodyInitData rbInitData;
+
 };
