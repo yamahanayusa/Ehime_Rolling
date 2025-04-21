@@ -79,7 +79,7 @@ void Mikan::Rotation() {
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
-	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.005f);
+	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.006f);
 	// プレイヤーの位置が原点に来るように背景を動かす行列を作成する
 	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
 	mBiasInv = mBias;
@@ -101,7 +101,7 @@ void Mikan::Rotation() {
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
-	addLot.SetRotation(rightXZ, g_pad[0]->GetLStickYF() * 0.005f);
+	addLot.SetRotation(rightXZ, g_pad[0]->GetLStickYF() * 0.006f);
 
 	mRot.MakeRotationFromQuaternion(addLot);
 	mFinal.Multiply(mBias, mRot);
