@@ -17,7 +17,7 @@ bool GameOver::Start()
 {
 	//ゲームオーバーの画像を読み込む
 	m_spriteRender.Init("Assets/sprite/Gameover.dds", 1920.0f, 1080.0f);
-	m_game = FindGO<Game>("game");
+	//m_game = FindGO<Game>("game");
 	return true;
 }
 
@@ -30,7 +30,6 @@ void GameOver::Update()
 		NewGO<Title>(0, "title");
 		//自身を削除する
 		DeleteGO(this);
-		DeleteGO(m_game);
 	}
 }
 

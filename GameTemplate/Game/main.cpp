@@ -5,21 +5,22 @@
 #include<dxgidebug.h>
 
 #include "Game.h"
+#include "Title.h"
 
 
 
 void ReportLiveObjects()
 {
-	IDXGIDebug* pDxgiDebug;
+	//IDXGIDebug* pDxgiDebug;
 
-	typedef HRESULT(__stdcall* fPtr)(const IID&, void**);
-	HMODULE hDll = GetModuleHandleW(L"dxgidebug.dll");
-	fPtr DXGIGetDebugInterface = (fPtr)GetProcAddress(hDll, "DXGIGetDebugInterface");
+	//typedef HRESULT(__stdcall* fPtr)(const IID&, void**);
+	//HMODULE hDll = GetModuleHandleW(L"dxgidebug.dll");
+	//fPtr DXGIGetDebugInterface = (fPtr)GetProcAddress(hDll, "DXGIGetDebugInterface");
 
-	DXGIGetDebugInterface(__uuidof(IDXGIDebug), (void**)&pDxgiDebug);
+	//DXGIGetDebugInterface(__uuidof(IDXGIDebug), (void**)&pDxgiDebug);
 
-	// 出力。
-	pDxgiDebug->ReportLiveObjects(DXGI_DEBUG_D3D12, DXGI_DEBUG_RLO_DETAIL);
+	//// 出力。
+	//pDxgiDebug->ReportLiveObjects(DXGI_DEBUG_D3D12, DXGI_DEBUG_RLO_DETAIL);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -33,8 +34,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	// ここから初期化を行うコードを記述する。
 	//////////////////////////////////////
 
-	//Gameクラスのオブジェクトを作成。
-	NewGO<Game>(0, "game");
+	/*Gameクラスのオブジェクトを作成。*/
+	/*NewGO<Game>(0, "game");*/
+	
+	NewGO<Title>(0, "title");
 
 	//skyCube
 	SkyCube* skyCube = NewGO<SkyCube>(0);
