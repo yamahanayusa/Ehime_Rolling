@@ -16,23 +16,16 @@ Title::~Title()
 
 bool Title::Start()
 {
-	m_game = FindGO<Game>("game");
-
 	return true;
 }
 
 void Title::Update()
 {
-	if (FindGO<Game>("game") == nullptr) {
-		m_game = NewGO<Game>(0, "game");
-	}
 
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		m_game->m_gameState = m_game->enStageSelect;
-		m_game->GameStateUpdate();
+		m_game = NewGO<Game>(0, "game");
 		DeleteGO(this);
-		//DeleteGO(m_resultScore);
 	}
 }
 

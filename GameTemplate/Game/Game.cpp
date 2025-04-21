@@ -22,9 +22,12 @@ Game::~Game()
 {
 	DeleteGO(m_chest);
 	DeleteGO(m_player);
+	DeleteGO(m_gamecamera);
 	DeleteGO(m_stage);
 	DeleteGO(m_iceFloor);
 	DeleteGO(m_mikan);
+	DeleteGO(m_timer);
+	DeleteGO(m_score);
 }
 
 bool Game::Start()
@@ -34,27 +37,41 @@ bool Game::Start()
 	//“–‚½‚è”»’è
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//d—Í‚ÌÝ’è
-	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-4000.0f,0.0f });
+	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
+	FindGO<Player>("player");
 	return true;
 }
 
 void Game::Update()
 {
-
+	
+	/*DeleteGO(m_timer);
+	DeleteGO(m_score);*/
+	/*m_gameClear = NewGO<GameClear>(0, "gameClear");*/
+	if (m_timer->m_timer <= 0)
+	{
+		NewGO<TimeOver>(0, "timeOver");
+		DeleteGO(this);
+	}
+	if (m_player->rbPos.y <= -3000.0f)
+	{
+		NewGO<GameOver>(0, "gameOver");
+		DeleteGO(this);
+	}
+	
 }
 
 void Game::GameStateUpdate()
 {
-	switch (m_gameState)
+	m_gameState = enInGame;
+
+	if (enStageSelect)
 	{
-	case Game::enTitle:
-		m_title = NewGO<Title>(0, "title");
-		break;
-	case Game::enStageSelect:
-		m_gameState = enInGame;
-		GameStateUpdate();
-		break;
-	case Game::enInGame:
+		
+	}
+
+	if (enInGame)
+	{
 		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_player = NewGO<Player>(0, "player");
@@ -67,25 +84,26 @@ void Game::GameStateUpdate()
 		m_chest = NewGO<Chest>(0, "chest");
 		m_chest->m_position = { 400.0f,0.0f,-500.0f };
 		m_chest->m_firstPosition = m_chest->m_position;
-		break;
-	case Game::enResult:
-		DeleteGO(m_timer);
-		DeleteGO(m_score);
-		m_gameClear = NewGO<GameClear>(0, "gameClear");
-		break;
-	case Game::enTimeOver:
-		DeleteGO(m_timer);
-		DeleteGO(m_score);
-		m_timeOver = NewGO<TimeOver>(0, "timeOver");
-		break;
-	case Game::enGameOver:
-		DeleteGO(m_timer);
-		DeleteGO(m_score);
-		m_gameOver = NewGO<GameOver>(0, "gameOver");
-		break;
-	default:
-		break;
 	}
+
+	if (enResult)
+	{
+
+	}
+		
+	if (enTimeOver)
+	{
+
+	}
+		
+	if (enGameOver)
+	{
+
+	}
+		
+		
+		
+
 }
 	
 void Game::Render(RenderContext & rc)

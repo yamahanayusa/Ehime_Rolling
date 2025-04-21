@@ -4,12 +4,10 @@
 
 Player::Player()
 {
-
 }
 
 Player::~Player()
 {
-
 }
 
 bool Player::Start()
@@ -32,6 +30,8 @@ bool Player::Start()
 	m_rigidBody.Init(rbInitData);
 	m_rigidBody.SetFriction(1);
 
+	m_charaCon.Init(0.1f, 0.1f, m_ballPosition);
+
 	m_game = FindGO<Game>("game");
 	return true;
 }
@@ -43,11 +43,13 @@ void Player::Update()
 	m_ballRender.SetPosition(rbPos);
 	m_ballRender.SetRotation(rbRot);
 	m_ballRender.Update();
-	if (rbPos.y <= -3000.0f) 
+
+	/*if (rbPos.y <= -3000.0f)
 	{
 		m_game->m_gameState = m_game->enGameOver;
 		m_game->GameStateUpdate();
-	}
+		//DeleteGO(m_game);
+	}*/
 }
 
 

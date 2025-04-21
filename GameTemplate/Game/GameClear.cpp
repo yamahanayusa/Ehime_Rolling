@@ -20,7 +20,7 @@ bool GameClear::Start()
 	m_score = FindGO<Score>("Score");
 	m_chest = FindGO<Chest>("chest");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
-	m_game = FindGO<Game>("game");
+	//m_game = FindGO<Game>("game");
 	return true;
 }
 
@@ -36,7 +36,6 @@ void GameClear::Update()
 		NewGO<Title>(0, "title");
 		//©g‚ğíœ‚·‚é
 		DeleteGO(this);
-		DeleteGO(m_game);
 	}
 }
 
