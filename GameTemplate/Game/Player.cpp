@@ -22,7 +22,7 @@ bool Player::Start()
 	m_sphereCollider.Create(17.0f);
 	//RigidBodyInitData rbInitData;
 	rbInitData.collider = &m_sphereCollider;
-	rbInitData.mass = 10000000.0f;
+	rbInitData.mass = 10.0f;
 	rbInitData.pos = m_ballPosition;
 	rbInitData.rot = Quaternion::Identity;
 	rbInitData.restitution = -100;
