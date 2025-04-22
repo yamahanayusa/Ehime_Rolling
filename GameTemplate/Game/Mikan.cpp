@@ -53,15 +53,12 @@ void Mikan::Update()
 		m_score->m_resultScore += 100;
 		DeleteGO(this);
 	}
-
-
 }
 
 void Mikan::Move()
 {
 	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
 	m_modelRender.SetPosition(m_position);
-
 }
 
 void Mikan::Rotation() {

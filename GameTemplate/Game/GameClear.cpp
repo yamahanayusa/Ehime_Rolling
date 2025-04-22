@@ -17,7 +17,7 @@ GameClear::~GameClear()
 
 bool GameClear::Start()
 {
-	m_score = FindGO<Score>("Score");
+	m_score = FindGO<Score>("score");
 	m_chest = FindGO<Chest>("chest");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	//m_game = FindGO<Game>("game");
@@ -27,7 +27,7 @@ bool GameClear::Start()
 //更新処理
 void GameClear::Update()
 {
-	TortalScore();
+	//TortalScore();
 	m_spriteRender.Update();
 	//Aボタンが押されたら
 	if (g_pad[0]->IsTrigger(enButtonA))
@@ -39,15 +39,15 @@ void GameClear::Update()
 	}
 }
 
-void GameClear::TortalScore()
-{
-	wchar_t scorew[256];
-	swprintf_s(scorew, 256, L"%d点", int(m_chest->m_tortalScore));
-	m_fontRender.SetText(scorew);
-	m_fontRender.SetPosition({ 200.0f, 100.0f, 0.0f });
-	m_fontRender.SetScale(5.0);
-	m_fontRender.SetColor(g_vec4Black);
-}
+//void GameClear::TortalScore()
+//{
+//	wchar_t scorew[256];
+//	swprintf_s(scorew, 256, L"%d点", int(m_chest->m_tortalScore));
+//	m_fontRender.SetText(scorew);
+//	m_fontRender.SetPosition({ 200.0f, 100.0f, 0.0f });
+//	m_fontRender.SetScale(5.0);
+//	m_fontRender.SetColor(g_vec4Black);
+//}
 
 //描画処理
 void GameClear::Render(RenderContext& rc)

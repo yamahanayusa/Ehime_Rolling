@@ -11,33 +11,33 @@ public:
 	Chest();
 	~Chest();
 	bool Start();
-	void Update();												//更新。
+	void Update();															//更新。
 	void Move();
 	void Rotation();//移動。
-	void PlayAnimation();										//アニメーション。
-	void Render(RenderContext& rc);								//描画。
+	//void PlayAnimation();													//アニメーション。
+	void Render(RenderContext& rc);											//描画。
 
-	enum EnAnimationClip {										//アニメーションクリップ
-		enAnimationClip_Close,									//chestが閉じているとき。
-		enAnimationClip_Open,									//chestが空いているとき。
+	enum EnAnimationClip {													//アニメーションクリップ
+		enAnimationClip_Close,												//chestが閉じているとき。
+		enAnimationClip_Open,												//chestが空いているとき。
 		enAnimationClip_Num,
 	};
 
-	Game*			m_game;										//ゲーム。
-	Score*          m_score;
-    Timer*			m_timer;
-	Player* m_player;											//プレイヤー。
-	Quaternion		addRot;
-	Quaternion		addLot;
+	Game*						m_game;										//ゲーム。
+	Score*						m_score;
+    Timer*						m_timer;
+	Player*						m_player;														//プレイヤー。
+	Quaternion					addRot;
+	Quaternion					addLot;
 
-	AnimationClip	m_animationClips[enAnimationClip_Num];		//アニメーション。
-	ModelRender		m_modelRender;								//モデルレンダ―。
-	Vector3			m_position;									//座標。
-	Vector3			m_firstPosition;							//最初の座標。
+	AnimationClip				m_animationClips[enAnimationClip_Num];		//アニメーション。
+	ModelRender					m_modelRender;								//モデルレンダ―。
+	Vector3						m_position;									//座標。
+	Vector3						m_firstPosition;							//最初の座標。
 
-	int m_chestState = 0;										//chestのステート。
-    int m_tortalScore = 0;
-	bool m_clearFlag = false;
+	int							m_chestState = 0;							//chestのステート。
+    int							m_tortalScore = 0;
+	bool						m_clearFlag = false;
 
 private:
 	Quaternion					m_Rotation;

@@ -44,10 +44,6 @@ bool Game::Start()
 
 void Game::Update()
 {
-	
-	/*DeleteGO(m_timer);
-	DeleteGO(m_score);*/
-	/*m_gameClear = NewGO<GameClear>(0, "gameClear");*/
 	if (m_timer->m_timer <= 0)
 	{
 		NewGO<TimeOver>(0, "timeOver");
@@ -58,7 +54,6 @@ void Game::Update()
 		NewGO<GameOver>(0, "gameOver");
 		DeleteGO(this);
 	}
-	
 }
 
 void Game::GameStateUpdate()
@@ -82,28 +77,9 @@ void Game::GameStateUpdate()
 		m_mikan->m_position = { 400.0f,0.0f,-400.0f };
 		m_mikan->m_firstPosition = m_mikan->m_position;
 		m_chest = NewGO<Chest>(0, "chest");
-		m_chest->m_position = { 400.0f,0.0f,-500.0f };
+		m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
 		m_chest->m_firstPosition = m_chest->m_position;
 	}
-
-	if (enResult)
-	{
-
-	}
-		
-	if (enTimeOver)
-	{
-
-	}
-		
-	if (enGameOver)
-	{
-
-	}
-		
-		
-		
-
 }
 	
 void Game::Render(RenderContext & rc)
