@@ -5,6 +5,9 @@
 #include "Score.h"
 #include "Timer.h" 
 #include "Player.h"
+#include "sound/SoundSource.h"
+#include "sound/SoundEngine.h"
+
 
 Mikan::Mikan()
 {
@@ -30,6 +33,10 @@ bool Mikan::Start()
 
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
+	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/item.wav");
+
+	m_game = FindGO<Game>("game");
+	m_score = FindGO<Score>("score");
 	return true;
 }
 
@@ -51,6 +58,9 @@ void Mikan::Update()
 	if (diff.Length() <= 120.0f)
 	{
 		m_score->m_resultScore += 100;
+		SoundSource* se = NewGO<SoundSource>(0);
+		se->Init(5);
+		se->Play(false);
 		DeleteGO(this);
 	}
 }
