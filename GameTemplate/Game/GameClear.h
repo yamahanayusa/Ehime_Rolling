@@ -15,7 +15,7 @@ public:
 	//描画処理
 	void Render(RenderContext& rc);
 	//
-	void TortalScore();
+	//void TortalScore();
 
 	//メンバ変数
 	SpriteRender m_spriteRender; //スプライトレンダー

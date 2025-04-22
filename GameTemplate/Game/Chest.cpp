@@ -4,6 +4,7 @@
 #include "Score.h"
 #include "Timer.h" 
 #include "Player.h"
+#include "GameClear.h"
 
 Chest::Chest()
 {
@@ -24,8 +25,9 @@ bool Chest::Start()
 	m_animationClips[enAnimationClip_Close].SetLoopFlag(true);*/
 
 	m_game = FindGO<Game>("game");
-	m_score = FindGO<Score>("Score");
+	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
+	m_player = FindGO<Player>("Player");
 
 	//モデルの表示。
 	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
@@ -38,7 +40,7 @@ bool Chest::Start()
 void Chest::Update()
 {
 	//移動処理。
-	//Move();
+	Move();
 
 	//回転処理。
 	Rotation();
@@ -50,29 +52,30 @@ void Chest::Update()
 	m_modelRender.Update();
 
 	//プレイヤーからチェストに向かうベクトルを計算。
-	Vector3 diff = m_player->m_position - m_position;
+	Vector3	diff = m_player->rbPos - m_position;
 
 	//ベクトルの長さが120.0fより小さかったら。
 	if (diff.Length() <= 120.0f)
 	{
-		m_clearFlag = true;
+		/*m_clearFlag = true;
 		if (m_clearFlag == true)
 		{
 			const int m_timerStop  = m_timer->m_timer;
 			m_tortalScore = m_score->m_resultScore + m_timerStop;
-		}
+		}*/
 		//m_chestState = 1;
-		m_game->m_gameState = m_game->enResult;
-		m_game->GameStateUpdate();
 		DeleteGO(this);
+		NewGO<GameClear>(0, "gameClear");
+		DeleteGO(m_game);
+		
 	}
 }
 
-//void Chest::Move()
-//{
-//	//絵描きさんに座標を教える。
-//	m_modelRender.SetPosition(m_position);
-//}
+void Chest::Move()
+{
+	//絵描きさんに座標を教える。
+	m_modelRender.SetPosition(m_position);
+}
 
 void Chest::Rotation()
 {
@@ -112,7 +115,7 @@ void Chest::Rotation()
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
-	addLot.SetRotation(rightXZ, g_pad[0]->GetLStickYF() * 0.06f);
+	addLot.SetRotation(rightXZ, g_pad[0]->GetLStickYF() * 0.006f);
 
 	mRot.MakeRotationFromQuaternion(addLot);
 	mFinal.Multiply(mBias, mRot);
@@ -120,8 +123,7 @@ void Chest::Rotation()
 	addLot.SetRotation(mFinal);
 
 	m_Rotation.Multiply(addLot);
-	//
-	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_Rotation);//m_position
+	m_Object.GetBody()->SetPositionAndRotation(m_position, m_Rotation);
 	m_modelRender.SetRotation(m_Rotation);
 	m_modelRender.Update();
 }
