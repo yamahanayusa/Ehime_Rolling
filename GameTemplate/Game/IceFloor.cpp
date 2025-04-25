@@ -25,11 +25,11 @@ bool IceFloor::Start()
 
 void IceFloor::Update()
 {
-	//‰ñ“]ˆ—
+	//å›è»¢å‡¦ç†
 	Rotation();
 
 
-	//ŠŠ‚éˆ—
+	//æ»‘ã‚‹å‡¦ç†
 	Slide();
 
 
@@ -40,7 +40,7 @@ void IceFloor::Update()
 void IceFloor::Rotation()
 {
 	Matrix mBias, mRot, mBiasInv, mFinal;
-	// ”wŒi‚ğƒvƒŒƒCƒ„[‹óŠÔ‚ÉˆÚ“®‚³‚¹‚és—ñ‚ğŒvZ‚·‚é
+	// èƒŒæ™¯ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç©ºé–“ã«ç§»å‹•ã•ã›ã‚‹è¡Œåˆ—ã‚’è¨ˆç®—ã™ã‚‹
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
@@ -48,30 +48,30 @@ void IceFloor::Rotation()
 		return;
 	}
 
-	// ”wŒi‚Ì‰ñ“]
-	//¶‰E•ûŒü‚ÌŒX‚«
+	// èƒŒæ™¯ã®å›è»¢
+	//å·¦å³æ–¹å‘ã®å‚¾ã
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
 	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.006);
-	// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ªŒ´“_‚É—ˆ‚é‚æ‚¤‚É”wŒi‚ğ“®‚©‚·s—ñ‚ğì¬‚·‚é
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒåŸç‚¹ã«æ¥ã‚‹ã‚ˆã†ã«èƒŒæ™¯ã‚’å‹•ã‹ã™è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
 	mBiasInv = mBias;
-	// “®‚©‚µ‚½”wŒi‚ğ‚à‚Æ‚É–ß‚·s—ñ‚ğì¬
+	// å‹•ã‹ã—ãŸèƒŒæ™¯ã‚’ã‚‚ã¨ã«æˆ»ã™è¡Œåˆ—ã‚’ä½œæˆ
 	mBiasInv.Inverse();
-	// ’Ç‰Á‚Å‰ñ“]‚³‚¹‚és—ñ‚ğì¬
+	// è¿½åŠ ã§å›è»¢ã•ã›ã‚‹è¡Œåˆ—ã‚’ä½œæˆ
 	mRot.MakeRotationFromQuaternion(addRot);
-	// ˆÚ“®‚³‚¹‚½”wŒi‚ğ‰ñ“]‚³‚¹‚é
+	// ç§»å‹•ã•ã›ãŸèƒŒæ™¯ã‚’å›è»¢ã•ã›ã‚‹
 	mFinal.Multiply(mBias, mRot);
-	// ”wŒi‚ÌˆÊ’u‚ğ–ß‚·
+	// èƒŒæ™¯ã®ä½ç½®ã‚’æˆ»ã™
 	mFinal.Multiply(mFinal, mBiasInv);
 
-	// ÅI“I‚Éo—ˆã‚ª‚Á‚½s—ñ‚©‚ç‰ñ“]ƒNƒH[ƒ^ƒjƒIƒ“‚ğì‚é
+	// æœ€çµ‚çš„ã«å‡ºæ¥ä¸ŠãŒã£ãŸè¡Œåˆ—ã‹ã‚‰å›è»¢ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ä½œã‚‹
 	addRot.SetRotation(mFinal);
 
 	m_Rotation.Multiply(addRot);
 
-	//ã‰º•ûŒü‚ÌŒX‚«
+	//ä¸Šä¸‹æ–¹å‘ã®å‚¾ã
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
@@ -91,7 +91,7 @@ void IceFloor::Rotation()
 
 void IceFloor::Slide()
 {
-	//ƒvƒŒƒCƒ„[‚Æ•X‚Ì“¹‚Ì‹——£Š´‚ğ‹‚ß‚é
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ°·ã®é“ã®è·é›¢æ„Ÿã‚’æ±‚ã‚ã‚‹
 	Vector3 distance = m_player->rbPos - m_icepos;
 	if (distance.Length() < 150.0f)
 	{

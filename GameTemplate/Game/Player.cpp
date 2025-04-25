@@ -12,13 +12,13 @@ Player::~Player()
 
 bool Player::Start()
 {
-	//背景
+	//閭梧勹
 	m_ballRender.Init("Assets/modelData/light.tkm");
 	m_ballPosition.Set(0.0f, 300.0f, 0.0f);
 	m_ballRender.SetPosition(m_ballPosition);
 	m_ballRender.SetScale(1.7f, 1.7f, 1.7f);
 
-	//球体の大きさ
+	//逅・ｽ薙・螟ｧ縺阪＆
 	m_sphereCollider.Create(17.0f);
 	//RigidBodyInitData rbInitData;
 	rbInitData.collider = &m_sphereCollider;
@@ -39,7 +39,7 @@ bool Player::Start()
 void Player::Update()
 {
 	m_rigidBody.GetPositionAndRotation(rbPos, rbRot);
-	// 取得した位置と回転を反映させる。
+	// 蜿門ｾ励＠縺滉ｽ咲ｽｮ縺ｨ蝗櫁ｻ｢繧貞渚譏縺輔○繧九・
 	m_ballRender.SetPosition(rbPos);
 	m_ballRender.SetRotation(rbRot);
 	m_ballRender.Update();
@@ -53,7 +53,7 @@ void Player::Update()
 }
 
 
-//描画処理。
+//謠冗判蜃ｦ逅・・
 void Player::Render(RenderContext& rc)
 {
 	m_ballRender.Draw(rc);

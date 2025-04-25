@@ -7,16 +7,16 @@ class Stage : public IGameObject
 public:
 	Stage();
 	~Stage();
-	//ƒXƒ^[ƒg
+	//ã‚¹ã‚¿ãƒ¼ãƒˆ
 	bool Start();
-	//ƒAƒbƒvƒf[ƒg
+	//ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	void Update();
-	//ƒŒƒ“ƒ_[
+	//ãƒ¬ãƒ³ãƒ€ãƒ¼
 	void Render(RenderContext& rc);
-	//‰ñ“]ˆ—
+	//å›è»¢å‡¦ç†
 	void Rotation();
-	Vector3	m_scale = Vector3::One;//‘å‚«‚³B
-	//‰ñ“]‚ğİ’è‚·‚é
+	Vector3	m_scale = Vector3::One;//å¤§ãã•ã€‚
+	//å›è»¢ã‚’è¨­å®šã™ã‚‹
 	Quaternion addRot;
 	Quaternion addLot;
 private:

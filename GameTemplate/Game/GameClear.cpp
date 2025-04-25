@@ -24,17 +24,17 @@ bool GameClear::Start()
 	return true;
 }
 
-//更新処理
+//譖ｴ譁ｰ蜃ｦ逅�
 void GameClear::Update()
 {
 	//TortalScore();
 	m_spriteRender.Update();
-	//Aボタンが押されたら
+	//A繝懊ち繝ｳ縺梧款縺輔ｌ縺溘ｉ
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		//タイトルのオブジェクトをつくる
+		//繧ｿ繧､繝医Ν縺ｮ繧ｪ繝悶ず繧ｧ繧ｯ繝医ｒ縺､縺上ｋ
 		NewGO<Title>(0, "title");
-		//自身を削除する
+		//閾ｪ霄ｫ繧貞炎髯､縺吶ｋ
 		DeleteGO(this);
 	}
 }
@@ -42,14 +42,14 @@ void GameClear::Update()
 //void GameClear::TortalScore()
 //{
 //	wchar_t scorew[256];
-//	swprintf_s(scorew, 256, L"%d点", int(m_chest->m_tortalScore));
+//	swprintf_s(scorew, 256, L"%d轤ｹ", int(m_chest->m_tortalScore));
 //	m_fontRender.SetText(scorew);
 //	m_fontRender.SetPosition({ 200.0f, 100.0f, 0.0f });
 //	m_fontRender.SetScale(5.0);
 //	m_fontRender.SetColor(g_vec4Black);
 //}
 
-//描画処理
+//謠冗判蜃ｦ逅�
 void GameClear::Render(RenderContext& rc)
 {
 	m_spriteRender.Draw(rc);
