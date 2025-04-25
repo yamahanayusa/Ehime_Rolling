@@ -8,9 +8,9 @@ public:
 	~Title();
 	void Update();
 	bool Start();
-	//•`‰æŠÖ”B
+	//æç”»é–¢æ•°ã€‚
 	void Render(RenderContext& rc);
-	//ƒXƒvƒ‰ƒCƒgƒŒƒ“ƒ_\B
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ãƒ€â€•ã€‚
 	SpriteRender m_spriteRender;
 	Game* m_game;
 };

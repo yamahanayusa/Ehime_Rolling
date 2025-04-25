@@ -34,9 +34,9 @@ bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
-	//“–‚½‚è”»’è
+	//å½“ãŸã‚Šåˆ¤å®š
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
-	//d—Í‚ÌÝ’è
+	//é‡åŠ›ã®è¨­å®š
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
 	FindGO<Player>("player");
 	return true;

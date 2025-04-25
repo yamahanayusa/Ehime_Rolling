@@ -29,11 +29,11 @@ void Score::Update()
 	ResultScore();
 }
 
-//トータルスコア
+//繝医�ｼ繧ｿ繝ｫ繧ｹ繧ｳ繧｢
 void Score::ResultScore()
 {
 	wchar_t scorew[256];
-	swprintf_s(scorew, 256, L"%d点", int(m_resultScore));
+	swprintf_s(scorew, 256, L"%d轤ｹ", int(m_resultScore));
 	m_ScoreFontRender.SetText(scorew);
 	m_ScoreFontRender.SetPosition({ 500.0f, 500.0f, 0.0f });
 	m_ScoreFontRender.SetScale(1.0);

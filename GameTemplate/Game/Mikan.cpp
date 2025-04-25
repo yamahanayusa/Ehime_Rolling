@@ -24,7 +24,7 @@ bool Mikan::Start()
 
 
 
-	//ƒ‚ƒfƒ‹‚Ì•\¦B	
+	//ãƒ¢ãƒ‡ãƒ«ã®è¡¨ç¤ºã€‚	
 
 
 	m_modelRender.SetScale(1.0f, 1.0f, 1.0f);
@@ -45,16 +45,16 @@ bool Mikan::Start()
 void Mikan::Update()
 {
 	m_player = FindGO<Player>("Player");
-	//ˆÚ“®ˆ—B
+	//ç§»å‹•å‡¦ç†ã€‚
 	Move();
 
 	Rotation();
 
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//çµµæãã•ã‚“ã®æ›´æ–°å‡¦ç†ã€‚
 	m_modelRender.Update();
-	//ƒvƒŒƒCƒ„[‚ª‚İ‚©‚ñ‚ÉŒü‚©‚¤ƒxƒNƒgƒ‹‚ğŒvZB
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã¿ã‹ã‚“ã«å‘ã‹ã†ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã€‚
 	Vector3 diff = m_player->rbPos - m_position;
-	//ƒxƒNƒgƒ‹‚Ì’·‚³‚ª120.0f‚æ‚è¬‚³‚©‚Á‚½‚çB
+	//ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ãŒ120.0fã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰ã€‚
 	if (diff.Length() <= 120.0f)
 	{
 		m_score->m_resultScore += 100;
@@ -67,13 +67,13 @@ void Mikan::Update()
 
 void Mikan::Move()
 {
-	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
+	//çµµæãã•ã‚“ã«åº§æ¨™ã‚’æ•™ãˆã‚‹ã€‚
 	m_modelRender.SetPosition(m_position);
 }
 
 void Mikan::Rotation() {
 	Matrix mBias, mRot, mBiasInv, mFinal;
-	// ”wŒi‚ğƒvƒŒƒCƒ„[‹óŠÔ‚ÉˆÚ“®‚³‚¹‚és—ñ‚ğŒvZ‚·‚é
+	// èƒŒæ™¯ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç©ºé–“ã«ç§»å‹•ã•ã›ã‚‹è¡Œåˆ—ã‚’è¨ˆç®—ã™ã‚‹
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
@@ -81,30 +81,30 @@ void Mikan::Rotation() {
 		return;
 	}
 
-	// ”wŒi‚Ì‰ñ“]
-	//¶‰E•ûŒü‚ÌŒX‚«
+	// èƒŒæ™¯ã®å›è»¢
+	//å·¦å³æ–¹å‘ã®å‚¾ã
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
 	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.006f);
-	// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ªŒ´“_‚É—ˆ‚é‚æ‚¤‚É”wŒi‚ğ“®‚©‚·s—ñ‚ğì¬‚·‚é
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒåŸç‚¹ã«æ¥ã‚‹ã‚ˆã†ã«èƒŒæ™¯ã‚’å‹•ã‹ã™è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
 	mBiasInv = mBias;
-	// “®‚©‚µ‚½”wŒi‚ğ‚à‚Æ‚É–ß‚·s—ñ‚ğì¬
+	// å‹•ã‹ã—ãŸèƒŒæ™¯ã‚’ã‚‚ã¨ã«æˆ»ã™è¡Œåˆ—ã‚’ä½œæˆ
 	mBiasInv.Inverse();
-	// ’Ç‰Á‚Å‰ñ“]‚³‚¹‚és—ñ‚ğì¬
+	// è¿½åŠ ã§å›è»¢ã•ã›ã‚‹è¡Œåˆ—ã‚’ä½œæˆ
 	mRot.MakeRotationFromQuaternion(addRot);
-	// ˆÚ“®‚³‚¹‚½”wŒi‚ğ‰ñ“]‚³‚¹‚é
+	// ç§»å‹•ã•ã›ãŸèƒŒæ™¯ã‚’å›è»¢ã•ã›ã‚‹
 	mFinal.Multiply(mBias, mRot);
-	// ”wŒi‚ÌˆÊ’u‚ğ–ß‚·
+	// èƒŒæ™¯ã®ä½ç½®ã‚’æˆ»ã™
 	mFinal.Multiply(mFinal, mBiasInv);
 
-	// ÅI“I‚Éo—ˆã‚ª‚Á‚½s—ñ‚©‚ç‰ñ“]ƒNƒH[ƒ^ƒjƒIƒ“‚ğì‚é
+	// æœ€çµ‚çš„ã«å‡ºæ¥ä¸ŠãŒã£ãŸè¡Œåˆ—ã‹ã‚‰å›è»¢ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ä½œã‚‹
 	addRot.SetRotation(mFinal);
 
 	m_Rotation.Multiply(addRot);
 
-	//ã‰º•ûŒü‚ÌŒX‚«
+	//ä¸Šä¸‹æ–¹å‘ã®å‚¾ã
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
@@ -123,6 +123,6 @@ void Mikan::Rotation() {
 
 void Mikan::Render(RenderContext& rc)
 {
-	//coin‚ğ•`‰æ‚·‚éB
+	//coinã‚’æç”»ã™ã‚‹ã€‚
 	m_modelRender.Draw(rc);
 }
