@@ -20,34 +20,38 @@ Game::Game()
 
 Game::~Game()
 {
+	for (int mikan = 0;mikan < 4;mikan++) {
+		DeleteGO(m_mikan[mikan]);
+	}
 	DeleteGO(m_chest);
-	DeleteGO(m_player);
 	DeleteGO(m_gamecamera);
 	DeleteGO(m_stage);
 	DeleteGO(m_iceFloor);
-	DeleteGO(m_mikan);
-	//DeleteGO(m_timer);
-	//DeleteGO(m_score);
+	DeleteGO(m_player);
+	DeleteGO(m_timer);
+	DeleteGO(m_score);
 }
 
 bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
-	//“–‚½‚è”»’è
+	Stage3();
+	//å½“ãŸã‚Šåˆ¤å®š
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
-	//d—Í‚Ìİ’è
+	//é‡åŠ›ã®è¨­å®š
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
 	FindGO<Player>("player");
+
 	return true;
 }
 
 void Game::Update()
 {
-	//ƒvƒŒƒCƒ„[‚©‚çƒ`ƒFƒXƒg‚ÉŒü‚©‚¤ƒxƒNƒgƒ‹‚ğŒvZB
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰ãƒã‚§ã‚¹ãƒˆã«å‘ã‹ã†ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã€‚
 	Vector3	diff = m_player->rbPos - m_chest->m_position;
 
-	//ƒxƒNƒgƒ‹‚Ì’·‚³‚ª120.0f‚æ‚è¬‚³‚©‚Á‚½‚çB
+	//ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ãŒ120.0fã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰ã€‚
 	if (diff.Length() <= 120.0f)
 	{
 		auto gcins = NewGO<GameClear>(0, "gameClear");
@@ -70,6 +74,47 @@ void Game::Update()
 	}
 }
 
+void Game::Stage3()
+{
+	int mikan = 0;
+	//ãƒ¬ãƒ™ãƒ«ã®æ§‹ç¯‰
+	m_levelRender.Init("Assets/level3D/stage3Level.tkl", [&](LevelObjectData& objData) {
+		//ã‚¹ãƒ†ãƒ¼ã‚¸
+		if (objData.EqualObjectName(L"stage") == true) {
+			m_stage = NewGO<Stage>(0, "stage");
+			m_stage->SetPosition(objData.position);
+			m_stage->SetRotation(objData.rotation);
+			m_stage->SetScale(objData.scale);
+			return true;
+		}
+		//æ°·ã®åºŠ
+		if (objData.EqualObjectName(L"iceFloor") == true) {
+			m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
+			m_iceFloor->SetPosition(objData.position);
+			m_iceFloor->SetRotation(objData.rotation);
+			m_iceFloor->SetScale(objData.scale);
+			return true;
+		}
+		//ã‚´ãƒ¼ãƒ«
+		if (objData.EqualObjectName(L"chest") == true) {
+			m_chest = NewGO<Chest>(0, "chest");
+			m_chest->SetPosition(objData.position);
+			m_chest->SetRotation(objData.rotation);
+			m_chest->SetScale(objData.scale);
+			return true;
+		}
+		//ã‚¢ã‚¤ãƒ†ãƒ (ã¿ã‹ã‚“)
+		if (objData.EqualObjectName(L"mikan") == true) {
+			m_mikan[mikan] = NewGO<Mikan>(0, "mikan");
+			m_mikan[mikan]->SetPosition(objData.position);
+			m_mikan[mikan]->SetRotation(objData.rotation);
+			m_mikan[mikan]->SetScale(objData.scale);
+			mikan++;
+			return true;
+		}
+	});
+}
+
 void Game::GameStateUpdate()
 {
 	m_gameState = enInGame;
@@ -84,23 +129,11 @@ void Game::GameStateUpdate()
 		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_player = NewGO<Player>(0, "player");
-		m_stage = NewGO<Stage>(0, "stage");
-		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
 		m_gamecamera = NewGO<GameCamera>(0, "gameCamera");
-
-		m_mikan = NewGO<Mikan>(0, "mikan");
-		m_mikan->m_position = { 400.0f,0.0f,-400.0f };
-
-		m_mikan->m_firstPosition = m_mikan->m_position;
-		m_chest = NewGO<Chest>(0, "chest");
-		m_chest->m_position = { 400.0f,0.0f,-500.0f };
-		m_chest->m_firstPosition = m_chest->m_position;
-		/*m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
-		m_chest->m_firstPosition = m_chest->m_position;*/
 	}
 }
 	
 void Game::Render(RenderContext & rc)
 {
-
+	m_levelRender.Draw(rc);
 }

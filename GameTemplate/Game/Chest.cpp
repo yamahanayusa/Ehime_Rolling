@@ -30,7 +30,6 @@ bool Chest::Start()
 	m_player = FindGO<Player>("player");
 
 	//ÉÇÉfÉãÇÃï\é¶ÅB
-	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
 	m_modelRender.Init("Assets/modelData/flag.tkm");//,m_animationClips, enAnimationClip_Num, enModelUpAxisZ
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	

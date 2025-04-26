@@ -14,14 +14,10 @@ Stage::~Stage()
 
 bool Stage::Start()
 {
-
-	m_bgModelRendedr.SetScale(7.0f, 7.0f, 7.0f);
-	m_bgModelRendedr.Init("Assets/stage/stage3.tkm");
-
-	m_bgObject.CreateFromModel(m_bgModelRendedr.GetModel(), m_bgModelRendedr.GetWorldMatrix(0));
+	m_modelRender.Init("Assets/stage/stage3.tkm");
+	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	return true;
-
 }
 
 
@@ -31,7 +27,7 @@ void Stage::Update()
 	Rotation();
 
 	//モデルの更新処理。
-	m_bgModelRendedr.Update();
+	m_modelRender.Update();
 }
 
 void Stage::Rotation()
@@ -66,7 +62,7 @@ void Stage::Rotation()
 	// 最終的に出来上がった行列から回転クォータニオンを作る
 	addRot.SetRotation(mFinal);
 
-	m_bgRotation.Multiply(addRot);
+	m_rotation.Multiply(addRot);
 
 	//上下方向の傾き
 	Vector3 rightXZ = g_camera3D->GetRight();
@@ -79,16 +75,16 @@ void Stage::Rotation()
 	mFinal.Multiply(mFinal, mBiasInv);
 	addLot.SetRotation(mFinal);
 
-	m_bgRotation.Multiply(addLot);
+	m_rotation.Multiply(addLot);
 	//
-	m_bgObject.GetBody()->SetPositionAndRotation(Vector3::Zero, m_bgRotation);
-	m_bgModelRendedr.SetRotation(m_bgRotation);
+	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_rotation);
+	m_modelRender.SetRotation(m_rotation);
 	//モデルレンダーのアップデート
-	m_bgModelRendedr.Update();
+	m_modelRender.Update();
 }
 
 void Stage::Render(RenderContext& rc)
 {
 	//モデルを描画する
-	m_bgModelRendedr.Draw(rc);
+	m_modelRender.Draw(rc);
 }

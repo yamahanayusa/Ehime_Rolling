@@ -25,9 +25,6 @@ bool Mikan::Start()
 
 
 	//モデルの表示。	
-
-
-	m_modelRender.SetScale(1.0f, 1.0f, 1.0f);
 	m_modelRender.Init("Assets/modelData/mikan.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
@@ -44,7 +41,7 @@ bool Mikan::Start()
 
 void Mikan::Update()
 {
-	m_player = FindGO<Player>("Player");
+	m_player = FindGO<Player>("player");
 	//移動処理。
 	Move();
 
