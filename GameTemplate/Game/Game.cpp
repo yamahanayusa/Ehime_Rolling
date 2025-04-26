@@ -37,9 +37,9 @@ bool Game::Start()
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
 	Stage3();
-	//�����蔻��
+	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
-	//�d�͂̐ݒ�
+	//重力の設定
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
 	FindGO<Player>("player");
 
@@ -48,14 +48,28 @@ bool Game::Start()
 
 void Game::Update()
 {
-	if (m_timer->m_timer <= 0)
+	//プレイヤーからチェストに向かうベクトルを計算。
+	Vector3	diff = m_player->rbPos - m_chest->m_position;
+
+	//ベクトルの長さが120.0fより小さかったら。
+	if (diff.Length() <= 120.0f)
+	{
+		auto gcins = NewGO<GameClear>(0, "gameClear");
+		gcins->SetResultTime(m_timer->GetTime());
+		DeleteGO(this);
+	}
+	if (m_timer->GetTime() <= 0)
 	{
 		NewGO<TimeOver>(0, "timeOver");
+		DeleteGO(m_timer);
+		DeleteGO(m_score);
 		DeleteGO(this);
 	}
 	if (m_player->rbPos.y <= -3000.0f)
 	{
 		NewGO<GameOver>(0, "gameOver");
+		DeleteGO(m_timer);
+		DeleteGO(m_score);
 		DeleteGO(this);
 	}
 }
@@ -63,9 +77,9 @@ void Game::Update()
 void Game::Stage3()
 {
 	int mikan = 0;
-	//���x���̍\�z
+	//レベルの構築
 	m_levelRender.Init("Assets/level3D/stage3Level.tkl", [&](LevelObjectData& objData) {
-		//�X�e�[�W
+		//ステージ
 		if (objData.EqualObjectName(L"stage") == true) {
 			m_stage = NewGO<Stage>(0, "stage");
 			m_stage->SetPosition(objData.position);
@@ -73,7 +87,7 @@ void Game::Stage3()
 			m_stage->SetScale(objData.scale);
 			return true;
 		}
-		//�X�̏�
+		//氷の床
 		if (objData.EqualObjectName(L"iceFloor") == true) {
 			m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
 			m_iceFloor->SetPosition(objData.position);
@@ -81,7 +95,7 @@ void Game::Stage3()
 			m_iceFloor->SetScale(objData.scale);
 			return true;
 		}
-		//�S�[��
+		//ゴール
 		if (objData.EqualObjectName(L"chest") == true) {
 			m_chest = NewGO<Chest>(0, "chest");
 			m_chest->SetPosition(objData.position);
@@ -89,7 +103,7 @@ void Game::Stage3()
 			m_chest->SetScale(objData.scale);
 			return true;
 		}
-		//�A�C�e��(�݂���)
+		//アイテム(みかん)
 		if (objData.EqualObjectName(L"mikan") == true) {
 			m_mikan[mikan] = NewGO<Mikan>(0, "mikan");
 			m_mikan[mikan]->SetPosition(objData.position);
@@ -107,7 +121,7 @@ void Game::GameStateUpdate()
 
 	if (enStageSelect)
 	{
-		
+
 	}
 
 	if (enInGame)
