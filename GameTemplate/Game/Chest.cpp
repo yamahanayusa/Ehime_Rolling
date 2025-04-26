@@ -27,7 +27,7 @@ bool Chest::Start()
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
-	m_player = FindGO<Player>("Player");
+	m_player = FindGO<Player>("player");
 
 	//モデルの表示。
 	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
@@ -57,17 +57,12 @@ void Chest::Update()
 	//ベクトルの長さが120.0fより小さかったら。
 	if (diff.Length() <= 120.0f)
 	{
-		/*m_clearFlag = true;
+		m_clearFlag = true;
 		if (m_clearFlag == true)
 		{
-			const int m_timerStop  = m_timer->m_timer;
-			m_tortalScore = m_score->m_resultScore + m_timerStop;
-		}*/
-		//m_chestState = 1;
-		DeleteGO(this);
-		NewGO<GameClear>(0, "gameClear");
-		DeleteGO(m_game);
-		
+			const int m_resultTime  = m_timer->GetTime();
+			m_tortalScore = m_score->m_resultScore + m_resultTime;
+		}	
 	}
 }
 
@@ -147,6 +142,6 @@ void Chest::Rotation()
 
 void Chest::Render(RenderContext& rc)
 {
-	//coinを描画する。
+	//描画する。
 	m_modelRender.Draw(rc);
 }

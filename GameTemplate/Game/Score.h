@@ -28,6 +28,6 @@ public:
 	int m_resultScore = 0;
 	int m_tortalScore = 0;
 	bool m_clearFlag = false;
-	const int m_timerStop = 0;
+	const int m_resultTime = 0;
 };
 

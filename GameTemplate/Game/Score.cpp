@@ -21,6 +21,7 @@ bool Score::Start()
 {
 	m_score = FindGO<Score>("score");
 	m_chest = FindGO<Chest>("chest");
+	m_timer = FindGO<Timer>("timer");
 	return true;
 }
 
@@ -38,7 +39,7 @@ void Score::ResultScore()
 	m_ScoreFontRender.SetPosition({ 500.0f, 500.0f, 0.0f });
 	m_ScoreFontRender.SetScale(1.0);
 	m_ScoreFontRender.SetColor(g_vec4Black);
-	m_tortalScore = m_score->m_resultScore + m_timerStop;
+	m_tortalScore = m_score->m_resultScore + m_resultTime;
 }
 
 void Score::Render(RenderContext& rc)
