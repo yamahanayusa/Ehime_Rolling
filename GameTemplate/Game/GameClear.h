@@ -2,7 +2,7 @@
 class Game;
 class Score;
 class Chest;
-//繧ｲ繝ｼ繝繧ｯ繝ｪ繧｢
+//ゲームクリア
 class GameClear :public IGameObject
 {
 public:
@@ -10,15 +10,15 @@ public:
 	~GameClear();
 
 	bool Start()override;
-	//譖ｴ譁ｰ蜃ｦ逅�
+	//更新処理
 	void Update();
-	//謠冗判蜃ｦ逅�
+	//描画処理
 	void Render(RenderContext& rc);
 	//
 	//void TortalScore();
 
-	//繝｡繝ｳ繝仙､画焚
-	SpriteRender m_spriteRender; //繧ｹ繝励Λ繧､繝医Ξ繝ｳ繝繝ｼ
+	//メンバ変数
+	SpriteRender m_spriteRender; //スプライトレンダー
 	FontRender m_fontRender; //
 	Game* m_game;
 	Score* m_score;

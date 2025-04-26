@@ -11,22 +11,22 @@ public:
 	Mikan();
 	~Mikan();
 	bool Start();
-	void Update();												//æ›´æ–°ã€‚
-	void Render(RenderContext& rc);		                        //æç”»ã€‚
+	void Update();												//XVB
+	void Render(RenderContext& rc);		                        //•`‰æB
 	void Rotation();
-	void Move();												//ç§»å‹•ã€‚
+	void Move();												//ˆÚ“®B
 
-	enum EnAnimationClip {										//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒªãƒƒãƒ—
+	enum EnAnimationClip {										//ƒAƒjƒ[ƒVƒ‡ƒ“ƒNƒŠƒbƒv
 		enAnimationClip_Num,
 	};
-	Game* m_game;										//ã‚²ãƒ¼ãƒ ã€‚
-	//Player* m_player;											//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€‚
+	Game* m_game;										//ƒQ[ƒ€B
+	//Player* m_player;											//ƒvƒŒƒCƒ„[B
 
-	ModelRender		m_modelRender;								//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€â€•ã€‚
-	Vector3			m_position;									//åº§æ¨™ã€‚
-	Vector3			m_firstPosition;							//æœ€åˆã®åº§æ¨™ã€‚
+	ModelRender		m_modelRender;								//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_\B
+	Vector3			m_position;									//À•WB
+	Vector3			m_firstPosition;							//Å‰‚ÌÀ•WB
 
-	//å›è»¢ã‚’è¨­å®šã™ã‚‹
+	//‰ñ“]‚ğİ’è‚·‚é
 	Quaternion addRot;
 	Quaternion addLot;
 

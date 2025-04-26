@@ -24,7 +24,7 @@ public:
 	SpriteRender spriteRender;
 	FontRender m_ScoreFontRender;
 
-	//ãƒ¡ãƒ³ãƒå¤‰æ•°
+	//ƒƒ“ƒo•Ï”
 	int m_resultScore = 0;
 	int m_tortalScore = 0;
 	bool m_clearFlag = false;
