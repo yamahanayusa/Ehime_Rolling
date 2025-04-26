@@ -6,13 +6,13 @@ public:
 	GameOver();
 	~GameOver();
 	bool Start() override;
-	//譖ｴ譁ｰ蜃ｦ逅�
+	//更新処理
 	void Update();
-	//謠冗判蜃ｦ逅�
+	//描画処理
 	void Render(RenderContext& rc);
 
-	//繝｡繝ｳ繝仙､画焚
-	SpriteRender m_spriteRender; //繧ｹ繝励Λ繧､繝医Ξ繝ｳ繝繝ｼ
+	//メンバ変数
+	SpriteRender m_spriteRender; //スプライトレンダー
 	Game* m_game;
 };
 

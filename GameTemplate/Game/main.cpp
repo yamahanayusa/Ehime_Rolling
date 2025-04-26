@@ -19,22 +19,22 @@ void ReportLiveObjects()
 
 	//DXGIGetDebugInterface(__uuidof(IDXGIDebug), (void**)&pDxgiDebug);
 
-	//// å‡ºåŠ›ã€‚
+	//// o—ÍB
 	//pDxgiDebug->ReportLiveObjects(DXGI_DEBUG_D3D12, DXGI_DEBUG_RLO_DETAIL);
 }
 
 ///////////////////////////////////////////////////////////////////
-// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒ¡ã‚¤ãƒ³é–¢æ•°ã€‚
+// ƒEƒBƒ“ƒhƒEƒvƒƒOƒ‰ƒ€‚ÌƒƒCƒ“ŠÖ”B
 ///////////////////////////////////////////////////////////////////
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-	//ã‚²ãƒ¼ãƒ ã®åˆæœŸåŒ–ã€‚
+	//ƒQ[ƒ€‚Ì‰Šú‰»B
 	InitGame(hInstance, hPrevInstance, lpCmdLine, nCmdShow, TEXT("Game"));
 	//////////////////////////////////////
-	// ã“ã“ã‹ã‚‰åˆæœŸåŒ–ã‚’è¡Œã†ã‚³ãƒ¼ãƒ‰ã‚’è¨˜è¿°ã™ã‚‹ã€‚
+	// ‚±‚±‚©‚ç‰Šú‰»‚ðs‚¤ƒR[ƒh‚ð‹Lq‚·‚éB
 	//////////////////////////////////////
 
-	/*Gameã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã€‚*/
+	/*GameƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ðì¬B*/
 	/*NewGO<Game>(0, "game");*/
 	
 	NewGO<Title>(0, "title");
@@ -44,10 +44,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	skyCube->SetType(enSkyCubeType_SpaceToon_2);
 	skyCube->SetScale(300.0f);
 	//////////////////////////////////////
-	// åˆæœŸåŒ–ã‚’è¡Œã†ã‚³ãƒ¼ãƒ‰ã‚’æ›¸ãã®ã¯ã“ã“ã¾ã§ï¼ï¼ï¼
+	// ‰Šú‰»‚ðs‚¤ƒR[ƒh‚ð‘‚­‚Ì‚Í‚±‚±‚Ü‚ÅIII
 	//////////////////////////////////////
 	
-	// ã“ã“ã‹ã‚‰ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—ã€‚
+	// ‚±‚±‚©‚çƒQ[ƒ€ƒ‹[ƒvB
 	while (DispatchWindowMessage())
 	{
 		if (g_pad[0]->IsTrigger(enButtonA) ){

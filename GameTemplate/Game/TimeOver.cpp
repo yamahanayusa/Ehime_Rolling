@@ -15,7 +15,7 @@ TimeOver::~TimeOver()
 
 bool TimeOver::Start()
 {
-	//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®ç”»åƒã‚’èª­ã¿è¾¼ã‚€
+	//ƒQ[ƒ€ƒI[ƒo[‚Ì‰æ‘œ‚ğ“Ç‚İ‚Ş
 	spriteRender.Init("Assets/sprite/TimeOver.dds", 1920.0f, 1080.0f);
 	m_game = FindGO<Game>("game");
 	return true;
@@ -23,18 +23,18 @@ bool TimeOver::Start()
 
 void TimeOver::Update()
 {
-	//Aãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰
+	//Aƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		//ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã¤ãã‚‹
+		//ƒ^ƒCƒgƒ‹‚ÌƒIƒuƒWƒFƒNƒg‚ğ‚Â‚­‚é
 		NewGO<Title>(0, "title");
-		//è‡ªèº«ã‚’å‰Šé™¤ã™ã‚‹
+		//©g‚ğíœ‚·‚é
 		DeleteGO(this);
 		DeleteGO(m_game);
 	}
 }
 
-//æç”»å‡¦ç†
+//•`‰æˆ—
 void TimeOver::Render(RenderContext& rc)
 {
 	spriteRender.Draw(rc);

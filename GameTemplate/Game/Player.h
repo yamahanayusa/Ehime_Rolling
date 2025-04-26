@@ -7,28 +7,28 @@ public:
 
 	Player();
 	~Player();
-	//繧ｹ繧ｿ繝ｼ繝・
+	//スタート
 	bool Start();
-	//繧｢繝・・繝・・繝・
+	//アップデート
 	void Update();
-	//繝ｬ繝ｳ繝繝ｼ
+	//レンダー
 	void Render(RenderContext& rc);
 
-	Vector3                 m_position;//蠎ｧ讓吶・
-	Vector3                 m_scale = Vector3::One;//繧ｹ繧ｱ繝ｼ繝ｫ
+	Vector3                 m_position;//座標。
+	Vector3                 m_scale = Vector3::One;//スケール
 	
-	Vector3                 m_moveSpeed;//遘ｻ蜍暮溷ｺｦ
+	Vector3                 m_moveSpeed;//移動速度
 	Vector3                 m_ballPosition;
-	CharacterController     m_charaCon;//繧ｭ繝｣繝ｩ繧ｳ繝ｳ
-	// 蜑帑ｽ薙・菴咲ｽｮ縺ｨ蝗櫁ｻ｢繧貞叙蠕励☆繧・
+	CharacterController     m_charaCon;//キャラコン
+	// 剛体の位置と回転を取得する
 	Vector3 rbPos;
 	Quaternion rbRot;
 	Game* m_game;
 	RigidBodyInitData rbInitData;
-	RigidBody m_rigidBody;	// 蜑帑ｽ・
+	RigidBody m_rigidBody;	// 剛体
 private:
 
 	ModelRender m_ballRender;
-	SphereCollider m_sphereCollider; // 繝懊・繝ｫ縺ｮ蠖｢迥ｶ
+	SphereCollider m_sphereCollider; // ボールの形状
 
 };

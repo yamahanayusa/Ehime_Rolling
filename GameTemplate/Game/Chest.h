@@ -11,31 +11,31 @@ public:
 	Chest();
 	~Chest();
 	bool Start();
-	void Update();															//æ›´æ–°ã€‚
+	void Update();															//XVB
 	void Move();
-	void Rotation();//ç§»å‹•ã€‚
-	//void PlayAnimation();													//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€‚
-	void Render(RenderContext& rc);											//æç”»ã€‚
+	void Rotation();//ˆÚ“®B
+	//void PlayAnimation();													//ƒAƒjƒ[ƒVƒ‡ƒ“B
+	void Render(RenderContext& rc);											//•`‰æB
 
-	enum EnAnimationClip {													//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒªãƒƒãƒ—
-		enAnimationClip_Close,												//chestãŒé–‰ã˜ã¦ã„ã‚‹ã¨ãã€‚
-		enAnimationClip_Open,												//chestãŒç©ºã„ã¦ã„ã‚‹ã¨ãã€‚
+	enum EnAnimationClip {													//ƒAƒjƒ[ƒVƒ‡ƒ“ƒNƒŠƒbƒv
+		enAnimationClip_Close,												//chest‚ª•Â‚¶‚Ä‚¢‚é‚Æ‚«B
+		enAnimationClip_Open,												//chest‚ª‹ó‚¢‚Ä‚¢‚é‚Æ‚«B
 		enAnimationClip_Num,
 	};
 
-	Game*						m_game;										//ã‚²ãƒ¼ãƒ ã€‚
+	Game*						m_game;										//ƒQ[ƒ€B
 	Score*						m_score;
     Timer*						m_timer;
-	Player*						m_player;														//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€‚
+	Player*						m_player;														//ƒvƒŒƒCƒ„[B
 	Quaternion					addRot;
 	Quaternion					addLot;
 
-	AnimationClip				m_animationClips[enAnimationClip_Num];		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€‚
-	ModelRender					m_modelRender;								//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€â€•ã€‚
-	Vector3						m_position;									//åº§æ¨™ã€‚
-	Vector3						m_firstPosition;							//æœ€åˆã®åº§æ¨™ã€‚
+	AnimationClip				m_animationClips[enAnimationClip_Num];		//ƒAƒjƒ[ƒVƒ‡ƒ“B
+	ModelRender					m_modelRender;								//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_\B
+	Vector3						m_position;									//À•WB
+	Vector3						m_firstPosition;							//Å‰‚ÌÀ•WB
 
-	int							m_chestState = 0;							//chestã®ã‚¹ãƒ†ãƒ¼ãƒˆã€‚
+	int							m_chestState = 0;							//chest‚ÌƒXƒe[ƒgB
     int							m_tortalScore = 0;
 	bool						m_clearFlag = false;
 

@@ -5,7 +5,7 @@
 
 Title::Title()
 {
-	//ç”»åƒã‚’èª­ã¿è¾¼ã‚€
+	//‰æ‘œ‚ğ“Ç‚İ‚Ş
 	m_spriteRender.Init("Assets/sprite/Title.dds", 1920.0f, 1080.0f);
 }
 
@@ -31,6 +31,6 @@ void Title::Update()
 
 void Title::Render(RenderContext& rc)
 {
-	//ç”»åƒã‚’æç”»ã™ã‚‹ã€‚
+	//‰æ‘œ‚ğ•`‰æ‚·‚éB
 	m_spriteRender.Draw(rc);
 }

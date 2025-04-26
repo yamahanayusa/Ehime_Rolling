@@ -23,13 +23,13 @@ void Timer::Update()
 	wchar_t wcsbuf[256];
 	swprintf_s(wcsbuf, 256, L"%d", int(m_timer));
 
-	//表示するテキストを設定。
+	//�\������e�L�X�g��ݒ�B
 	m_fontRender.SetText(wcsbuf);
-	//フォントの位置を設定。
+	//�t�H���g�̈ʒu��ݒ�B
 	m_fontRender.SetPosition(Vector3(800.0f, 500.0f, 0.0f));
-	//フォントの大きさを設定。
+	//�t�H���g�̑傫����ݒ�B
 	m_fontRender.SetScale(1.7f);
-	//フォントの色を設定。
+	//�t�H���g�̐F��ݒ�B
 	m_fontRender.SetColor({ 0.0f,0.0f,0.0f,1.0f });
 
 	m_timer -= g_gameTime->GetFrameDeltaTime();

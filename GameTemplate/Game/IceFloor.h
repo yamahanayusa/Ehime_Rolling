@@ -9,13 +9,13 @@ public:
 	~IceFloor();
 	bool Start();
 	void Update();
-	//å›è»¢å‡¦ç†
+	//‰ñ“]ˆ—
 	void Rotation();
-	//æ»‘ã‚‹å‡¦ç†
+	//ŠŠ‚éˆ—
 	void Slide();
 	void Render(RenderContext& rc);
 
-	//å›è»¢ã‚’è¨­å®šã™ã‚‹
+	//‰ñ“]‚ğİ’è‚·‚é
 	Quaternion addRot;
 	Quaternion addLot;
 

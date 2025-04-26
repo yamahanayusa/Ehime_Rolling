@@ -1,9 +1,9 @@
 #pragma once
 
-//ã°ã­ã‚«ãƒ¡ãƒ©ã‚’ä½¿ç”¨ã—ãŸã„å ´åˆã¯ã€SpringCameraã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+//‚Î‚ËƒJƒƒ‰‚ğg—p‚µ‚½‚¢ê‡‚ÍASpringCamera‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚éB
 #include "camera/SpringCamera.h"
 
-//ã‚¯ãƒ©ã‚¹å®£è¨€
+//ƒNƒ‰ƒXéŒ¾
 class Player;
 
 class GameCamera :public IGameObject
@@ -12,12 +12,12 @@ public:
 
 	GameCamera();
 	~GameCamera();
-	//ã‚¹ã‚¿ãƒ¼ãƒˆ
+	//ƒXƒ^[ƒg
 	bool Start();
-	//ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+	//ƒAƒbƒvƒf[ƒg
 	void Update();
-	Player* m_player = nullptr;//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼	
-	Vector3 m_toCameraPos = Vector3::One;//ã‚«ãƒ¡ãƒ©ãƒã‚¹
-	SpringCamera  m_springCamera;//ã°ã­ã‚«ãƒ¡ãƒ©
+	Player* m_player = nullptr;//ƒvƒŒƒCƒ„[	
+	Vector3 m_toCameraPos = Vector3::One;//ƒJƒƒ‰ƒ|ƒX
+	SpringCamera  m_springCamera;//‚Î‚ËƒJƒƒ‰
 };
 
