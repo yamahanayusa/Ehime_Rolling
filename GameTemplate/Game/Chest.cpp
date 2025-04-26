@@ -27,10 +27,9 @@ bool Chest::Start()
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
-	m_player = FindGO<Player>("Player");
+	m_player = FindGO<Player>("player");
 
 	//ÉÇÉfÉãÇÃï\é¶ÅB
-	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
 	m_modelRender.Init("Assets/modelData/flag.tkm");//,m_animationClips, enAnimationClip_Num, enModelUpAxisZ
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	

@@ -22,6 +22,7 @@ public:
 	~Game();
 	bool Start();
 	void Update();
+	void Stage3();
 	void GameStateUpdate();
 	void Render(RenderContext& rc);
 
@@ -36,10 +37,12 @@ public:
 	EnGameState m_gameState = enTitle;
 
 private:
+	LevelRender m_levelRender;
+
 	Title* m_title;
 	Chest* m_chest;
 	Timer* m_timer;
-	Mikan* m_mikan;
+	Mikan* m_mikan[4];
 	TimeOver* m_timeOver;
 	GameOver* m_gameOver;
 	GameClear* m_gameClear;
