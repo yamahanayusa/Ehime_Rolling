@@ -1,6 +1,6 @@
 #pragma once
 class Game;
-//class Score;
+class Score;
 class Title :public IGameObject
 {
 public:
@@ -13,5 +13,6 @@ public:
 	//スプライトレンダ―。
 	SpriteRender m_spriteRender;
 	Game* m_game;
+	Score* m_score;
 };
 

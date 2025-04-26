@@ -21,7 +21,7 @@ bool Timer::Start()
 void Timer::Update()
 {
 	wchar_t wcsbuf[256];
-	swprintf_s(wcsbuf, 256, L"%d", int(m_timer));
+	swprintf_s(wcsbuf, 256, L"%d", int(m_time));
 
 	//表示するテキストを設定。
 	m_fontRender.SetText(wcsbuf);
@@ -32,17 +32,11 @@ void Timer::Update()
 	//フォントの色を設定。
 	m_fontRender.SetColor({ 0.0f,0.0f,0.0f,1.0f });
 
-	m_timer -= g_gameTime->GetFrameDeltaTime();
+	m_time -= g_gameTime->GetFrameDeltaTime();
 
-	if (m_timer <= 10.0f)
+	if (m_time <= 10.0f)
 	{
 		m_fontRender.SetColor({ 1.0f,0.0f,0.0f,1.0f });
-	}
-
-	if (m_timer <= 0.0f)
-	{
-		m_game->m_gameState = m_game->enTimeOver;
-		//m_game->GameStateUpdate();
 	}
 }
 
