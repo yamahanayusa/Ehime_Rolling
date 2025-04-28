@@ -24,7 +24,7 @@ Game::~Game()
 		DeleteGO(m_mikan[mikan]);
 	}
 	DeleteGO(m_chest);
-	DeleteGO(m_gamecamera);
+	DeleteGO(m_gameCamera);
 	DeleteGO(m_stage);
 	DeleteGO(m_iceFloor);
 	DeleteGO(m_player);
@@ -129,7 +129,7 @@ void Game::GameStateUpdate()
 		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_player = NewGO<Player>(0, "player");
-		m_gamecamera = NewGO<GameCamera>(0, "gameCamera");
+		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
 	}
 }
 	

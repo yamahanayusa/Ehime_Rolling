@@ -49,7 +49,7 @@ private:
 	Score* m_score;
 	Stage* m_stage = nullptr;
 	Player* m_player = nullptr;
-	GameCamera* m_gamecamera = nullptr;
+	GameCamera* m_gameCamera = nullptr;
 	IceFloor* m_iceFloor = nullptr;
 	Vector3 m_pos;
 	int m_resultTime = 0;

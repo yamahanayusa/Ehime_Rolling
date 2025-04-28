@@ -53,7 +53,7 @@ public:
 	Game*						m_game;										//ゲーム。
 	Score*						m_score;
     Timer*						m_timer;
-	Player*						m_player;														//プレイヤー。
+	Player*						m_player;									//プレイヤー。
 	Quaternion					addRot;
 	Quaternion					addLot;
 
@@ -67,7 +67,6 @@ public:
 	bool						m_clearFlag = false;
 
 private:
-	Quaternion					m_Rotation;
 	PhysicsStaticObject			m_Object;
 	Vector3						m_scale = Vector3::One;
 	Quaternion					m_rotation;

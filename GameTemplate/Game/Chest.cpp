@@ -103,7 +103,7 @@ void Chest::Rotation()
 	// 最終的に出来上がった行列から回転クォータニオンを作る
 	addRot.SetRotation(mFinal);
 
-	m_Rotation.Multiply(addRot);
+	m_rotation.Multiply(addRot);
 
 	//上下方向の傾き
 	Vector3 rightXZ = g_camera3D->GetRight();
@@ -116,9 +116,9 @@ void Chest::Rotation()
 	mFinal.Multiply(mFinal, mBiasInv);
 	addLot.SetRotation(mFinal);
 
-	m_Rotation.Multiply(addLot);
-	m_Object.GetBody()->SetPositionAndRotation(m_position, m_Rotation);
-	m_modelRender.SetRotation(m_Rotation);
+	m_rotation.Multiply(addLot);
+	m_Object.GetBody()->SetPositionAndRotation(m_position, m_rotation);
+	m_modelRender.SetRotation(m_rotation);
 	m_modelRender.Update();
 }
 
