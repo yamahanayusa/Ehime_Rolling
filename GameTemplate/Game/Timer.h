@@ -9,11 +9,8 @@ public:
 	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
-	float GetTime() {
-		return m_time;
-	}
-private:
-	float m_time = 60.0f;
+
+	float m_timer = 60.0f;
 	FontRender m_fontRender;
 	Game* m_game;
 };
