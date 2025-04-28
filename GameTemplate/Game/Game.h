@@ -52,6 +52,5 @@ private:
 	GameCamera* m_gamecamera = nullptr;
 	IceFloor* m_iceFloor = nullptr;
 	Vector3 m_pos;
-	int m_resultTime = 0;
 };
 
