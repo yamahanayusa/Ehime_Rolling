@@ -32,8 +32,9 @@ void Stage::Update()
 
 void Stage::Rotation()
 {
-	Matrix mBias, mRot, mBiasInv, mFinal;
 	// 背景をプレイヤー空間に移動させる行列を計算する
+	Matrix mBias, mRot, mBiasInv, mFinal;
+	
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}

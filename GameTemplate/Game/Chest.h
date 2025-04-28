@@ -12,8 +12,8 @@ public:
 	~Chest();
 	bool Start();
 	void Update();															//更新。
-	void Move();
-	void Rotation();//移動。
+	void Move();															//移動。
+	void Rotation();														//回転。
 	//void PlayAnimation();													//アニメーション。
 	void Render(RenderContext& rc);											//描画。
 	/// <summary>
@@ -51,9 +51,11 @@ public:
 	};
 
 	Game*						m_game;										//ゲーム。
-	Score*						m_score;
-    Timer*						m_timer;
-	Player*						m_player;														//プレイヤー。
+	Score*						m_score;									//スコア。
+    Timer*						m_timer;									//タイマー。
+	Player*						m_player;									//プレイヤー。
+
+	//回転を設定する。
 	Quaternion					addRot;
 	Quaternion					addLot;
 
@@ -67,7 +69,6 @@ public:
 	bool						m_clearFlag = false;
 
 private:
-	Quaternion					m_Rotation;
 	PhysicsStaticObject			m_Object;
 	Vector3						m_scale = Vector3::One;
 	Quaternion					m_rotation;
