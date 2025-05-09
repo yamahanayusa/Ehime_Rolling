@@ -61,7 +61,6 @@ void Chest::Update()
 		if (m_clearFlag == true)
 		{
 			const int m_resultTime  = m_timer->GetTime();
-			m_tortalScore = m_score->m_resultScore + m_resultTime;
 		}	
 	}
 }

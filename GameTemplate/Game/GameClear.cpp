@@ -45,11 +45,8 @@ void GameClear::Update()
 
 void GameClear::TortalScore()
 {
-	m_resultTime = m_timer->GetTime();
-	m_tortalScore = m_score->m_resultScore + m_resultTime;
-
 	wchar_t scorew[256];
-	swprintf_s(scorew, 256, L"%d“_", int(m_tortalScore));
+	swprintf_s(scorew, 256, L"%d“_", (m_score->GetTortalScore()));
 	m_fontRender.SetText(scorew);
 	m_fontRender.SetPosition({ 200.0f, 100.0f, 0.0f });
 	m_fontRender.SetScale(5.0);

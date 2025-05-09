@@ -14,6 +14,8 @@ Timer::~Timer()
 
 bool Timer::Start()
 {
+	m_timerCount = 60;
+	m_time = m_timerCount;
 	m_game = FindGO<Game>("game");
 	return true;
 }

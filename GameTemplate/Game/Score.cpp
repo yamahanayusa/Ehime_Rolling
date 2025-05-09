@@ -15,36 +15,52 @@ Score::~Score()
 
 }
 
-
-
 bool Score::Start()
 {
-	m_score = FindGO<Score>("score");
-	m_chest = FindGO<Chest>("chest");
 	m_timer = FindGO<Timer>("timer");
 	return true;
 }
 
 void Score::Update()
 {
-	ResultScore();
+	ResultScoreCalc();
+
+	TimeScoreCalc();
+
+	//アイテム取得時のスコアと残り時間のスコアの合算。
+	m_tortalScore = m_itemGetScore + m_timeScore;
+
+	ResultScoreDisp();
 }
 
-//トータルスコア
-void Score::ResultScore()
+void Score::ResultScoreDisp()
 {
-	wchar_t scorew[256];
-	swprintf_s(scorew, 256, L"%d点", int(m_resultScore));
-	m_ScoreFontRender.SetText(scorew);
-	m_ScoreFontRender.SetPosition({ 500.0f, 500.0f, 0.0f });
-	m_ScoreFontRender.SetScale(1.0);
-	m_ScoreFontRender.SetColor(g_vec4Black);
-	m_tortalScore = m_score->m_resultScore + m_resultTime;
+	wchar_t wcsbuf[256];
+	swprintf_s(wcsbuf, 256, L"%d点", int(m_itemGetScore));
+	m_scoreFontRender.SetText(wcsbuf);
+	m_scoreFontRender.SetPosition({ 500.0f, 500.0f, 0.0f });
+	m_scoreFontRender.SetScale(1.0);
+	m_scoreFontRender.SetColor(g_vec4Black);
+}
+
+void Score::ResultScoreCalc()
+{
+	//バフの効果時間の経過。
+	if (m_buffMultipier != 1.0f) {
+		m_buffSecond -= g_gameTime->GetFrameDeltaTime();
+		if (m_buffSecond <= 0.0f)	//バフ経過時間が残り0秒になったら。
+		{
+			m_buffMultipier = 1.0f;
+		}
+	}	
+}
+
+void Score::TimeScoreCalc()
+{
+	m_timeScore = m_timer->GetTime();
 }
 
 void Score::Render(RenderContext& rc)
 {
-	//FontRender m_resultRender;
-	//SpriteRender spriteRender;
-	m_ScoreFontRender.Draw(rc);
+	m_scoreFontRender.Draw(rc);
 }

@@ -14,6 +14,7 @@ class GameCamera;
 class Title;
 class Stage;
 class IceFloor;
+class Jakoten;
 
 class Game : public IGameObject
 {
@@ -44,6 +45,7 @@ private:
 	GameOver* m_gameOver;
 	GameClear* m_gameClear;
 	Score* m_score;
+	Jakoten* m_jakoten;
 	Stage* m_stage = nullptr;
 	Player* m_player = nullptr;
 	GameCamera* m_gamecamera = nullptr;

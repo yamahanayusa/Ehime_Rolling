@@ -9,6 +9,10 @@
 #include "sound/SoundEngine.h"
 
 
+namespace {
+	const int SCORE = 100;
+}
+
 Mikan::Mikan()
 {
 
@@ -44,7 +48,7 @@ bool Mikan::Start()
 
 void Mikan::Update()
 {
-	m_player = FindGO<Player>("Player");
+	m_player = FindGO<Player>("player");
 	//移動処理。
 	Move();
 
@@ -57,7 +61,8 @@ void Mikan::Update()
 	//ベクトルの長さが120.0fより小さかったら。
 	if (diff.Length() <= 120.0f)
 	{
-		m_score->m_resultScore += 100;
+		//スコアの加算。
+		m_score->AddItemGetScore(SCORE);
 		SoundSource* se = NewGO<SoundSource>(0);
 		se->Init(5);
 		se->Play(false);

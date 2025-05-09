@@ -11,9 +11,10 @@ public:
 	void Render(RenderContext& rc);
 	float GetTime() {
 		return m_time;
-	}
+	}	
 private:
-	float m_time = 60.0f;
+	float m_timerCount = 0;
+	float m_time = 0;
 	FontRender m_fontRender;
 	Game* m_game;
 };
