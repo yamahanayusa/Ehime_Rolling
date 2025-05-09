@@ -12,6 +12,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "IceFloor.h"
+#include "Jakoten.h"
 
 Game::Game()
 {
@@ -23,13 +24,15 @@ Game::~Game()
 	for (int mikan = 0;mikan < 4;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
-	DeleteGO(m_chest);
+	DeleteGO(m_chest);  
+  DeleteGO(m_player);
 	DeleteGO(m_gameCamera);
 	DeleteGO(m_stage);
 	DeleteGO(m_iceFloor);
-	DeleteGO(m_player);
-	DeleteGO(m_timer);
-	DeleteGO(m_score);
+	DeleteGO(m_mikan);
+	DeleteGO(m_jakoten);
+	//DeleteGO(m_timer);
+	//DeleteGO(m_score);
 }
 
 bool Game::Start()
@@ -37,9 +40,9 @@ bool Game::Start()
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
 	Stage3();
-	//“–‚½‚è”»’è
+	//å½“ãŸã‚Šåˆ¤å®š
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
-	//d—Í‚Ìİ’è
+	//é‡åŠ›ã®è¨­å®š
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
 	FindGO<Player>("player");
 
@@ -63,9 +66,9 @@ void Game::Update()
 void Game::Stage3()
 {
 	int mikan = 0;
-	//ƒŒƒxƒ‹‚Ì\’z
+	//ãƒ¬ãƒ™ãƒ«ã®æ§‹ç¯‰
 	m_levelRender.Init("Assets/level3D/stage3Level.tkl", [&](LevelObjectData& objData) {
-		//ƒXƒe[ƒW
+		//ã‚¹ãƒ†ãƒ¼ã‚¸
 		if (objData.EqualObjectName(L"stage") == true) {
 			m_stage = NewGO<Stage>(0, "stage");
 			m_stage->SetPosition(objData.position);
@@ -73,7 +76,7 @@ void Game::Stage3()
 			m_stage->SetScale(objData.scale);
 			return true;
 		}
-		//•X‚Ì°
+		//æ°·ã®åºŠ
 		if (objData.EqualObjectName(L"iceFloor") == true) {
 			m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
 			m_iceFloor->SetPosition(objData.position);
@@ -81,7 +84,7 @@ void Game::Stage3()
 			m_iceFloor->SetScale(objData.scale);
 			return true;
 		}
-		//ƒS[ƒ‹
+		//ã‚´ãƒ¼ãƒ«
 		if (objData.EqualObjectName(L"chest") == true) {
 			m_chest = NewGO<Chest>(0, "chest");
 			m_chest->SetPosition(objData.position);
@@ -89,7 +92,7 @@ void Game::Stage3()
 			m_chest->SetScale(objData.scale);
 			return true;
 		}
-		//ƒAƒCƒeƒ€(‚İ‚©‚ñ)
+		//ã‚¢ã‚¤ãƒ†ãƒ (ã¿ã‹ã‚“)
 		if (objData.EqualObjectName(L"mikan") == true) {
 			m_mikan[mikan] = NewGO<Mikan>(0, "mikan");
 			m_mikan[mikan]->SetPosition(objData.position);
@@ -115,7 +118,27 @@ void Game::GameStateUpdate()
 		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_player = NewGO<Player>(0, "player");
+
+		m_stage = NewGO<Stage>(0, "stage");
+		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
+		m_gamecamera = NewGO<GameCamera>(0, "gameCamera");
+
+		m_mikan = NewGO<Mikan>(0, "mikan");
+		m_mikan->m_position = { 400.0f,0.0f,-400.0f };
+		m_mikan->m_firstPosition = m_mikan->m_position;
+
+		m_chest = NewGO<Chest>(0, "chest");
+		//m_chest->m_position = { 400.0f,0.0f,-500.0f };
+		//m_chest->m_firstPosition = m_chest->m_position;
+		m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
+		m_chest->m_firstPosition = m_chest->m_position;
+
+		//ã˜ã‚ƒã“å¤©ã€‚
+		m_jakoten = NewGO<Jakoten>(0, "Jakoten");
+		m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
+    
 		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
+
 	}
 }
 	

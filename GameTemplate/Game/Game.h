@@ -14,6 +14,7 @@ class GameCamera;
 class Title;
 class Stage;
 class IceFloor;
+class Jakoten;
 
 class Game : public IGameObject
 {

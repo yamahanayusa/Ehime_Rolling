@@ -63,6 +63,7 @@ public:
 	Score* m_score;
 	Timer* m_timer;
 	int m_tortalScore = 0;
+	int m_mikanscore = 100;
 
 private:
 	Quaternion					m_Rotation;
