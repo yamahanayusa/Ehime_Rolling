@@ -15,10 +15,8 @@ IceFloor::~IceFloor()
 bool IceFloor::Start()
 {
 	m_modelRender.SetPosition(m_position);
-	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
 	m_modelRender.Init("Assets/modelData/icefloor.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
-
 
 	return true;
 }
@@ -28,11 +26,8 @@ void IceFloor::Update()
 	//回転処理
 	Rotation();
 
-
 	//滑る処理
 	Slide();
-
-
 
 	m_modelRender.Update();
 }
@@ -69,7 +64,7 @@ void IceFloor::Rotation()
 	// 最終的に出来上がった行列から回転クォータニオンを作る
 	addRot.SetRotation(mFinal);
 
-	m_Rotation.Multiply(addRot);
+	m_rotation.Multiply(addRot);
 
 	//上下方向の傾き
 	Vector3 rightXZ = g_camera3D->GetRight();
@@ -82,10 +77,10 @@ void IceFloor::Rotation()
 	mFinal.Multiply(mFinal, mBiasInv);
 	addLot.SetRotation(mFinal);
 
-	m_Rotation.Multiply(addLot);
+	m_rotation.Multiply(addLot);
 	//
-	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_Rotation);
-	m_modelRender.SetRotation(m_Rotation);
+	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_rotation);
+	m_modelRender.SetRotation(m_rotation);
 	m_modelRender.Update();
 }
 

@@ -18,7 +18,7 @@ Chest::~Chest()
 
 bool Chest::Start()
 {
-	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒNƒŠƒbƒv‚ğƒ[ƒhB
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒªãƒƒãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰ã€‚
 	/*m_animationClips[enAnimationClip_Open].Load("Assets/animData/ChestOpen.tka");
 	m_animationClips[enAnimationClip_Open].SetLoopFlag(false);
 	m_animationClips[enAnimationClip_Close].Load("Assets/animData/ChestClose.tka");
@@ -29,8 +29,7 @@ bool Chest::Start()
 	m_timer = FindGO<Timer>("timer");
 	m_player = FindGO<Player>("player");
 
-	//ƒ‚ƒfƒ‹‚Ì•\¦B
-	m_modelRender.SetScale(7.0f, 7.0f, 7.0f);
+	//ãƒ¢ãƒ‡ãƒ«ã®è¡¨ç¤ºã€‚
 	m_modelRender.Init("Assets/modelData/flag.tkm");//,m_animationClips, enAnimationClip_Num, enModelUpAxisZ
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	
@@ -39,22 +38,22 @@ bool Chest::Start()
 
 void Chest::Update()
 {
-	//ˆÚ“®ˆ—B
+	//ç§»å‹•å‡¦ç†ã€‚
 	Move();
 
-	//‰ñ“]ˆ—B
+	//å›è»¢å‡¦ç†ã€‚
 	Rotation();
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“ˆ—B
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å‡¦ç†ã€‚
 	//PlayAnimation();
 
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//çµµæãã•ã‚“ã®æ›´æ–°å‡¦ç†ã€‚
 	m_modelRender.Update();
 
-	//ƒvƒŒƒCƒ„[‚©‚çƒ`ƒFƒXƒg‚ÉŒü‚©‚¤ƒxƒNƒgƒ‹‚ğŒvZB
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰ãƒã‚§ã‚¹ãƒˆã«å‘ã‹ã†ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã€‚
 	Vector3	diff = m_player->rbPos - m_position;
 
-	//ƒxƒNƒgƒ‹‚Ì’·‚³‚ª120.0f‚æ‚è¬‚³‚©‚Á‚½‚çB
+	//ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ãŒ120.0fã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰ã€‚
 	if (diff.Length() <= 120.0f)
 	{
 		m_clearFlag = true;
@@ -62,19 +61,24 @@ void Chest::Update()
 		{
 			const int m_resultTime  = m_timer->GetTime();
 		}	
+    
+		//m_chestState = 1;
+		DeleteGO(this);
+		NewGO<GameClear>(0, "gameClear");
+		DeleteGO(m_game);
 	}
 }
 
 void Chest::Move()
 {
-	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
+	//çµµæãã•ã‚“ã«åº§æ¨™ã‚’æ•™ãˆã‚‹ã€‚
 	m_modelRender.SetPosition(m_position);
 }
 
 void Chest::Rotation()
 {
 	Matrix mBias, mRot, mBiasInv, mFinal;
-	// ”wŒi‚ğƒvƒŒƒCƒ„[‹óŠÔ‚ÉˆÚ“®‚³‚¹‚és—ñ‚ğŒvZ‚·‚é
+	// èƒŒæ™¯ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç©ºé–“ã«ç§»å‹•ã•ã›ã‚‹è¡Œåˆ—ã‚’è¨ˆç®—ã™ã‚‹
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
@@ -82,30 +86,30 @@ void Chest::Rotation()
 		return;
 	}
 
-	// ”wŒi‚Ì‰ñ“]
-	//¶‰E•ûŒü‚ÌŒX‚«
+	// èƒŒæ™¯ã®å›è»¢
+	//å·¦å³æ–¹å‘ã®å‚¾ã
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
 	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.006f);
-	// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ªŒ´“_‚É—ˆ‚é‚æ‚¤‚É”wŒi‚ğ“®‚©‚·s—ñ‚ğì¬‚·‚é
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒåŸç‚¹ã«æ¥ã‚‹ã‚ˆã†ã«èƒŒæ™¯ã‚’å‹•ã‹ã™è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
 	mBiasInv = mBias;
-	// “®‚©‚µ‚½”wŒi‚ğ‚à‚Æ‚É–ß‚·s—ñ‚ğì¬
+	// å‹•ã‹ã—ãŸèƒŒæ™¯ã‚’ã‚‚ã¨ã«æˆ»ã™è¡Œåˆ—ã‚’ä½œæˆ
 	mBiasInv.Inverse();
-	// ’Ç‰Á‚Å‰ñ“]‚³‚¹‚és—ñ‚ğì¬
+	// è¿½åŠ ã§å›è»¢ã•ã›ã‚‹è¡Œåˆ—ã‚’ä½œæˆ
 	mRot.MakeRotationFromQuaternion(addRot);
-	// ˆÚ“®‚³‚¹‚½”wŒi‚ğ‰ñ“]‚³‚¹‚é
+	// ç§»å‹•ã•ã›ãŸèƒŒæ™¯ã‚’å›è»¢ã•ã›ã‚‹
 	mFinal.Multiply(mBias, mRot);
-	// ”wŒi‚ÌˆÊ’u‚ğ–ß‚·
+	// èƒŒæ™¯ã®ä½ç½®ã‚’æˆ»ã™
 	mFinal.Multiply(mFinal, mBiasInv);
 
-	// ÅI“I‚Éo—ˆã‚ª‚Á‚½s—ñ‚©‚ç‰ñ“]ƒNƒH[ƒ^ƒjƒIƒ“‚ğì‚é
+	// æœ€çµ‚çš„ã«å‡ºæ¥ä¸ŠãŒã£ãŸè¡Œåˆ—ã‹ã‚‰å›è»¢ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ä½œã‚‹
 	addRot.SetRotation(mFinal);
 
-	m_Rotation.Multiply(addRot);
+	m_rotation.Multiply(addRot);
 
-	//ã‰º•ûŒü‚ÌŒX‚«
+	//ä¸Šä¸‹æ–¹å‘ã®å‚¾ã
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
@@ -116,9 +120,9 @@ void Chest::Rotation()
 	mFinal.Multiply(mFinal, mBiasInv);
 	addLot.SetRotation(mFinal);
 
-	m_Rotation.Multiply(addLot);
-	m_Object.GetBody()->SetPositionAndRotation(m_position, m_Rotation);
-	m_modelRender.SetRotation(m_Rotation);
+	m_rotation.Multiply(addLot);
+	m_Object.GetBody()->SetPositionAndRotation(m_position, m_rotation);
+	m_modelRender.SetRotation(m_rotation);
 	m_modelRender.Update();
 }
 
@@ -130,7 +134,7 @@ void Chest::Rotation()
 //		break;
 //	case 1:
 //		m_modelRender.PlayAnimation(enAnimationClip_Open);
-//		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ªÄ¶‚µI‚í‚Á‚½‚çƒŠƒUƒ‹ƒg‚ğo‚·
+//		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒå†ç”Ÿã—çµ‚ã‚ã£ãŸã‚‰ãƒªã‚¶ãƒ«ãƒˆã‚’å‡ºã™
 //		if (m_modelRender.IsPlayingAnimation() == false) {
 //			m_game->m_gameState = m_game->enResult;
 //			m_game->GameStateUpdate();
@@ -141,6 +145,6 @@ void Chest::Rotation()
 
 void Chest::Render(RenderContext& rc)
 {
-	//•`‰æ‚·‚éB
+	//coinã‚’æç”»ã™ã‚‹ã€‚
 	m_modelRender.Draw(rc);
 }

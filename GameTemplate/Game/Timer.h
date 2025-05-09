@@ -9,12 +9,14 @@ public:
 	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
+
 	float GetTime() {
 		return m_time;
 	}	
 private:
 	float m_timerCount = 0;
 	float m_time = 0;
+  
 	FontRender m_fontRender;
 	Game* m_game;
 };

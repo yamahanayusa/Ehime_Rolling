@@ -36,17 +36,17 @@ public:
 	}
 private:	
 	/// <summary>
-	/// ƒAƒCƒeƒ€æ“¾‚ÌƒXƒRƒA‚ÌŒvZB
+	/// Æ’AÆ’CÆ’eÆ’â‚¬Å½Ã¦â€œÂ¾Å½Å¾â€šÃŒÆ’XÆ’RÆ’Aâ€šÃŒÅ’vÅ½ZÂB
 	/// </summary>
 	void ResultScoreCalc();
 
 	/// <summary>
-	/// c‚èŠÔ‚É‚æ‚éƒXƒRƒA‚ÌŒvZB
+	/// Å½câ€šÃ¨Å½Å¾Å Ã”â€šÃ‰â€šÃ¦â€šÃ©Æ’XÆ’RÆ’Aâ€šÃŒÅ’vÅ½ZÂB
 	/// </summary>
 	void TimeScoreCalc();
 	
 	/// <summary>
-	/// ƒŠƒUƒ‹ƒgƒXƒRƒA‚Ì•\¦B
+	/// Æ’Å Æ’UÆ’â€¹Æ’gÆ’XÆ’RÆ’Aâ€šÃŒâ€¢\Å½Â¦ÂB
 	/// </summary>
 	void ResultScoreDisp();
 private:
@@ -54,11 +54,11 @@ private:
 
 	Timer* m_timer;
 	
-	int	m_itemGetScore = 0;		//ƒAƒCƒeƒ€æ“¾‚ÌƒXƒRƒAB
-	int	m_timeScore = 0;		//c‚èŠÔ‚©‚çŒvZ‚³‚ê‚½ƒXƒRƒAB
-	int	m_tortalScore = 0;		//ƒAƒCƒeƒ€æ“¾‚ÌƒXƒRƒA‚Æc‚èŠÔ‚©‚çŒvZ‚³‚ê‚½ƒXƒRƒA‚Ì‡ŒvB
+	int	m_itemGetScore = 0;		//Æ’AÆ’CÆ’eÆ’â‚¬Å½Ã¦â€œÂ¾Å½Å¾â€šÃŒÆ’XÆ’RÆ’AÂB
+	int	m_timeScore = 0;		//Å½câ€šÃ¨Å½Å¾Å Ã”â€šÂ©â€šÃ§Å’vÅ½Zâ€šÂ³â€šÃªâ€šÂ½Æ’XÆ’RÆ’AÂB
+	int	m_tortalScore = 0;		//Æ’AÆ’CÆ’eÆ’â‚¬Å½Ã¦â€œÂ¾Å½Å¾â€šÃŒÆ’XÆ’RÆ’Aâ€šÃ†Å½câ€šÃ¨Å½Å¾Å Ã”â€šÂ©â€šÃ§Å’vÅ½Zâ€šÂ³â€šÃªâ€šÂ½Æ’XÆ’RÆ’Aâ€šÃŒÂâ€¡Å’vÂB
 
-	float m_buffMultipier = 1.0f;	//ƒoƒt‚Ì”{—¦B‰Šú’l‚Í1B
+	float m_buffMultipier = 1.0f;	//Æ’oÆ’tâ€šÃŒâ€{â€”Â¦ÂBÂâ€°Å Ãºâ€™lâ€šÃ1ÂB
 	float m_buffSecond = 0;
 };
 
