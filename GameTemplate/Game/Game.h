@@ -44,6 +44,7 @@ private:
 	Chest*					m_chest;
 	Timer*					m_timer;
 	Mikan*					m_mikan[4];
+	Jakoten*				m_jakoten;
 	TimeOver*				m_timeOver;
 	GameOver*				m_gameOver;
 	GameClear*				m_gameClear;

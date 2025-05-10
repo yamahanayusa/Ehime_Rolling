@@ -10,10 +10,10 @@ public:
 	Jakoten();
 	~Jakoten();
 	bool Start();
-	void Update();						//XVB
-	void Render(RenderContext& rc);		//•`‰æB
+	void Update();						//æ›´æ–°ã€‚
+	void Render(RenderContext& rc);		//æç”»ã€‚
 	void Rotation();
-	void Move();						//ˆÚ“®B	
+	void Move();						//ç§»å‹•ã€‚	
 	void SetPos(Vector3 pos) 
 	{
 		m_position = pos;
@@ -25,18 +25,18 @@ public:
 	}
 
 private:
-	//ƒ|ƒCƒ“ƒ^ŒnB
+	//ãƒã‚¤ãƒ³ã‚¿ç³»ã€‚
 	Player*		m_player = nullptr;
 	Score*		m_score = nullptr;
 	Timer*		m_timer = nullptr;
 
-	//ƒ‚ƒfƒ‹•\¦ŒnB
-	ModelRender		m_modelRender;						//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_\B
-	Vector3			m_position = Vector3::Zero;			//À•WB
-	Vector3			m_firstPosition = Vector3::Zero;	//Å‰‚ÌÀ•WB
+	//ãƒ¢ãƒ‡ãƒ«è¡¨ç¤ºç³»ã€‚
+	ModelRender		m_modelRender;						//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€â€•ã€‚
+	Vector3			m_position = Vector3::Zero;			//åº§æ¨™ã€‚
+	Vector3			m_firstPosition = Vector3::Zero;	//æœ€åˆã®åº§æ¨™ã€‚
 
-	//ƒoƒtŒnB
-	float	m_buffTimer = 0;	//ƒoƒt‚ÌŒo‰ßŠÔB
-	bool	m_isGet = false;	//ƒvƒŒƒCƒ„[‚ª‚¶‚á‚±“V‚ğŠl“¾‚µ‚½‚©‚Ç‚¤‚©B
+	//ãƒãƒ•ç³»ã€‚
+	float	m_buffTimer = 0;	//ãƒãƒ•ã®çµŒéæ™‚é–“ã€‚
+	bool	m_isGet = false;	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã˜ã‚ƒã“å¤©ã‚’ç²å¾—ã—ãŸã‹ã©ã†ã‹ã€‚
 };
 

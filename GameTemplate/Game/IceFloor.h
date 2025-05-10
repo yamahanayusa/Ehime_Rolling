@@ -9,41 +9,41 @@ public:
 	~IceFloor();
 	bool Start();
 	void Update();
-	//‰ñ“]ˆ—
+	//å›è»¢å‡¦ç†
 	void Rotation();
-	//ŠŠ‚éˆ—
+	//æ»‘ã‚‹å‡¦ç†
 	void Slide();
 	void Render(RenderContext& rc);
 
 	/// <summary>
-	/// À•W‚ğİ’è‚·‚é
+	/// åº§æ¨™ã‚’è¨­å®šã™ã‚‹
 	/// </summary>
-	/// <param name="position">À•W</param>
+	/// <param name="position">åº§æ¨™</param>
 	void SetPosition(const Vector3& position)
 	{
 		m_position = position;
 		m_modelRender.SetPosition(m_position);
 	}
 	/// <summary>
-	/// ‰ñ“]‚ğİ’è‚·‚é
+	/// å›è»¢ã‚’è¨­å®šã™ã‚‹
 	/// </summary>
-	/// <param name="rotation">‰ñ“]</param>
+	/// <param name="rotation">å›è»¢</param>
 	void SetRotation(const Quaternion& rotation)
 	{
 		m_rotation = rotation;
 		m_modelRender.SetRotation(m_rotation);
 	}
 	/// <summary>
-	/// ‘å‚«‚³‚ğİ’è‚·‚é
+	/// å¤§ãã•ã‚’è¨­å®šã™ã‚‹
 	/// </summary>
-	/// <param name="scale">‘å‚«‚³</param>
+	/// <param name="scale">å¤§ãã•</param>
 	void SetScale(const Vector3& scale)
 	{
 		m_scale = scale;
 		m_modelRender.SetScale(m_scale);
 	}
 
-	//‰ñ“]‚ğİ’è‚·‚é
+	//å›è»¢ã‚’è¨­å®šã™ã‚‹
 	Quaternion addRot;
 	Quaternion addLot;
 

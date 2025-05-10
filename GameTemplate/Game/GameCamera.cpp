@@ -17,67 +17,67 @@ GameCamera::~GameCamera()
 
 bool GameCamera::Start()
 {
-	//�����_���王�_�܂ł̃x�N�g����ݒ�B
+	//注視点から視点までのベクトルを設定。
 	m_toCameraPos.Set(0.0f, 100.0f, 300.0f);
 
-	//�v���C���[�̃C���X�^���X��T���B
+	//プレイヤーのインスタンスを探す。
 	m_player = FindGO<Player>("player");
 
-	//�΂˃J�����̏������B
+	//ばねカメラの初期化。
 	m_springCamera.Init(
-		*g_camera3D,		//�΂˃J�����̏������s���J�������w�肷��B
-		1000.0f,			//�J�����̈ړ����x�̍ő�l�B
-		true,				//�J�����ƒn�`�Ƃ̂����蔻�����邩�ǂ����̃t���O�Btrue���Ƃ����蔻����s���B
-		5.0f				//�J�����ɐݒ肳��鋅�̃R���W�����̔��a�B��R������true�̎��ɗL���ɂȂ�B
+		*g_camera3D,		//ばねカメラの処理を行うカメラを指定する。
+		1000.0f,			//カメラの移動速度の最大値。
+		true,				//カメラと地形とのあたり判定を取るかどうかのフラグ。trueだとあたり判定を行う。
+		5.0f				//カメラに設定される球体コリジョンの半径。第３引数がtrueの時に有効になる。
 	);
 	return true;
 }
 
 void GameCamera::Update()
 {
-	//�J�������X�V�B
-	//�����_���v�Z����B
+	//カメラを更新。
+	//注視点を計算する。
 	Vector3 target = m_player->rbPos;
-	//�v���C���̑������炿����Ə�𒍎��_�Ƃ���B
+	//プレイヤの足元からちょっと上を注視点とする。
 	target.y += 80.0f;
 	target += g_camera3D->GetForward() * 20.0f;
 
 	Vector3 toCameraPosOld = m_toCameraPos;
-	//�p�b�h�̓��͂��g���ăJ�������񂷁B
+	//パッドの入力を使ってカメラを回す。
 	float x = g_pad[0]->GetRStickXF();
 	float y = g_pad[0]->GetRStickYF();
-	//Y������̉�]
+	//Y軸周りの回転
 	Quaternion qRot;
 	qRot.SetRotationDeg(Vector3::AxisY, 2.5f * x);
 	qRot.Apply(m_toCameraPos);
-	//X������̉�]�B
+	//X軸周りの回転。
 	Vector3 axisX;
 	axisX.Cross(Vector3::AxisY, m_toCameraPos);
 	axisX.Normalize();
 	qRot.SetRotationDeg(axisX, 2.5f * y);
 	qRot.Apply(m_toCameraPos);
-	//�J�����̉�]�̏�����`�F�b�N����B
-	//�����_���王�_�܂ł̃x�N�g���𐳋K������B
-	//���K������ƁA�x�N�g���̑傫�����P�ɂȂ�B
-	//�傫�����P�ɂȂ�Ƃ������Ƃ́A�x�N�g�����狭�����Ȃ��Ȃ�A�����݂̂̏��ƂȂ�Ƃ������ƁB
+	//カメラの回転の上限をチェックする。
+	//注視点から視点までのベクトルを正規化する。
+	//正規化すると、ベクトルの大きさが１になる。
+	//大きさが１になるということは、ベクトルから強さがなくなり、方向のみの情報となるということ。
 	Vector3 toPosDir = m_toCameraPos;
 	toPosDir.Normalize();
 	if (toPosDir.y < -0.5f) {
-		//�J����������������B
+		//カメラが上向きすぎ。
 		m_toCameraPos = toCameraPosOld;
 	}
 	else if (toPosDir.y > 0.8f) {
-		//�J�����������������B
+		//カメラが下向きすぎ。
 		m_toCameraPos = toCameraPosOld;
 	}
 
-	//���_���v�Z����B
+	//視点を計算する。
 	Vector3 pos = target + m_toCameraPos;
 
-	//�o�l�J�����ɒ����_�Ǝ��_��ݒ肷��B
+	//バネカメラに注視点と視点を設定する。
 	m_springCamera.SetPosition(pos);
 	m_springCamera.SetTarget(target);
 
-	//�J�����̍X�V�B
+	//カメラの更新。
 	m_springCamera.Update();
 }

@@ -27,7 +27,7 @@ void Score::Update()
 
 	TimeScoreCalc();
 
-	//ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒA‚ÆŽc‚èŽžŠÔ‚ÌƒXƒRƒA‚Ì‡ŽZB
+	//?A?C?e????“??????X?R?A???c?????????X?R?A???‡?Z?B
 	m_tortalScore = m_itemGetScore + m_timeScore;
 
 	ResultScoreDisp();
@@ -36,7 +36,7 @@ void Score::Update()
 void Score::ResultScoreDisp()
 {
 	wchar_t wcsbuf[256];
-	swprintf_s(wcsbuf, 256, L"%d“_", int(m_itemGetScore));
+	swprintf_s(wcsbuf, 256, L"%d 点", int(m_itemGetScore));
 	m_scoreFontRender.SetText(wcsbuf);
 	m_scoreFontRender.SetPosition({ 500.0f, 500.0f, 0.0f });
 	m_scoreFontRender.SetScale(1.0);
@@ -45,10 +45,10 @@ void Score::ResultScoreDisp()
 
 void Score::ResultScoreCalc()
 {
-	//ƒoƒt‚ÌŒø‰ÊŽžŠÔ‚ÌŒo‰ßB
+	//?o?t????‰????????o‰??B
 	if (m_buffMultipier != 1.0f) {
 		m_buffSecond -= g_gameTime->GetFrameDeltaTime();
-		if (m_buffSecond <= 0.0f)	//ƒoƒtŒo‰ßŽžŠÔ‚ªŽc‚è0•b‚É‚È‚Á‚½‚çB
+		if (m_buffSecond <= 0.0f)	//?o?t?o‰????????c??0?b???????????B
 		{
 			m_buffMultipier = 1.0f;
 		}

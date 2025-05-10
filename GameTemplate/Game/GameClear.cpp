@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Score.h"
 #include "Chest.h"
+#include "Timer.h"
 
 GameClear::GameClear()
 {
@@ -19,6 +20,7 @@ bool GameClear::Start()
 {
 	m_score = FindGO<Score>("score");
 	m_chest = FindGO<Chest>("chest");
+	m_timer = FindGO<Timer>("timer");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	//m_game = FindGO<Game>("game");
 	return true;
@@ -34,6 +36,8 @@ void GameClear::Update()
 	{
 		//タイトルのオブジェクトをつくる
 		NewGO<Title>(0, "title");
+		DeleteGO(m_timer);
+		DeleteGO(m_score);
 		//自身を削除する
 		DeleteGO(this);
 	}

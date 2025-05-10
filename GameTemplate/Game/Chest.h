@@ -11,60 +11,60 @@ public:
 	Chest();
 	~Chest();
 	bool Start();
-	void Update();															//XVB
-	void Move();															//ˆÚ“®B
-	void Rotation();														//‰ñ“]B
-	//void PlayAnimation();													//ƒAƒjƒ[ƒVƒ‡ƒ“B
-	void Render(RenderContext& rc);											//•`‰æB
+	void Update();															//æ›´æ–°ã€‚
+	void Move();															//ç§»å‹•ã€‚
+	void Rotation();														//å›è»¢ã€‚
+	//void PlayAnimation();													//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€‚
+	void Render(RenderContext& rc);											//æç”»ã€‚
 	/// <summary>
-/// À•W‚ğİ’è‚·‚é
+/// åº§æ¨™ã‚’è¨­å®šã™ã‚‹
 /// </summary>
-/// <param name="position">À•W</param>
+/// <param name="position">åº§æ¨™</param>
 	void SetPosition(const Vector3& position)
 	{
 		m_position = position;
 		m_modelRender.SetPosition(m_position);
 	}
 	/// <summary>
-	/// ‰ñ“]‚ğİ’è‚·‚é
+	/// å›è»¢ã‚’è¨­å®šã™ã‚‹
 	/// </summary>
-	/// <param name="rotation">‰ñ“]</param>
+	/// <param name="rotation">å›è»¢</param>
 	void SetRotation(const Quaternion& rotation)
 	{
 		m_rotation = rotation;
 		m_modelRender.SetRotation(m_rotation);
 	}
 	/// <summary>
-	/// ‘å‚«‚³‚ğİ’è‚·‚é
+	/// å¤§ãã•ã‚’è¨­å®šã™ã‚‹
 	/// </summary>
-	/// <param name="scale">‘å‚«‚³</param>
+	/// <param name="scale">å¤§ãã•</param>
 	void SetScale(const Vector3& scale)
 	{
 		m_scale = scale;
 		m_modelRender.SetScale(m_scale);
 	}
 
-	enum EnAnimationClip {													//ƒAƒjƒ[ƒVƒ‡ƒ“ƒNƒŠƒbƒv
-		enAnimationClip_Close,												//chest‚ª•Â‚¶‚Ä‚¢‚é‚Æ‚«B
-		enAnimationClip_Open,												//chest‚ª‹ó‚¢‚Ä‚¢‚é‚Æ‚«B
+	enum EnAnimationClip {													//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒªãƒƒãƒ—
+		enAnimationClip_Close,												//chestãŒé–‰ã˜ã¦ã„ã‚‹ã¨ãã€‚
+		enAnimationClip_Open,												//chestãŒç©ºã„ã¦ã„ã‚‹ã¨ãã€‚
 		enAnimationClip_Num,
 	};
 
-	Game*						m_game;										//ƒQ[ƒ€B
-	Score*						m_score;									//ƒXƒRƒAB
-    Timer*						m_timer;									//ƒ^ƒCƒ}[B
-	Player*						m_player;									//ƒvƒŒƒCƒ„[B
+	Game*						m_game;										//ã‚²ãƒ¼ãƒ ã€‚
+	Score*						m_score;									//ã‚¹ã‚³ã‚¢ã€‚
+    Timer*						m_timer;									//ã‚¿ã‚¤ãƒãƒ¼ã€‚
+	Player*						m_player;									//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€‚
 
-	//‰ñ“]‚ğİ’è‚·‚éB
+	//å›è»¢ã‚’è¨­å®šã™ã‚‹ã€‚
 	Quaternion					addRot;
 	Quaternion					addLot;
 
-	AnimationClip				m_animationClips[enAnimationClip_Num];		//ƒAƒjƒ[ƒVƒ‡ƒ“B
-	ModelRender					m_modelRender;								//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_\B
-	Vector3						m_position;									//À•WB
-	Vector3						m_firstPosition;							//Å‰‚ÌÀ•WB
+	AnimationClip				m_animationClips[enAnimationClip_Num];		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€‚
+	ModelRender					m_modelRender;								//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€â€•ã€‚
+	Vector3						m_position;									//åº§æ¨™ã€‚
+	Vector3						m_firstPosition;							//æœ€åˆã®åº§æ¨™ã€‚
 
-	int							m_chestState = 0;							//chest‚ÌƒXƒe[ƒgB
+	int							m_chestState = 0;							//chestã®ã‚¹ãƒ†ãƒ¼ãƒˆã€‚
     int							m_tortalScore = 0;
 	bool						m_clearFlag = false;
 
