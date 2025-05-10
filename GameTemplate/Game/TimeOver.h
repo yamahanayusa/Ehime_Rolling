@@ -6,13 +6,13 @@ public:
 	TimeOver();
 	~TimeOver();
 	bool Start() override;
-	//更新処理
+	//譖ｴ譁ｰ蜃ｦ逅�
 	void Update();
-	//描画処理
+	//謠冗判蜃ｦ逅�
 	void Render(RenderContext& rc);
 
-	//メンバ変数
-	SpriteRender spriteRender; //スプライトレンダー
+	//繝｡繝ｳ繝仙､画焚
+	SpriteRender spriteRender; //繧ｹ繝励Λ繧､繝医Ξ繝ｳ繝繝ｼ
 	Game* m_game;
 };
 

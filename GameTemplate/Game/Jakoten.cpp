@@ -6,10 +6,10 @@
 #include "Mikan.h"
 #include "Timer.h"
 
-//’è”B
+//å®šæ•°ã€‚
 namespace {
-	const float BUFF_MULTIPIER = 2.0f;	//ƒoƒt‚Ì”{—¦B
-	const float BUFF_TIME = 10.0f;     //ƒoƒt‚ÌŒp‘±ŠÔB
+	const float BUFF_MULTIPIER = 2.0f;	//ãƒãƒ•ã®å€ç‡ã€‚
+	const float BUFF_TIME = 10.0f;     //ãƒãƒ•ã®ç¶™ç¶šæ™‚é–“ã€‚
 }
 
 Jakoten::Jakoten()
@@ -24,8 +24,8 @@ Jakoten::~Jakoten()
 
 bool Jakoten::Start()
 {
-	//ƒ‚ƒfƒ‹‚Ì‰Šú‰»B
-	m_modelRender.Init("Assets/modelData/Jakoten/Jakoten.tkm");
+	//ãƒ¢ãƒ‡ãƒ«ã®åˆæœŸåŒ–ã€‚
+	m_modelRender.Init("Assets/modelData/Jakoten.tkm");
 	m_modelRender.SetScale(1.0f, 1.0f, 1.0f);
 
 	m_player = FindGO<Player>("player");
@@ -42,9 +42,9 @@ void Jakoten::Update()
 
 	Rotation();
 
-	//ƒvƒŒƒCƒ„[‚ª‚İ‚©‚ñ‚ÉŒü‚©‚¤ƒxƒNƒgƒ‹‚ğŒvZB
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã¿ã‹ã‚“ã«å‘ã‹ã†ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã€‚
 	Vector3 diff = m_player->rbPos - m_position;
-	//ƒAƒCƒeƒ€‚ÌŠl“¾B
+	//ã‚¢ã‚¤ãƒ†ãƒ ã®ç²å¾—ã€‚
 	if (diff.Length() <= 120.0f)
 	{
 		m_buffTimer -= g_gameTime->GetFrameDeltaTime();
@@ -55,9 +55,9 @@ void Jakoten::Update()
 
 void Jakoten::Move()
 {
-	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
+	//çµµæãã•ã‚“ã«åº§æ¨™ã‚’æ•™ãˆã‚‹ã€‚
 	m_modelRender.SetPosition(m_position);
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//çµµæãã•ã‚“ã®æ›´æ–°å‡¦ç†ã€‚
 	m_modelRender.Update();
 }
 void Jakoten::Rotation()
