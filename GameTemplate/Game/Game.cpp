@@ -131,9 +131,9 @@ void Game::GameStateUpdate()
 		/*m_mikan->m_position = { 400.0f,0.0f,-400.0f };
 		m_mikan->m_firstPosition = m_mikan->m_position;*/
 
-		m_chest = NewGO<Chest>(0, "chest");
-		m_chest->m_position = { 400.0f,0.0f,-500.0f };
-		m_chest->m_firstPosition = m_chest->m_position;
+		/*m_chest = NewGO<Chest>(0, "chest");*/
+		//m_chest->m_position = { 400.0f,0.0f,-500.0f };
+		//m_chest->m_firstPosition = m_chest->m_position;
 		//m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
 		//m_chest->m_firstPosition = m_chest->m_position;
 
