@@ -60,6 +60,7 @@ void Chest::Update()
 		if (m_clearFlag == true)
 		{
 			const int m_resultTime  = m_timer->GetTime();
+			m_score->GetTortalScore();
 		}	
     
 		//m_chestState = 1;

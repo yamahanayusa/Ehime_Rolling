@@ -14,6 +14,7 @@ public:
 	/// <returns></returns>
 	int GetTortalScore()
 	{
+		m_tortalScore = m_itemGetScore + m_timeScore;
 		return m_tortalScore;
 	}
 	/// <summary>

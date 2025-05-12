@@ -23,14 +23,15 @@ bool GameClear::Start()
 	m_timer = FindGO<Timer>("timer");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	//m_game = FindGO<Game>("game");
+	TortalScore();
 	return true;
 }
 
 //更新処理
 void GameClear::Update()
 {
-	//TortalScore();
 	m_spriteRender.Update();
+
 	//Aボタンが押されたら
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
