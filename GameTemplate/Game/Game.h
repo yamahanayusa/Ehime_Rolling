@@ -53,6 +53,7 @@ private:
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
 	IceFloor*				m_iceFloor = nullptr;
+	SoundSource*			m_soundSource = nullptr;
 	Vector3					m_pos;
 	int						m_resultTime = 0;
 };

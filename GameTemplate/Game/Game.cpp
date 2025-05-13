@@ -31,6 +31,7 @@ Game::~Game()
 	DeleteGO(m_iceFloor);
 	//DeleteGO(m_mikan);
 	DeleteGO(m_jakoten);
+	DeleteGO(m_soundSource);
 	/*DeleteGO(m_timer);
 	DeleteGO(m_score);*/
 }
@@ -44,6 +45,13 @@ bool Game::Start()
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
+	//BGM.
+	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
+	m_soundSource = NewGO<SoundSource>(0);
+	//ResistWaveFileBankで指定した番号。
+	m_soundSource->Init(0);
+	//BGMは曲をループさせる。
+	m_soundSource->Play(true);
 	FindGO<Player>("player");
 
 	return true;
@@ -65,6 +73,22 @@ void Game::Update()
 		DeleteGO(m_score);
 		DeleteGO(this);
 	}
+
+	////Aボタンが押されたら。
+	//if (g_pad[0]->IsTrigger(enButtonA))
+	//{
+	//	//BGMが再生中なら。
+	//	if (m_soundSource->IsPlaying())
+	//	{
+	//		//停止させる。
+	//		m_soundSource->Stop();
+	//	}
+	//	//停止中なら。
+	//	else
+	//	{
+	//		m_soundSource->Play(true);
+	//	}
+	//}
 }
 
 void Game::Stage3()
@@ -122,6 +146,7 @@ void Game::GameStateUpdate()
 		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_player = NewGO<Player>(0, "player");
+		//m_soundSource = NewGO<SoundSource>(0,"soundSource");
 
 	/*	m_stage = NewGO<Stage>(0, "stage");
 		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");*/
