@@ -1,15 +1,16 @@
 #include "stdafx.h"
 #include "Stage.h"
 #include "Player.h"
+#include "Transform.h"
 
 Stage::Stage()
 {
-
+	m_transform = new Transform();
 }
 
 Stage::~Stage()
 {
-
+	delete m_transform;
 }
 
 bool Stage::Start()
@@ -23,6 +24,8 @@ bool Stage::Start()
 
 void Stage::Update()
 {
+	m_transform->Update();
+
 	//回転処理
 	Rotation();
 
@@ -34,7 +37,7 @@ void Stage::Rotation()
 {
 	// 背景をプレイヤー空間に移動させる行列を計算する
 	Matrix mBias, mRot, mBiasInv, mFinal;
-	
+
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
@@ -63,7 +66,7 @@ void Stage::Rotation()
 	// 最終的に出来上がった行列から回転クォータニオンを作る
 	addRot.SetRotation(mFinal);
 
-	m_rotation.Multiply(addRot);
+	m_transform->m_localRotation.Multiply(addRot);
 
 	//上下方向の傾き
 	Vector3 rightXZ = g_camera3D->GetRight();
@@ -76,10 +79,10 @@ void Stage::Rotation()
 	mFinal.Multiply(mFinal, mBiasInv);
 	addLot.SetRotation(mFinal);
 
-	m_rotation.Multiply(addLot);
+	m_transform->m_localRotation.Multiply(addLot);
 	//
-	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_rotation);
-	m_modelRender.SetRotation(m_rotation);
+	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_transform->m_localRotation);
+	m_modelRender.SetRotation(m_transform->m_localRotation);
 	//モデルレンダーのアップデート
 	m_modelRender.Update();
 }
