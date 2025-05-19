@@ -12,6 +12,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "IceFloor.h"
+#include "Transform.h"
 
 Game::Game()
 {
@@ -68,33 +69,34 @@ void Game::Stage3()
 		//ステージ
 		if (objData.EqualObjectName(L"stage") == true) {
 			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->SetPosition(objData.position);
-			m_stage->SetRotation(objData.rotation);
-			m_stage->SetScale(objData.scale);
+			m_stage->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//氷の床
-		if (objData.EqualObjectName(L"iceFloor") == true) {
-			m_iceFloor = NewGO<IceFloor>(0, "iceFloor");
-			m_iceFloor->SetPosition(objData.position);
-			m_iceFloor->SetRotation(objData.rotation);
-			m_iceFloor->SetScale(objData.scale);
+		if (objData.EqualObjectName(L"icefloor") == true) {
+			m_iceFloor = NewGO<IceFloor>(1, "iceFloor");
+			m_iceFloor->GetTransform()->m_localPosition.Set(objData.position);
+			m_iceFloor->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_iceFloor->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//ゴール
-		if (objData.EqualObjectName(L"chest") == true) {
-			m_chest = NewGO<Chest>(0, "chest");
-			m_chest->SetPosition(objData.position);
-			m_chest->SetRotation(objData.rotation);
-			m_chest->SetScale(objData.scale);
+		if (objData.EqualObjectName(L"flag") == true) {
+			m_chest = NewGO<Chest>(1, "chest");
+			m_chest->GetTransform()->m_localPosition.Set(objData.position);
+			m_chest->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_chest->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//アイテム(みかん)
 		if (objData.EqualObjectName(L"mikan") == true) {
-			m_mikan[mikan] = NewGO<Mikan>(0, "mikan");
-			m_mikan[mikan]->SetPosition(objData.position);
-			m_mikan[mikan]->SetRotation(objData.rotation);
-			m_mikan[mikan]->SetScale(objData.scale);
+			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
+			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
+			//m_mikan[mikan]->GetTransform()->m_localRotation.SetRotationZ(nsK2EngineLow::Math::DegToRad(180.0f));
+			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
 			mikan++;
 			return true;
 		}

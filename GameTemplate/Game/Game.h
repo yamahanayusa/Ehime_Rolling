@@ -14,6 +14,7 @@ class GameCamera;
 class Title;
 class Stage;
 class IceFloor;
+class Transform;
 
 class Game : public IGameObject
 {
@@ -40,7 +41,7 @@ private:
 	LevelRender m_levelRender;
 
 	Title*					m_title;
-	Chest*					m_chest;
+	Chest*					m_chest = nullptr;
 	Timer*					m_timer;
 	Mikan*					m_mikan[4];
 	TimeOver*				m_timeOver;
@@ -51,6 +52,7 @@ private:
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
 	IceFloor*				m_iceFloor = nullptr;
+	Transform*				m_transform = nullptr;
 	Vector3					m_pos;
 	int						m_resultTime = 0;
 };
