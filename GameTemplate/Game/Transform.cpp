@@ -22,12 +22,18 @@ void Transform::Update()
 	if (m_parent != nullptr) 
 	{
 		// 親のワールド行列を取得。
-		Matrix mStageParentMat, parentTransMat, parentScalMat, parentRotMat, parentWorldMat;
-		parentTransMat.MakeTranslation(m_parent->m_position);
-		parentScalMat.MakeScaling(m_parent->m_scale);
-		parentRotMat.MakeRotationFromQuaternion(m_parent->m_rotation);
-		mStageParentMat.Multiply(parentScalMat, parentRotMat);
-		parentWorldMat.Multiply(mStageParentMat, parentTransMat);
+		Matrix mStageParentMat;		//親の回転拡大行列
+		Matrix mParentTransMat;		//親の平行移動行列
+		Matrix mParentScalMat;		//親の回転行列
+		Matrix mParentRotMat;		//親の拡大行列
+		Matrix mParentWorldMat;		//親のワールド行列
+		
+		mParentTransMat.MakeTranslation(m_parent->m_position);
+		mParentScalMat.MakeScaling(m_parent->m_scale);
+		mParentRotMat.MakeRotationFromQuaternion(m_parent->m_rotation);
+		mStageParentMat.Multiply(mParentScalMat, mParentRotMat);
+		mParentWorldMat.Multiply(mStageParentMat, mParentTransMat);
+
 		////自分のローカル座標* 親のワールド行列。
 		//mStageParentMat.Multiply(mStageParentMat, mTrans);
 		////自分のローカルスケール*親のスケール。
