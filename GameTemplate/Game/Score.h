@@ -1,33 +1,65 @@
 #pragma once
-class GameClear;
-class Game;
 class Timer;
-class Chest;
-class Mikan;
 class Score :public IGameObject
 {
 public:
 	Score();
 	~Score();
+	bool Start() override;
+	void Update() override;
+	void Render(RenderContext& rc) override;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	int GetTortalScore()
+	{
+		m_tortalScore = m_itemGetScore + m_timeScore;
+		return m_tortalScore;
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="addScore"></param>
+	void AddItemGetScore(int addScore)
+	{
+		m_itemGetScore += addScore * m_buffMultipier;
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="multipier"></param>
+	/// <param name="buffSecond"></param>
+	void SetBuffMultipier(float multipier,float buffSecond)
+	{
+		m_buffMultipier = multipier;
+		m_buffSecond = buffSecond;
+	}
+private:	
+	/// <summary>
+	/// ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒA‚ÌŒvŽZB
+	/// </summary>
+	void ResultScoreCalc();
 
-	bool Start();
-	void Update();
-	void ResultScore();
-	void Render(RenderContext& rc);
+	/// <summary>
+	/// Žc‚èŽžŠÔ‚É‚æ‚éƒXƒRƒA‚ÌŒvŽZB
+	/// </summary>
+	void TimeScoreCalc();
+	
+	/// <summary>
+	/// ƒŠƒUƒ‹ƒgƒXƒRƒA‚Ì•\Ž¦B
+	/// </summary>
+	void ResultScoreDisp();
+private:
+	FontRender m_scoreFontRender;
 
-    GameClear* m_gameClear;
 	Timer* m_timer;
-	Chest* m_chest;
-	Score* m_score;
-	Mikan* m_mikan;
-	FontRender m_resultRender;
-	SpriteRender spriteRender;
-	FontRender m_ScoreFontRender;
+	
+	int	m_itemGetScore = 0;		//ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒAB
+	int	m_timeScore = 0;		//Žc‚èŽžŠÔ‚©‚çŒvŽZ‚³‚ê‚½ƒXƒRƒAB
+	int	m_tortalScore = 0;		//ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒA‚ÆŽc‚èŽžŠÔ‚©‚çŒvŽZ‚³‚ê‚½ƒXƒRƒA‚Ì‡ŒvB
 
-	//�����o�ϐ�
-	int m_resultScore = 0;
-	int m_tortalScore = 0;
-	bool m_clearFlag = false;
-	const int m_timerStop = 0;
+	float m_buffMultipier = 1.0f;	//ƒoƒt‚Ì”{—¦B‰Šú’l‚Í1B
+	float m_buffSecond = 0;
 };
 

@@ -13,23 +13,24 @@ public:
 	Mikan();
 	~Mikan();
 	bool Start();
-	void Update();												//XVB
-	void Move();												//ˆÚ“®B
-	void Render(RenderContext& rc);		                        //•`‰æB
+	void Update();												//æ›´æ–°ã€‚
+	void Move();												//ç§»å‹•ã€‚
+	void Render(RenderContext& rc);		                        //æç”»ã€‚
 
 	Transform* GetTransform()
 	{
 		return m_transform;
 	}
 
-	ModelRender				m_modelRender;				//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_\B
+ModelRender		m_modelRender;								//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€â€•ã€‚
 
-	Game*					m_game;						//ƒQ[ƒ€B
+  Game*           m_game;										//ã‚²ãƒ¼ãƒ ã€‚
 	Score*					m_score;
 	Timer*					m_timer;
 	Stage*					m_stage;
 
 	int						m_tortalScore = 0;
+	int m_mikanscore = 100;
 
 private:
 	Mikan*					m_mikan;

@@ -28,10 +28,10 @@ bool IceFloor::Start()
 
 void IceFloor::Update()
 {
-	//ŠŠ‚éˆ—
+	//æ»‘ã‚‹å‡¦ç†ã€‚
 	Slide();
 
-	//XV‚Ìˆ—
+	//æ›´æ–°å‡¦ç†ã€‚
 	m_transform->Update();
 
 	m_modelRender.Update();
@@ -43,14 +43,13 @@ void IceFloor::Update()
 
 void IceFloor::Slide()
 {
-	if (m_player == nullptr) {
+  	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
 	if (m_player == nullptr) {
 		return;
 	}
-
-	//ƒvƒŒƒCƒ„[‚Æ•X‚Ì“¹‚Ì‹——£Š´‚ð‹‚ß‚é
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ°·ã®é“ã®è·é›¢æ„Ÿã‚’æ±‚ã‚ã‚‹
 	Vector3 distance = m_player->rbPos - m_icepos;
 	if (distance.Length() < 150.0f)
 	{

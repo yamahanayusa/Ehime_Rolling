@@ -13,30 +13,27 @@ public:
 	Chest();
 	~Chest();
 	bool Start();
-	void Update();								//XV
-	void Move();								//ˆÚ“®
-	//void PlayAnimation();						//ƒAƒjƒ[ƒVƒ‡ƒ“
-	void Render(RenderContext& rc);				//•`‰æ
+	void Update();								//æ›´æ–°ã€‚
+	void Move();								//ç§»å‹•ã€‚
+	void Render(RenderContext& rc);				//æç”»ã€‚
 	
 	Transform* GetTransform()
 	{
 		return m_transform;
 	}
 
-	Game*						m_game = nullptr;						//ƒQ[ƒ€
-	Score*						m_score = nullptr;						//ƒXƒRƒA
-    Timer*						m_timer = nullptr;						//ƒ^ƒCƒ}[
-	Player*						m_player = nullptr;						//ƒvƒŒƒCƒ„[
-	Stage*						m_stage = nullptr;						//ƒXƒe[ƒW
+	Game*						m_game = nullptr;						//ã‚²ãƒ¼ãƒ ã€‚
+	Score*						m_score = nullptr;						//ã‚¹ã‚³ã‚¢ã€‚
+    Timer*						m_timer = nullptr;						//ã‚¿ã‚¤ãƒãƒ¼ã€‚
+	Player*						m_player = nullptr;						//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€‚
+	Stage*						m_stage = nullptr;						//ã‚¹ãƒ†ãƒ¼ã‚¸ã€‚
 
-	ModelRender					m_modelRender;							//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_\
-
-	int							m_chestState = 0;						//chest‚ÌƒXƒe[ƒg
+	ModelRender					m_modelRender;								//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€â€•ã€‚
     int							m_tortalScore = 0;
 	bool						m_clearFlag = false;
 
 private:
-	Transform*					m_transform = nullptr;					//ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€
+	Transform*					m_transform = nullptr;					//ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ 
 
 	PhysicsStaticObject			m_Object;
 };

@@ -7,6 +7,10 @@
 #include "Stage.h"
 #include "Transform.h"
 
+namespace {
+	const int SCORE = 100;
+}
+
 Mikan::Mikan()
 {
 	m_transform = new Transform();
@@ -19,7 +23,7 @@ Mikan::~Mikan()
 
 bool Mikan::Start()
 {
-	//ƒ‚ƒfƒ‹‚Ì•\¦B	
+	//ãƒ¢ãƒ‡ãƒ«ã®è¡¨ç¤ºã€‚	
 	m_modelRender.Init("Assets/modelData/mikan.tkm");
 
 	m_game = FindGO<Game>("game");
@@ -33,29 +37,34 @@ bool Mikan::Start()
 void Mikan::Update()
 {
 	m_player = FindGO<Player>("player");
-
-	//ˆÚ“®ˆ—B
+	//ç§»å‹•å‡¦ç†ã€‚
 	Move();
 
-	//XVˆ—B
+	//æ›´æ–°å‡¦ç†ã€‚
 	m_transform->Update();
 
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//çµµæãã•ã‚“ã®æ›´æ–°å‡¦ç†ã€‚
 	m_modelRender.Update();
 
-	//ƒvƒŒƒCƒ„[‚ª‚İ‚©‚ñ‚ÉŒü‚©‚¤ƒxƒNƒgƒ‹‚ğŒvZB
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã¿ã‹ã‚“ã«å‘ã‹ã†ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã€‚
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
-	//ƒxƒNƒgƒ‹‚Ì’·‚³‚ª120.0f‚æ‚è¬‚³‚©‚Á‚½‚çB
+	//ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ãŒ120.0fã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰ã€‚
+
 	if (diff.Length() <= 120.0f)
 	{
-		m_score->m_resultScore += 100;
+		//ã‚¹ã‚³ã‚¢ã®åŠ ç®—ã€‚
+		m_score->AddItemGetScore(SCORE);
+		SoundSource* se = NewGO<SoundSource>(0);
+		se->Init(5);
+		se->Play(false);
+
 		DeleteGO(this);
 	}
 }
 
 void Mikan::Move()
 {
-	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
+	//çµµæãã•ã‚“ã«åº§æ¨™ã‚’æ•™ãˆã‚‹ã€‚
 	m_modelRender.SetPosition(m_transform->m_position);
 	m_modelRender.SetRotation(m_transform->m_rotation);
 	m_modelRender.SetScale(m_transform->m_scale);
@@ -63,6 +72,6 @@ void Mikan::Move()
 
 void Mikan::Render(RenderContext& rc)
 {
-	//•`‰æ‚·‚éB
+	//æç”»ã™ã‚‹ã€‚
 	m_modelRender.Draw(rc);
 }

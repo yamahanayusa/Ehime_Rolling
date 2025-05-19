@@ -11,7 +11,7 @@ public:
 	~IceFloor();
 	bool Start();
 	void Update();
-	//ŠŠ‚éˆ—
+	//æ»‘ã‚‹å‡¦ç†ã€‚
 	void Slide();
 	void Render(RenderContext& rc);
 
@@ -33,4 +33,3 @@ private:
 	Vector3					m_virtualPosition = { 980.0f,0.0f,1200.0f };
 	Vector3					m_icepos = m_virtualPosition - m_position;
 };
-

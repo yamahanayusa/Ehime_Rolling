@@ -15,6 +15,7 @@ class Title;
 class Stage;
 class IceFloor;
 class Transform;
+class Jakoten;
 
 class Game : public IGameObject
 {
@@ -44,6 +45,7 @@ private:
 	Chest*					m_chest = nullptr;
 	Timer*					m_timer;
 	Mikan*					m_mikan[4];
+	Jakoten*				m_jakoten;
 	TimeOver*				m_timeOver;
 	GameOver*				m_gameOver;
 	GameClear*				m_gameClear;
@@ -53,6 +55,7 @@ private:
 	GameCamera*				m_gameCamera = nullptr;
 	IceFloor*				m_iceFloor = nullptr;
 	Transform*				m_transform = nullptr;
+	SoundSource*			m_soundSource = nullptr;
 	Vector3					m_pos;
 	int						m_resultTime = 0;
 };

@@ -25,6 +25,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Mikan.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Jakoten.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -45,5 +46,6 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Mikan.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Jakoten.h" />
   </ItemGroup>
 </Project>

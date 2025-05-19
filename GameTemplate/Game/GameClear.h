@@ -1,8 +1,9 @@
 #pragma once
 class Game;
 class Score;
+class Timer;
 class Chest;
-//ゲームクリア
+//繧ｲ繝ｼ繝繧ｯ繝ｪ繧｢
 class GameClear :public IGameObject
 {
 public:
@@ -10,18 +11,19 @@ public:
 	~GameClear();
 
 	bool Start()override;
-	//更新処理
+	//譖ｴ譁ｰ蜃ｦ逅�
 	void Update();
-	//描画処理
+	//謠冗判蜃ｦ逅�
 	void Render(RenderContext& rc);
 	//
-	//void TortalScore();
+	void TortalScore();
 
-	//メンバ変数
-	SpriteRender m_spriteRender; //スプライトレンダー
+	//繝｡繝ｳ繝仙､画焚
+	SpriteRender m_spriteRender; //繧ｹ繝励Λ繧､繝医Ξ繝ｳ繝繝ｼ
 	FontRender m_fontRender; //
 	Game* m_game;
 	Score* m_score;
+	Timer* m_timer;
 	Chest* m_chest;
 };
 

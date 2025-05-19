@@ -8,13 +8,13 @@ class Stage : public IGameObject
 public:
 	Stage();
 	~Stage();
-	//ƒXƒ^[ƒg
+	//ã‚¹ã‚¿ãƒ¼ãƒˆ
 	bool Start();
-	//ƒAƒbƒvƒf[ƒg
+	//ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	void Update();
-	//‰ñ“]ˆ—
+	//å›è»¢å‡¦ç†
 	void Rotation();
-	//ƒŒƒ“ƒ_[
+	//ãƒ¬ãƒ³ãƒ€ãƒ¼
 	void Render(RenderContext& rc);
 
 	Transform* GetTransform()
@@ -23,49 +23,20 @@ public:
 	}
 
 	/// <summary>
-	/// ƒ[ƒ‹ƒhs—ñ‚ğæ“¾‚·‚é
+	/// ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 	/// </summary>
 	Matrix GetWorldMatrix() const
 	{
 		return m_modelRender.GetWorldMatrix(0);
 	}
-	///// <summary>
-	///// À•W‚ğİ’è‚·‚é
-	///// </summary>
-	///// <param name="position">À•W</param>
-	//void SetPosition(const Vector3& position)
-	//{
-	//	m_position = position;
-	//	m_modelRender.SetPosition(m_position);
-	//}
-	///// <summary>
-	///// ‰ñ“]‚ğİ’è‚·‚é
-	///// </summary>
-	///// <param name="rotation">‰ñ“]</param>
-	//void SetRotation(const Quaternion& rotation)
-	//{
-	//	m_rotation = rotation;
-	//	m_modelRender.SetRotation(m_rotation);
-	//}
-	///// <summary>
-	///// ‘å‚«‚³‚ğİ’è‚·‚é
-	///// </summary>
-	///// <param name="scale">‘å‚«‚³</param>
-	//void SetScale(const Vector3& scale)
-	//{
-	//	m_scale = scale;
-	//	m_modelRender.SetScale(m_scale);
-	//}
 
-	Vector3	m_scale = Vector3::One;//‘å‚«‚³B
-	//‰ñ“]‚ğİ’è‚·‚é
+	Vector3	m_scale = Vector3::One;//å¤§ãã•ã€‚
+	//å›è»¢ã‚’è¨­å®šã™ã‚‹
 	Quaternion addRot;
 	Quaternion addLot;
 	Transform* m_transform;
 private:
 	ModelRender m_modelRender;
-	//Vector3 m_position;
-	//Quaternion m_rotation;
 	PhysicsStaticObject m_Object;
 	Player* m_player = nullptr;
 };
