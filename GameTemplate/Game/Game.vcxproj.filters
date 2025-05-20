@@ -24,6 +24,7 @@
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Mikan.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Jakoten.cpp" />
     <ClCompile Include="Bumper.cpp" />
   </ItemGroup>
@@ -45,6 +46,7 @@
     <ClInclude Include="IceFloor.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Mikan.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Jakoten.h" />
     <ClInclude Include="Bumper.h" />
   </ItemGroup>
