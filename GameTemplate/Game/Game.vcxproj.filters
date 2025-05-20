@@ -26,6 +26,7 @@
     <ClCompile Include="Mikan.cpp" />
     <ClCompile Include="Jakoten.cpp" />
     <ClCompile Include="Bumper.cpp" />
+    <ClCompile Include="Kiwi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -47,5 +48,6 @@
     <ClInclude Include="Mikan.h" />
     <ClInclude Include="Jakoten.h" />
     <ClInclude Include="Bumper.h" />
+    <ClInclude Include="Kiwi.h" />
   </ItemGroup>
 </Project>

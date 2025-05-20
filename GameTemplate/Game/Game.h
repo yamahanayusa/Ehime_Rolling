@@ -16,6 +16,7 @@ class Stage;
 class IceFloor;
 class Jakoten;
 class Bumper;
+class Kiwi;
 
 class Game : public IGameObject
 {
@@ -51,6 +52,7 @@ private:
 	GameClear*				m_gameClear;
 	Score*					m_score;
 	Bumper*					m_bumper = nullptr;
+	Kiwi*					m_kiwi = nullptr;
 	Stage*					m_stage	= nullptr;
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
