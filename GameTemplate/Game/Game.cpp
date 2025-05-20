@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "IceFloor.h"
 #include "Jakoten.h"
+#include "Bumper.h"
 
 Game::Game()
 {
@@ -32,6 +33,7 @@ Game::~Game()
 	//DeleteGO(m_mikan);
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
+	DeleteGO(m_bumper);
 	/*DeleteGO(m_timer);
 	DeleteGO(m_score);*/
 }
@@ -168,6 +170,8 @@ void Game::GameStateUpdate()
     
 		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
 
+		m_bumper = NewGO<Bumper>(0, "bumper");
+		m_bumper->SetPos({ 0.0f,0.0f,0.0f });
 	}
 }
 	
