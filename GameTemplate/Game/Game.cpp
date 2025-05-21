@@ -15,6 +15,7 @@
 #include "Transform.h"
 #include "Jakoten.h"
 #include "Bumper.h"
+#include "Kiwi.h"
 
 Game::Game()
 {
@@ -35,6 +36,7 @@ Game::~Game()
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
 	DeleteGO(m_bumper);
+	DeleteGO(m_kiwi);
 	/*DeleteGO(m_timer);
 	DeleteGO(m_score);*/
 }
@@ -160,11 +162,11 @@ void Game::GameStateUpdate()
 		/*m_mikan->m_position = { 400.0f,0.0f,-400.0f };
 		m_mikan->m_firstPosition = m_mikan->m_position;*/
 
-		/*m_chest = NewGO<Chest>(0, "chest");*/
+		//m_chest = NewGO<Chest>(0, "chest");
 		//m_chest->m_position = { 400.0f,0.0f,-500.0f };
-		//m_chest->m_firstPosition = m_chest->m_position;
-		//m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
-		//m_chest->m_firstPosition = m_chest->m_position;
+		////m_chest->m_firstPosition = m_chest->m_position;
+		////m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
+		////m_chest->m_firstPosition = m_chest->m_position;
 
 		//じゃこ天。
 		m_jakoten = NewGO<Jakoten>(0, "Jakoten");
@@ -174,6 +176,9 @@ void Game::GameStateUpdate()
 
 		m_bumper = NewGO<Bumper>(0, "bumper");
 		m_bumper->SetPos({ 0.0f,0.0f,0.0f });
+
+		m_kiwi = NewGO<Kiwi>(0, "Kiwi");
+		m_kiwi->SetPos({ 500.0f,0.0f,-300.0f });
 	}
 }
 	
