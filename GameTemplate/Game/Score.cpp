@@ -24,7 +24,7 @@ bool Score::Start()
 
 void Score::Update()
 {
-	m_spriteRender.SetPosition({ 550.0f, 480.0f, 0.0f });
+	m_spriteRender.SetPosition({ 800.0f, 480.0f, 0.0f });
 	m_spriteRender.Update();
 
 	ResultScoreCalc();
@@ -42,7 +42,7 @@ void Score::ResultScoreDisp()
 	wchar_t wcsbuf[256];
 	swprintf_s(wcsbuf, 256, L"%d 点", int(m_itemGetScore));
 	m_scoreFontRender.SetText(wcsbuf);
-	m_scoreFontRender.SetPosition({ 500.0f, 500.0f, 0.0f });
+	m_scoreFontRender.SetPosition({ 750.0f, 500.0f, 0.0f });
 	m_scoreFontRender.SetScale(1.0);
 	m_scoreFontRender.SetColor(g_vec4Black);
 }
