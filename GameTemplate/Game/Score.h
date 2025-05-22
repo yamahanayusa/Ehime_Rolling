@@ -37,29 +37,30 @@ public:
 	}
 private:	
 	/// <summary>
-	/// ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒA‚ÌŒvŽZB
+	/// 
 	/// </summary>
 	void ResultScoreCalc();
 
 	/// <summary>
-	/// Žc‚èŽžŠÔ‚É‚æ‚éƒXƒRƒA‚ÌŒvŽZB
+	/// 
 	/// </summary>
 	void TimeScoreCalc();
 	
 	/// <summary>
-	/// ƒŠƒUƒ‹ƒgƒXƒRƒA‚Ì•\Ž¦B
+	///
 	/// </summary>
 	void ResultScoreDisp();
 private:
 	FontRender m_scoreFontRender;
+	SpriteRender m_spriteRender;
 
 	Timer* m_timer;
 	
-	int	m_itemGetScore = 0;		//ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒAB
-	int	m_timeScore = 0;		//Žc‚èŽžŠÔ‚©‚çŒvŽZ‚³‚ê‚½ƒXƒRƒAB
-	int	m_tortalScore = 0;		//ƒAƒCƒeƒ€Žæ“¾Žž‚ÌƒXƒRƒA‚ÆŽc‚èŽžŠÔ‚©‚çŒvŽZ‚³‚ê‚½ƒXƒRƒA‚Ì‡ŒvB
+	int	m_itemGetScore = 0;		//アイテムを取ったときのスコア
+	int	m_timeScore = 0;		//残り時間のスコア
+	int	m_tortalScore = 0;		//トータルスコア
 
-	float m_buffMultipier = 1.0f;	//ƒoƒt‚Ì”{—¦B‰Šú’l‚Í1B
-	float m_buffSecond = 0;
+	float m_buffMultipier = 1.0f;	//バフの倍率
+	float m_buffSecond = 0;			//バフの時間
 };
 

@@ -168,17 +168,17 @@ void Game::GameStateUpdate()
 		////m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
 		////m_chest->m_firstPosition = m_chest->m_position;
 
-		//じゃこ天。
-		m_jakoten = NewGO<Jakoten>(0, "Jakoten");
-		m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
+		////じゃこ天。
+		//m_jakoten = NewGO<Jakoten>(0, "Jakoten");
+		//m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
     
 		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
 
-		m_bumper = NewGO<Bumper>(0, "bumper");
-		m_bumper->SetPos({ 0.0f,0.0f,0.0f });
+		//m_bumper = NewGO<Bumper>(0, "bumper");
+		//m_bumper->SetPos({ 0.0f,0.0f,0.0f });
 
-		m_kiwi = NewGO<Kiwi>(0, "Kiwi");
-		m_kiwi->SetPos({ 500.0f,0.0f,-300.0f });
+		//m_kiwi = NewGO<Kiwi>(0, "Kiwi");
+		//m_kiwi->SetPos({ 500.0f,0.0f,-300.0f });
 	}
 }
 	
