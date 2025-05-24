@@ -232,6 +232,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Jakoten.cpp" />
     <ClCompile Include="Mikan.cpp" />
+    <ClCompile Include="sandFloor.cpp" />
     <ClCompile Include="TimeOver.cpp" />
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Jakoten.h" />
     <ClInclude Include="Mikan.h" />
+    <ClInclude Include="sandFloor.h" />
     <ClInclude Include="TimeOver.h" />
     <ClInclude Include="IceFloor.h" />
     <ClInclude Include="Player.h" />

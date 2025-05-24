@@ -15,6 +15,7 @@
 #include "Transform.h"
 #include "Jakoten.h"
 #include "Bumper.h"
+#include "sandFloor.h"
 
 Game::Game()
 {
@@ -23,7 +24,7 @@ Game::Game()
 
 Game::~Game()
 {
-	for (int mikan = 0;mikan < 4;mikan++) {
+	for (int mikan = 0;mikan < 2;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
 	DeleteGO(m_chest);  
@@ -35,6 +36,7 @@ Game::~Game()
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
 	DeleteGO(m_bumper);
+	DeleteGO(m_sandFloor);
 	/*DeleteGO(m_timer);
 	DeleteGO(m_score);*/
 }
@@ -43,7 +45,8 @@ bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
-	Stage3();
+	Stage1();
+	//Stage3();
 	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
@@ -94,6 +97,40 @@ void Game::Update()
 	//}
 }
 
+void Game::Stage1()
+{
+	int mikan = 0;
+	//レベルの構築
+	m_levelRender.Init("Assets/level3D/stage1Level.tkl", [&](LevelObjectData& objData) {
+		//ステージ
+		if (objData.EqualObjectName(L"stage1") == true) {
+			m_stage = NewGO<Stage>(0, "stage");
+			m_stage->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"flag") == true) {
+			m_chest = NewGO<Chest>(1, "chest");
+			m_chest->GetTransform()->m_localPosition.Set(objData.position);
+			m_chest->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_chest->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//アイテム(みかん)
+		if (objData.EqualObjectName(L"mikan") == true) {
+			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
+			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
+			mikan++;
+			return true;
+		}
+		});
+}
+
+
 void Game::Stage3()
 {
 	int mikan = 0;
@@ -128,7 +165,6 @@ void Game::Stage3()
 			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
 			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
 			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
-			//m_mikan[mikan]->GetTransform()->m_localRotation.SetRotationZ(nsK2EngineLow::Math::DegToRad(180.0f));
 			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
 			mikan++;
 			return true;
@@ -167,13 +203,13 @@ void Game::GameStateUpdate()
 		//m_chest->m_firstPosition = m_chest->m_position;
 
 		//じゃこ天。
-		m_jakoten = NewGO<Jakoten>(0, "Jakoten");
-		m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
+		//m_jakoten = NewGO<Jakoten>(0, "Jakoten");
+		//m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
     
 		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
 
-		m_bumper = NewGO<Bumper>(0, "bumper");
-		m_bumper->SetPos({ 0.0f,0.0f,0.0f });
+		//m_bumper = NewGO<Bumper>(0, "bumper");
+		//m_bumper->SetPos({ 0.0f,0.0f,0.0f });
 	}
 }
 	
