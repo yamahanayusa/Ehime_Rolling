@@ -51,7 +51,7 @@ bool Game::Start()
 	//重力の設定
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
 	//BGM.
-	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
+	//g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
 	m_soundSource = NewGO<SoundSource>(0);
 	//ResistWaveFileBankで指定した番号。
 	m_soundSource->Init(0);
@@ -168,7 +168,7 @@ void Game::GameStateUpdate()
 		////m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
 		////m_chest->m_firstPosition = m_chest->m_position;
 
-		////じゃこ天。
+		//じゃこ天。
 		//m_jakoten = NewGO<Jakoten>(0, "Jakoten");
 		//m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
     
@@ -177,8 +177,8 @@ void Game::GameStateUpdate()
 		//m_bumper = NewGO<Bumper>(0, "bumper");
 		//m_bumper->SetPos({ 0.0f,0.0f,0.0f });
 
-		//m_kiwi = NewGO<Kiwi>(0, "Kiwi");
-		//m_kiwi->SetPos({ 500.0f,0.0f,-300.0f });
+		/*m_kiwi = NewGO<Kiwi>(0, "Kiwi");
+		m_kiwi->SetPos({ 600.0f,0.0f,-300.0f });*/
 	}
 }
 	

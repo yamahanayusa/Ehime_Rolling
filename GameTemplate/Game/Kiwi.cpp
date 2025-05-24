@@ -53,6 +53,8 @@ void Kiwi::Update()
 		se->Init(5);
 		se->Play(false);
 
+		m_score->SdRender(SCORE);
+
 		DeleteGO(this);
 	}
 }
