@@ -17,6 +17,7 @@ class IceFloor;
 class Transform;
 class Jakoten;
 class Bumper;
+class sandFloor;
 class Kiwi;
 
 class Game : public IGameObject
@@ -26,6 +27,7 @@ public:
 	~Game();
 	bool Start();
 	void Update();
+	void Stage1();
 	void Stage3();
 	void GameStateUpdate();
 	void Render(RenderContext& rc);
@@ -46,7 +48,7 @@ private:
 	Title*					m_title;
 	Chest*					m_chest = nullptr;
 	Timer*					m_timer;
-	Mikan*					m_mikan[4];
+	Mikan*					m_mikan[2];
 	Jakoten*				m_jakoten;
 	TimeOver*				m_timeOver;
 	GameOver*				m_gameOver;
@@ -58,6 +60,7 @@ private:
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
 	IceFloor*				m_iceFloor = nullptr;
+	sandFloor*				m_sandFloor = nullptr;
 	Transform*				m_transform = nullptr;
 	SoundSource*			m_soundSource = nullptr;
 	Vector3					m_pos;
