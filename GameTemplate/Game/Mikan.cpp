@@ -40,6 +40,14 @@ void Mikan::Update()
 
 	//絵描きさんの更新処理。
 	UpdateModelRenderer();
+		m_modelRender.SetPosition(m_transform->m_position);
+		m_modelRender.SetRotation(m_transform->m_rotation);
+		m_modelRender.SetScale(m_transform->m_scale);
+		m_transform->Update();
+		m_modelRender.Update();
+
+	//移動処理。
+	Move();
 
 	//更新処理。
 	m_transform->Update();
@@ -48,16 +56,19 @@ void Mikan::Update()
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
 	//ベクトルの長さが120.0fより小さかったら。
 
-	if (diff.Length() <= 120.0f)
+	if (diff.Length() <= 120.0f&&!m_isCollected)
 	{
+
+		DeleteGO(this);
 		//スコアの加算。
 		m_score->AddItemGetScore(SCORE);
 		SoundSource* se = NewGO<SoundSource>(0);
 		se->Init(5);
 		se->Play(false);
 
-		DeleteGO(this);
+		m_score->SdRender(SCORE);
 	}
+	return;
 }
 
 void Mikan::UpdateModelRenderer()

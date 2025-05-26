@@ -28,6 +28,7 @@
     <ClCompile Include="Jakoten.cpp" />
     <ClCompile Include="Bumper.cpp" />
     <ClCompile Include="sandFloor.cpp" />
+    <ClCompile Include="Kiwi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -51,5 +52,6 @@
     <ClInclude Include="Jakoten.h" />
     <ClInclude Include="Bumper.h" />
     <ClInclude Include="sandFloor.h" />
+    <ClInclude Include="Kiwi.h" /> 
   </ItemGroup>
 </Project>

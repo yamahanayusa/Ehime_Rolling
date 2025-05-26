@@ -18,6 +18,7 @@ class Transform;
 class Jakoten;
 class Bumper;
 class sandFloor;
+class Kiwi;
 
 class Game : public IGameObject
 {
@@ -47,13 +48,14 @@ private:
 	Title*					m_title;
 	Chest*					m_chest = nullptr;
 	Timer*					m_timer;
-	Mikan*					m_mikan[4];
+	Mikan*					m_mikan[2];
 	Jakoten*				m_jakoten;
 	TimeOver*				m_timeOver;
 	GameOver*				m_gameOver;
 	GameClear*				m_gameClear;
 	Score*					m_score;
 	Bumper*					m_bumper = nullptr;
+	Kiwi*					m_kiwi = nullptr;
 	Stage*					m_stage	= nullptr;
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
