@@ -47,7 +47,7 @@ private:
 	Title*					m_title;
 	Chest*					m_chest = nullptr;
 	Timer*					m_timer;
-	Mikan*					m_mikan[2];
+	Mikan*					m_mikan[4];
 	Jakoten*				m_jakoten;
 	TimeOver*				m_timeOver;
 	GameOver*				m_gameOver;

@@ -132,6 +132,11 @@ namespace nsK2EngineLow {
 	}
 	void PhysicsWorld::Update(float deltaTime)
 	{
+		/*int simulationStep = 4;
+		float stepDeltaTime = deltaTime / simulationStep;
+		for (int i = 0; i < stepDeltaTime; i++) {
+			m_dynamicWorld->stepSimulation(stepDeltaTime);
+		}*/
 		m_dynamicWorld->stepSimulation(deltaTime);
 	}
 

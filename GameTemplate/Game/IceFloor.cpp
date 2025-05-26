@@ -31,14 +31,11 @@ void IceFloor::Update()
 	//滑る処理。
 	Slide();
 
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
+
 	//更新処理。
 	m_transform->Update();
-
-	m_modelRender.Update();
-
-	m_modelRender.SetPosition(m_transform->m_position);
-	m_modelRender.SetRotation(m_transform->m_rotation);
-	m_modelRender.SetScale(m_transform->m_scale);
 }
 
 void IceFloor::Slide()
@@ -57,6 +54,16 @@ void IceFloor::Slide()
 		m_player->rbInitData.restitution = 1000;
 		m_player->m_rigidBody.SetFriction(0);
 	}
+}
+
+void IceFloor::UpdateModelRenderer()
+{
+	//絵描きさんに座標を教える。
+	m_modelRender.SetPosition(m_transform->m_position);
+	m_modelRender.SetRotation(m_transform->m_rotation);
+	m_modelRender.SetScale(m_transform->m_scale);
+	//絵描きさんの更新処理。
+	m_modelRender.Update();
 }
 
 void IceFloor::Render(RenderContext& rc)

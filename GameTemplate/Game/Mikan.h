@@ -14,7 +14,7 @@ public:
 	~Mikan();
 	bool Start();
 	void Update();												//更新。
-	void Move();												//移動。
+	void UpdateModelRenderer();												//絵描きさんの更新処理。。
 	void Render(RenderContext& rc);		                        //描画。
 
 	Transform* GetTransform()

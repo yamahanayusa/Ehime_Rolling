@@ -15,8 +15,8 @@ Stage::~Stage()
 
 bool Stage::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage1.tkm");
-	//m_modelRender.Init("Assets/Stage/stage3.tkm");
+	//m_modelRender.Init("Assets/Stage/stage1.tkm");
+	m_modelRender.Init("Assets/Stage/stage3.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	return true;
@@ -25,11 +25,10 @@ bool Stage::Start()
 
 void Stage::Update()
 {
-	m_transform->Update();
-
 	//回転処理
 	Rotation();
 
+	m_transform->Update();
 	//モデルの更新処理。
 	m_modelRender.Update();
 }

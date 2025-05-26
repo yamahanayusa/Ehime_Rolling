@@ -13,6 +13,8 @@ public:
 	void Update();
 	//滑る処理。
 	void Slide();
+	//絵描きさんの更新処理。
+	void UpdateModelRenderer();
 	void Render(RenderContext& rc);
 
 	Transform* GetTransform()
