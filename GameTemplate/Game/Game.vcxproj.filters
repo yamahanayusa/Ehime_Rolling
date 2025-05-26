@@ -52,6 +52,6 @@
     <ClInclude Include="Jakoten.h" />
     <ClInclude Include="Bumper.h" />
     <ClInclude Include="sandFloor.h" />
-    <ClInclude Include="Kiwi.h" /> 
+    <ClInclude Include="Kiwi.h" />
   </ItemGroup>
 </Project>
