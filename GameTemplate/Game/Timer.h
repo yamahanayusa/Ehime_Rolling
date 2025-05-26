@@ -17,6 +17,7 @@ private:
 	float m_timerCount = 0;
 	float m_time = 0;
   
+	SpriteRender m_spriteRender;
 	FontRender m_fontRender;
 	Game* m_game;
 };
