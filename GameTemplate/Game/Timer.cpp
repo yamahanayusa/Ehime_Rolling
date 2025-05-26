@@ -16,12 +16,18 @@ bool Timer::Start()
 {
 	m_timerCount = 60;
 	m_time = m_timerCount;
+	m_spriteRender.Init("Assets/sprite/Timer.dds",250.0f,200.0f);
 	m_game = FindGO<Game>("game");
+	
 	return true;
 }
 
 void Timer::Update()
 {
+
+	m_spriteRender.SetPosition({ 0.0f, 460.0f, 0.0f });
+	m_spriteRender.Update();
+
 	wchar_t wcsbuf[256];
 	swprintf_s(wcsbuf, 256, L"%d", int(m_time));
 
@@ -50,5 +56,7 @@ void Timer::Update()
 
 void Timer::Render(RenderContext& rc)
 {
+	m_spriteRender.Draw(rc);
 	m_fontRender.Draw(rc);
+	
 }
