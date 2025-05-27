@@ -269,7 +269,7 @@ void Game::GameStateUpdate()
 
 		//じゃこ天。
 		//m_jakoten = NewGO<Jakoten>(0, "Jakoten");
-		//m_jakoten->SetPos({ 400.0f, 0.0f, -300.0f });
+		//m_jakoten->SetPos({ 100.0f, 0.0f, -300.0f });
     
 		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
 
@@ -277,7 +277,7 @@ void Game::GameStateUpdate()
 		//m_bumper->SetPos({ 0.0f,0.0f,0.0f });
 
 		/*m_kiwi = NewGO<Kiwi>(0, "Kiwi");
-		m_kiwi->SetPos({ 600.0f,0.0f,-300.0f });*/
+		m_kiwi->SetPos({ -100.0f,0.0f,-300.0f });*/
 	}
 }
 	

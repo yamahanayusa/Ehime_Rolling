@@ -35,9 +35,10 @@ ModelRender		m_modelRender;				//モデルレンダ―。
 private:
 	Mikan*					m_mikan;
 	Player*					m_player;
-	Transform*				m_transform;
-	Vector3					m_flyVelocity = { 0.0f,0.0f,0.0f };
-	bool m_isCollected = false;
-	float m_flyTimer = 0.0f;
-	float m_alpha = 1.0f;		//透明度（1.0＝不透明、0.0＝完全透明）
+	Transform*			m_transform = nullptr;
+	Vector3					m_flyVelocity = Vector3::Zero; /*{ 0.0f,0.0f,0.0f };*/
+	Vector3					m_velocity;		//飛ばすときの速度ベクトル
+	bool m_isCollected = false;				//アイテム取得済みかどうかのフラグ
+	float m_flyUpTimer = 0.0f;				//飛ばす経過時間
+	float m_alpha = 1.0f;					//透明度（1.0＝不透明、0.0＝完全透明）
 };
