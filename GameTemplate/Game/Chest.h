@@ -14,7 +14,7 @@ public:
 	~Chest();
 	bool Start();
 	void Update();								//更新。
-	void Move();								//移動。
+	void UpdateModelRenderer();					//モデルレンダラーを更新。
 	void Render(RenderContext& rc);				//描画。
 	
 	Transform* GetTransform()

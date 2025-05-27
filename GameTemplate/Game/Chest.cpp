@@ -35,14 +35,11 @@ bool Chest::Start()
 
 void Chest::Update()
 {
-	//移動処理。
-	Move();
-
 	//更新処理。
 	m_transform->Update();
 
 	//絵描きさんの更新処理。
-	m_modelRender.Update();
+	UpdateModelRenderer();
 
 	//プレイヤーからチェストに向かうベクトルを計算。
 	Vector3	diff = m_player->rbPos - m_transform->m_position;
@@ -62,12 +59,14 @@ void Chest::Update()
 	}
 }
 
-void Chest::Move()
+void Chest::UpdateModelRenderer()
 {
 	//絵描きさんに座標を教える。
 	m_modelRender.SetPosition(m_transform->m_position);
 	m_modelRender.SetRotation(m_transform->m_rotation);
 	m_modelRender.SetScale(m_transform->m_scale);
+	//絵描きさんの更新処理。
+	m_modelRender.Update();
 }
 
 void Chest::Render(RenderContext& rc)

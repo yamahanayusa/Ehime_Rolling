@@ -47,6 +47,8 @@ bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
+	//Stage1();
+	Stage3();
 	Stage1();
 	//Stage3();
 	//当たり判定
