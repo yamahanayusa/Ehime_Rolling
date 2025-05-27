@@ -31,11 +31,11 @@ void IceFloor::Update()
 	//滑る処理。
 	Slide();
 
-	//絵描きさんの更新処理。
-	UpdateModelRenderer();
-
 	//更新処理。
 	m_transform->Update();
+
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
 }
 
 void IceFloor::Slide()

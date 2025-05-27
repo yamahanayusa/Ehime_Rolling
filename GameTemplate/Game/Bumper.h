@@ -1,6 +1,8 @@
 #pragma once
 class Game;
 class Player;
+class Stage;
+class Transform;
 class Bumper:public IGameObject
 {
 public:
@@ -8,18 +10,14 @@ public:
 	~Bumper();
 	bool Start();
 	void Update();	//更新。
+	void UpdateModelRenderer();				//絵描きさんの更新処理。
 	void Render(RenderContext& rc);
-	void Move();															//移動。
-	void Rotation();
-	void SetPos(Vector3 pos)
+
+	Transform* GetTransform()
 	{
-		m_position = pos;
+		return m_transform;
 	}
 
-	Vector3 GetPos()
-	{
-		return m_position;
-	}
 private:
 	PhysicsStaticObject			m_Object;
 	//モデル表示系。
@@ -27,6 +25,8 @@ private:
 	Vector3			m_position = Vector3::Zero;			//座標。
 	Vector3			m_firstPosition = Vector3::Zero;	//最初の座標。
 
-	Game*			m_game;
+	Game*			m_game = nullptr;
+	Stage*			m_stage = nullptr;
+	Transform*		m_transform = nullptr;				//
 };
 

@@ -14,7 +14,7 @@ public:
 	~Mikan();
 	bool Start();
 	void Update();												//更新。
-	void UpdateModelRenderer();												//絵描きさんの更新処理。。
+	void UpdateModelRenderer();									//絵描きさんの更新処理。。
 	void Render(RenderContext& rc);		                        //描画。
 
 	Transform* GetTransform()
@@ -22,18 +22,18 @@ public:
 		return m_transform;
 	}
 
-ModelRender		m_modelRender;								//モデルレンダ―。
+ModelRender		m_modelRender;				//モデルレンダ―。
 
-  Game*           m_game;										//ゲーム。
-	Score*					m_score;
-	Timer*					m_timer;
-	Stage*					m_stage;
+	Game*		m_game;						//ゲーム。
+	Score*		m_score;
+	Timer*		m_timer;
+	Stage*		m_stage;
 
-	int						m_tortalScore = 0;
-	int m_mikanscore = 100;
+	int			m_tortalScore = 0;
+	int			m_mikanscore = 100;
 
 private:
-	Mikan*					m_mikan;
-	Player*					m_player;
-	Transform*				m_transform;
+	Mikan*		m_mikan;
+	Player*		m_player;
+	Transform*	m_transform;
 };

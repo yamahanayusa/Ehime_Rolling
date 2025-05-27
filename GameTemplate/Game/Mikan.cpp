@@ -38,11 +38,11 @@ void Mikan::Update()
 {
 	m_player = FindGO<Player>("player");
 
-	//絵描きさんの更新処理。
-	UpdateModelRenderer();
-
 	//更新処理。
 	m_transform->Update();
+
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
 
 	//プレイヤーがみかんに向かうベクトルを計算。
 	Vector3 diff = m_player->rbPos - m_transform->m_position;

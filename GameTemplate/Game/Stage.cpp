@@ -16,7 +16,8 @@ Stage::~Stage()
 bool Stage::Start()
 {
 	//m_modelRender.Init("Assets/Stage/stage1.tkm");
-	m_modelRender.Init("Assets/Stage/stage3.tkm");
+	//m_modelRender.Init("Assets/Stage/stage3.tkm");
+	m_modelRender.Init("Assets/Stage/stage4.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	return true;
