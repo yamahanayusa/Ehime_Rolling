@@ -13,10 +13,10 @@ Player::~Player()
 bool Player::Start()
 {
 	//背景
-	m_ballRender.Init("Assets/modelData/light.tkm");
+	m_ballRender.Init("Assets/modelData/sphere/sphere.tkm");
 	m_ballPosition.Set(0.0f, 300.0f, 0.0f);
 	m_ballRender.SetPosition(m_ballPosition);
-	m_ballRender.SetScale(1.7f, 1.7f, 1.7f);
+	m_ballRender.SetScale(0.2f, 0.2f, 0.2f);
 
 	//球体の大きさ
 	m_sphereCollider.Create(17.0f);

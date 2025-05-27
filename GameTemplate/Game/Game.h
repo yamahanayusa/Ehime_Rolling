@@ -17,7 +17,8 @@ class IceFloor;
 class Transform;
 class Jakoten;
 class Bumper;
-class SandFloor;
+class sandFloor;
+class Kiwi;
 
 class Game : public IGameObject
 {
@@ -45,24 +46,25 @@ public:
 private:
 	LevelRender m_levelRender;
 
-	Title*				m_title;
-	Chest*				m_chest = nullptr;
-	Timer*				m_timer;
-	Jakoten*			m_jakoten;
-	TimeOver*			m_timeOver;
-	GameOver*			m_gameOver;
-	GameClear*			m_gameClear;
-	Score*				m_score;
-	Stage*				m_stage	= nullptr;
-	Player*				m_player = nullptr;
-	GameCamera*			m_gameCamera = nullptr;
-	IceFloor*			m_iceFloor = nullptr;
-	SandFloor*			m_sandFloor = nullptr;
-	Transform*			m_transform = nullptr;
-	SoundSource*		m_soundSource = nullptr;
-	Mikan*				m_mikan[4];
-	Bumper*				m_bumper[4];
-	Vector3				m_pos;
-	int					m_resultTime = 0;
+	Title*					m_title;
+	Chest*					m_chest = nullptr;
+	Timer*					m_timer;
+	Mikan*					m_mikan[2];
+	Jakoten*				m_jakoten;
+	TimeOver*				m_timeOver;
+	GameOver*				m_gameOver;
+	GameClear*				m_gameClear;
+	Score*					m_score;
+	Bumper*					m_bumper = nullptr;
+	Kiwi*					m_kiwi = nullptr;
+	Stage*					m_stage	= nullptr;
+	Player*					m_player = nullptr;
+	GameCamera*				m_gameCamera = nullptr;
+	IceFloor*				m_iceFloor = nullptr;
+	sandFloor*				m_sandFloor = nullptr;
+	Transform*				m_transform = nullptr;
+	SoundSource*			m_soundSource = nullptr;
+	Vector3					m_pos;
+	int						m_resultTime = 0;
 };
 

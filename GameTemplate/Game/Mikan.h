@@ -33,7 +33,11 @@ ModelRender		m_modelRender;				//モデルレンダ―。
 	int			m_mikanscore = 100;
 
 private:
-	Mikan*		m_mikan;
-	Player*		m_player;
-	Transform*	m_transform;
+	Mikan*					m_mikan;
+	Player*					m_player;
+	Transform*				m_transform;
+	Vector3					m_flyVelocity = { 0.0f,0.0f,0.0f };
+	bool m_isCollected = false;
+	float m_flyTimer = 0.0f;
+	float m_alpha = 1.0f;		//透明度（1.0＝不透明、0.0＝完全透明）
 };
