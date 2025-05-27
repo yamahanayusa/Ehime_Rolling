@@ -3,19 +3,15 @@
 class Stage;
 class Transform;
 
-class sandFloor : public IGameObject
+class SandFloor : public IGameObject
 {
 public:
-	sandFloor();
-	~ sandFloor();
+	SandFloor();
+	~ SandFloor();
 	bool Start();
 	void Update();
+	void UpdateModelRenderer();			//äGï`Ç´Ç≥ÇÒÇÃçXêVèàóùÅB
 	void Render(RenderContext& rc);
-
-	void SetPos(Vector3 pos)
-	{
-		m_position = pos;
-	}
 
 	Transform* GetTransform()
 	{
@@ -25,8 +21,6 @@ public:
 private:
 	Stage*					m_stage = nullptr;
 	Transform*				m_transform = nullptr;
-
-	Vector3  m_position;
 
 	PhysicsStaticObject		m_object;
 	ModelRender				m_modelRender;

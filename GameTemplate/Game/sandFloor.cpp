@@ -3,21 +3,20 @@
 #include "stage.h"
 #include "transform.h"
 
-sandFloor::sandFloor()
+SandFloor::SandFloor()
 {
 	m_transform = new Transform();
 }
 
-sandFloor::~sandFloor() 
+SandFloor::~SandFloor() 
 {
 	delete m_transform;
 }
 
-bool sandFloor::Start()
+bool SandFloor::Start()
 {
-	m_modelRender.Init("Assets/modelData/sandfloor.tkm");
+	m_modelRender.Init("Assets/modelData/sandFloor.tkm");
 	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
-
 
 	m_stage = FindGO<Stage>("stage");
 
@@ -26,19 +25,27 @@ bool sandFloor::Start()
 	return true;
 }
 
-void sandFloor::Update()
+void SandFloor::Update()
 {
 	//更新処理。
 	m_transform->Update();
 
-	m_modelRender.Update();
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
+}
 
+void SandFloor::UpdateModelRenderer()
+{
+	//絵描きさんに座標を教える。
 	m_modelRender.SetPosition(m_transform->m_position);
 	m_modelRender.SetRotation(m_transform->m_rotation);
 	m_modelRender.SetScale(m_transform->m_scale);
+	//絵描きさんの更新処理。
+	m_modelRender.Update();
 }
 
-void sandFloor::Render(RenderContext& rc)
+
+void SandFloor::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);
 }

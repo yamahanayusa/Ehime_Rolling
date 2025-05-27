@@ -36,6 +36,9 @@ void IceFloor::Update()
 
 	//更新処理。
 	m_transform->Update();
+
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
 }
 
 void IceFloor::Slide()

@@ -28,6 +28,9 @@ Game::~Game()
 	for (int mikan = 0;mikan < 2;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
+	for (int bumper = 0;bumper < 4;bumper++) {
+		DeleteGO(m_bumper[bumper]);
+	}
 	DeleteGO(m_chest);  
 	DeleteGO(m_player);
 	DeleteGO(m_gameCamera);
@@ -36,7 +39,6 @@ Game::~Game()
 	//DeleteGO(m_mikan);
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
-	DeleteGO(m_bumper);
 	DeleteGO(m_sandFloor);
 	DeleteGO(m_kiwi);
 	/*DeleteGO(m_timer);
@@ -173,6 +175,65 @@ void Game::Stage3()
 			mikan++;
 			return true;
 		}
+	});
+}
+
+void Game::Stage4()
+{
+	int mikan = 0;
+	int bumper = 0;
+	//レベルの構築
+	m_levelRender.Init("Assets/level3D/stage3Level.tkl", [&](LevelObjectData& objData) {
+		//ステージ
+		if (objData.EqualObjectName(L"stage") == true) {
+			m_stage = NewGO<Stage>(0, "stage");
+			m_stage->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//砂の床
+		if (objData.EqualObjectName(L"sandfloor") == true) {
+			m_sandFloor = NewGO<SandFloor>(1, "sandFloor");
+			m_sandFloor->GetTransform()->m_localPosition.Set(objData.position);
+			m_sandFloor->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_sandFloor->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"flag") == true) {
+			m_chest = NewGO<Chest>(1, "chest");
+			m_chest->GetTransform()->m_localPosition.Set(objData.position);
+			m_chest->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_chest->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//アイテム(みかん)
+		if (objData.EqualObjectName(L"mikan") == true) {
+			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
+			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
+			mikan++;
+			return true;
+		}
+		//バンパー
+		if (objData.EqualObjectName(L"bumper") == true) {
+			m_bumper[bumper] = NewGO<Bumper>(1, "bumper");
+			m_bumper[bumper]->GetTransform()->m_localPosition.Set(objData.position);
+			m_bumper[bumper]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_bumper[bumper]->GetTransform()->m_localScale.Set(objData.scale);
+			bumper++;
+			return true;
+		}
+		//キウイ
+	/*	if (objData.EqualObjectName(L"kiwi") == true) {
+			 = NewGO<>(1, "kiwi");
+			->GetTransform()->m_localPosition.Set(objData.position);
+			->GetTransform()->m_localRotation.Set(objData.rotation);
+			->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}*/
 	});
 }
 

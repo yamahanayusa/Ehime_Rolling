@@ -29,6 +29,7 @@ public:
 	void Update();
 	void Stage1();
 	void Stage3();
+	void Stage4();
 	void GameStateUpdate();
 	void Render(RenderContext& rc);
 
