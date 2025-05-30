@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Chest.h"
+#include "Flag.h"
 #include "Game.h"
 #include "Score.h"
 #include "Timer.h" 
@@ -8,17 +8,17 @@
 #include "Stage.h"
 #include "Transform.h"
 
-Chest::Chest()
+Flag::Flag()
 {
 	m_transform = new Transform();
 }
 
-Chest::~Chest()
+Flag::~Flag()
 {
 	delete m_transform;
 }
 
-bool Chest::Start()
+bool Flag::Start()
 {
 	//モデルの表示。
 	m_modelRender.Init("Assets/modelData/flag.tkm");
@@ -33,7 +33,7 @@ bool Chest::Start()
 	return true;
 }
 
-void Chest::Update()
+void Flag::Update()
 {
 	//更新処理。
 	m_transform->Update();
@@ -59,7 +59,7 @@ void Chest::Update()
 	}
 }
 
-void Chest::UpdateModelRenderer()
+void Flag::UpdateModelRenderer()
 {
 	//絵描きさんに座標を教える。
 	m_modelRender.SetPosition(m_transform->m_position);
@@ -69,7 +69,7 @@ void Chest::UpdateModelRenderer()
 	m_modelRender.Update();
 }
 
-void Chest::Render(RenderContext& rc)
+void Flag::Render(RenderContext& rc)
 {
 	//描画する。
 	m_modelRender.Draw(rc);

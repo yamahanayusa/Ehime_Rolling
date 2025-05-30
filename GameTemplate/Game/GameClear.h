@@ -2,7 +2,7 @@
 class Game;
 class Score;
 class Timer;
-class Chest;
+class Flag;
 //ゲームクリア
 class GameClear :public IGameObject
 {
@@ -24,6 +24,6 @@ public:
 	Game* m_game;
 	Score* m_score;
 	Timer* m_timer;
-	Chest* m_chest;
+	Flag* m_chest;
 };
 
