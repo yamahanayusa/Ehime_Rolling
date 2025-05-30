@@ -3,7 +3,7 @@
 #include "Title.h"
 #include "Game.h"
 #include "Score.h"
-#include "Chest.h"
+#include "Flag.h"
 #include "Timer.h"
 
 GameClear::GameClear()
@@ -19,7 +19,7 @@ GameClear::~GameClear()
 bool GameClear::Start()
 {
 	m_score = FindGO<Score>("score");
-	m_chest = FindGO<Chest>("chest");
+	m_chest = FindGO<Flag>("flag");
 	m_timer = FindGO<Timer>("timer");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	//m_game = FindGO<Game>("game");

@@ -1,6 +1,6 @@
 #pragma once
 
-class Transform : public IGameObject
+class Transform : public Noncopyable
 {
 public:
 	Transform();

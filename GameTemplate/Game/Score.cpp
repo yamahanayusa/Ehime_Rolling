@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "GameClear.h"
 #include "Timer.h"
-#include "Chest.h"
+#include "flag.h"
 
 Score::Score()
 {

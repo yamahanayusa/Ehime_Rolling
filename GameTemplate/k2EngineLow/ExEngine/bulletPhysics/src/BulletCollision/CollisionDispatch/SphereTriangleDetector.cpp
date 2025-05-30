@@ -100,6 +100,10 @@ bool SphereTriangleDetector::collide(const btVector3& sphereCenter,btVector3 &po
 	btScalar radiusWithThreshold = radius + contactBreakingThreshold;
 
 	btVector3 normal = (vertices[1]-vertices[0]).cross(vertices[2]-vertices[0]);
+	// @todo for 0èôéZÇ…Ç»ÇÁÇ»Ç¢ÇÊÇ§Ç…
+	if (normal.length2() < 0.001f) {
+		return false;
+	}
 	normal.normalize();
 	btVector3 p1ToCentre = sphereCenter - vertices[0];
 	btScalar distanceFromPlane = p1ToCentre.dot(normal);

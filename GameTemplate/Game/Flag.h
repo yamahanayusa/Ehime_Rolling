@@ -7,11 +7,11 @@ class Player;
 class Transform;
 class Stage;
 
-class Chest :public IGameObject
+class Flag :public IGameObject
 {
 public:
-	Chest();
-	~Chest();
+	Flag();
+	~Flag();
 	bool Start();
 	void Update();								//更新。
 	void UpdateModelRenderer();					//モデルレンダラーを更新。
