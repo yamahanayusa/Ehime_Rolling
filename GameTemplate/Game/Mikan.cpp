@@ -40,8 +40,6 @@ void Mikan::Update()
 {
 	m_player = FindGO<Player>("player");
 
-	//絵描きさんの更新処理。
-	UpdateModelRenderer();
 	// 取得後のぶっ飛ばし処理
 	if (m_isCollected) {
 		m_flyUpTimer += g_gameTime->GetFrameDeltaTime();
@@ -57,17 +55,12 @@ void Mikan::Update()
 		m_modelRender.Update();
 		return;
 	}
-		//m_modelRender.SetPosition(m_transform->m_position);
-		m_modelRender.SetRotation(m_transform->m_rotation);
-		m_modelRender.SetScale(m_transform->m_scale);
-		//m_transform->Update();
-		//m_modelRender.Update();
-
-	//移動処理。
-	Move();
 
 	//更新処理。
 	m_transform->Update();
+
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
 
 	//プレイヤーがみかんに向かうベクトルを計算。
 	Vector3 diff = m_player->rbPos - m_transform->m_position;

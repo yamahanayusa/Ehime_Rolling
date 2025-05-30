@@ -23,13 +23,13 @@ bool Stage::Start()
 	return true;
 }
 
-
 void Stage::Update()
 {
 	//回転処理
 	Rotation();
 
 	m_transform->Update();
+
 	//モデルの更新処理。
 	m_modelRender.Update();
 }
