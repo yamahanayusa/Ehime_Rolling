@@ -22,7 +22,6 @@ StageManager::~StageManager()
 
 bool StageManager::Start()
 {
-
 	return true;
 }
 

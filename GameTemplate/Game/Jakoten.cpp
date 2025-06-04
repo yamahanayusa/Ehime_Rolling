@@ -59,11 +59,11 @@ void Jakoten::Update()
 		return;
 	}
 
+	//更新処理。
 	m_transform->Update();
 
-	Move();
-
-	Rotation();
+	//絵描きさんの更新処理。
+	UpdateModelRenderer();
 
 	//プレイヤーがみかんに向かうベクトルを計算。
 	Vector3 diff = m_player->rbPos - m_position;
@@ -82,17 +82,16 @@ void Jakoten::Update()
 	return;
 }
 
-void Jakoten::Move()
+void Jakoten::UpdateModelRenderer()
 {
 	//絵描きさんに座標を教える。
-	m_modelRender.SetPosition(m_position);
+	m_modelRender.SetPosition(m_transform->GetPosition());
+	m_modelRender.SetRotation(m_transform->GetRotation());
+	m_modelRender.SetScale(m_transform->GetScale());
 	//絵描きさんの更新処理。
 	m_modelRender.Update();
 }
-void Jakoten::Rotation()
-{
 
-}
 void Jakoten::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);
