@@ -5,7 +5,7 @@
 #include "Score.h"
 #include "Mikan.h"
 #include "Timer.h"
-#include "Stage.h"
+#include "Stage03.h"
 #include "Transform.h"
 
 //定数。
@@ -35,8 +35,8 @@ bool Jakoten::Start()
 	m_player = FindGO<Player>("player");
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
-	m_stage = FindGO<Stage>("stage");
-	m_transform->SetParent(m_stage->m_transform);
+	m_stage03 = FindGO<Stage03>("stage03");
+	m_transform->SetParent(m_stage03->m_transform);
 
 	m_buffTimer = BUFF_TIME;
 	return true;

@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Transform.h"
-#include "Stage.h"
+#include "Stage04.h"
 
 Bumper::Bumper()
 {
@@ -20,9 +20,9 @@ bool Bumper::Start()
 	m_modelRender.Init("Assets/modelData/bumper/bumper.tkm");
 	//m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
-	m_stage = FindGO<Stage>("stage");
+	m_stage04 = FindGO<Stage04>("stage04");
 
-	m_transform->SetParent(m_stage->m_transform);
+	m_transform->SetParent(m_stage04->m_transform);
 	return true;
 }
 

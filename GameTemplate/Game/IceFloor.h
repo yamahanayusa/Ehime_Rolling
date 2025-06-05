@@ -1,7 +1,7 @@
 #pragma once
 
 class Player;
-class Stage;
+class Stage03;
 class Transform;
 
 class IceFloor : public IGameObject
@@ -24,7 +24,7 @@ public:
 
 private:
 	
-	Stage*					m_stage = nullptr;
+	Stage03*					m_stage03 = nullptr;
 	Player*					m_player = nullptr;
 	Transform*				m_transform = nullptr;
 

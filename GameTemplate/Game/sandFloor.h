@@ -1,6 +1,6 @@
 #pragma once
 
-class Stage;
+class Stage04;
 class Transform;
 
 class SandFloor : public IGameObject
@@ -19,7 +19,7 @@ public:
 	}
 
 private:
-	Stage*					m_stage = nullptr;
+	Stage04*					m_stage04 = nullptr;
 	Transform*				m_transform = nullptr;
 
 	PhysicsStaticObject		m_object;

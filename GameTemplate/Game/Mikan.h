@@ -4,7 +4,9 @@ class Game;
 class Player;
 class Score;
 class Timer;
-class Stage;
+class Stage01;
+class Stage03;
+class Stage04;
 class Transform;
 
 class Mikan :public IGameObject
@@ -27,7 +29,9 @@ ModelRender		m_modelRender;				//モデルレンダ―。
 	Game*		m_game;						//ゲーム。
 	Score*		m_score;
 	Timer*		m_timer;
-	Stage*		m_stage;
+	Stage01* m_stage01 = nullptr;
+	Stage03* m_stage03 = nullptr;
+	Stage04* m_stage04 = nullptr;
 
 	int			m_tortalScore = 0;
 	int			m_mikanscore = 100;

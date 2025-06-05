@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "StageManager.h"
 #include "Kiwi.h"
-#include "Stage.h"
+#include "Stage01.h"
+#include "Stage03.h"
+#include "Stage04.h"
 #include "Mikan.h"
 #include "Flag.h"
 #include "Bumper.h"
@@ -35,10 +37,10 @@ void StageManager::Init(const char* falePath) {
 	m_levelRender.Init(falePath, [&](LevelObjectData& objData) {
 		//ステージ
 		if (objData.EqualObjectName(L"ground") == true) {
-			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->GetTransform()->m_localPosition.Set(objData.position);
-			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+			m_stage03 = NewGO<Stage03>(0, "stage03");
+			m_stage03->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage03->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage03->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//ゴール

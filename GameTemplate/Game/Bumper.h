@@ -1,7 +1,7 @@
 #pragma once
 class Game;
 class Player;
-class Stage;
+class Stage04;
 class Transform;
 class Bumper:public IGameObject
 {
@@ -26,7 +26,7 @@ private:
 	Vector3			m_firstPosition = Vector3::Zero;	//ç≈èâÇÃç¿ïWÅB
 
 	Game*			m_game = nullptr;
-	Stage*			m_stage = nullptr;
+	Stage04*			m_stage04 = nullptr;
 	Transform*		m_transform = nullptr;				//
 };
 
