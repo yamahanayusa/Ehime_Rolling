@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "sandFloor.h"
-#include "stage.h"
+#include "stage04.h"
 #include "transform.h"
 
 SandFloor::SandFloor()
@@ -18,9 +18,9 @@ bool SandFloor::Start()
 	m_modelRender.Init("Assets/modelData/sandFloor.tkm");
 	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
-	m_stage = FindGO<Stage>("stage");
+	m_stage04 = FindGO<Stage04>("stage04");
 
-	m_transform->SetParent(m_stage->m_transform);
+	m_transform->SetParent(m_stage04->m_transform);
 
 	return true;
 }

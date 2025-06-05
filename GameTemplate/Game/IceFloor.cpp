@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "IceFloor.h"
 #include "Player.h"
-#include "Stage.h"
+#include "Stage03.h"
 #include "Transform.h"
 
 IceFloor::IceFloor()
@@ -19,9 +19,9 @@ bool IceFloor::Start()
 	m_modelRender.Init("Assets/modelData/icefloor.tkm");
 	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
-	m_stage = FindGO<Stage>("stage");
+	m_stage03 = FindGO<Stage03>("stage03");
 
-	m_transform->SetParent(m_stage->m_transform);
+	m_transform->SetParent(m_stage03->m_transform);
 
 	return true;
 }

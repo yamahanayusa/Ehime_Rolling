@@ -4,7 +4,7 @@ class Game;
 class Player;
 class Score;
 class Timer;
-class Stage;
+class Stage04;
 class Transform;
 
 class Kiwi:public IGameObject
@@ -29,7 +29,7 @@ public:
 
 	Score*						m_score=nullptr;
 	Timer*						m_timer=nullptr;
-	Stage*						m_stage=nullptr;
+	Stage04*						m_stage04=nullptr;
 
 private:
 	PhysicsStaticObject			m_Object;

@@ -1,7 +1,9 @@
 #pragma once
 
 class Kiwi;
-class Stage;
+class Stage01;
+class Stage03;
+class Stage04; 
 class Mikan;
 class Flag;
 class Bumper;
@@ -24,7 +26,9 @@ public:
 	void Init(const char* falePath);
 
 private:
-	Stage*		m_stage		= nullptr;
+	Stage01* m_stage01 = nullptr;
+	Stage03* m_stage03 = nullptr;
+	Stage04* m_stage04 = nullptr;
 	Flag*		m_flag		= nullptr;
 	Jakoten*	m_jakoten	= nullptr;
 	IceFloor*	m_iceFloor	= nullptr;

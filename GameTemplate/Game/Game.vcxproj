@@ -224,6 +224,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Stage01.cpp" />
+    <ClCompile Include="Stage03.cpp" />
+    <ClCompile Include="Stage04.cpp" />
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="Bumper.cpp" />
     <ClCompile Include="Flag.cpp" />
@@ -235,12 +238,12 @@
     <ClCompile Include="Kiwi.cpp" />
     <ClCompile Include="Mikan.cpp" />
     <ClCompile Include="SandFloor.cpp" />
+    <ClCompile Include="StageSelect.cpp" />
     <ClCompile Include="TimeOver.cpp" />
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -252,6 +255,9 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Stage01.h" />
+    <ClInclude Include="Stage03.h" />
+    <ClInclude Include="Stage04.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="Bumper.h" />
     <ClInclude Include="Flag.h" />
@@ -263,11 +269,11 @@
     <ClInclude Include="Kiwi.h" />
     <ClInclude Include="Mikan.h" />
     <ClInclude Include="SandFloor.h" />
+    <ClInclude Include="StageSelect.h" />
     <ClInclude Include="TimeOver.h" />
     <ClInclude Include="IceFloor.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
-    <ClInclude Include="Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="system\system.h" />
     <ClInclude Include="Timer.h" />
