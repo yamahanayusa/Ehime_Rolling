@@ -25,7 +25,7 @@ Game::Game()
 
 Game::~Game()
 {
-	for (int mikan = 0;mikan < 3;mikan++) {
+	for (int mikan = 0;mikan < 2;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
 	for (int bumper = 0;bumper < 4;bumper++) {
@@ -48,9 +48,9 @@ bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
-	//Stage1();
+	Stage1();
 	//Stage3();
-	Stage4();
+	//Stage4();
 	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
