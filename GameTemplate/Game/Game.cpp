@@ -77,7 +77,7 @@ bool Game::Start()
 	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
-	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
+	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-1800.0f,0.0f });
 	//BGM.
 	//g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
 	m_soundSource = NewGO<SoundSource>(0);
