@@ -27,7 +27,7 @@ Game::Game()
 
 Game::~Game()
 {
-	for (int mikan = 0;mikan < 3;mikan++) {
+	for (int mikan = 0;mikan < 2;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
 	for (int bumper = 0;bumper < 4;bumper++) {

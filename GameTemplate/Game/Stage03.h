@@ -18,8 +18,8 @@ public:
 	{
 		return m_modelRender.GetWorldMatrix(0);
 	}
-	Vector3	m_scale = Vector3::One;//‘å‚«‚³B
-	//‰ñ“]‚ğİ’è‚·‚é
+	Vector3	m_scale = Vector3::One;//ï¿½å‚«ï¿½ï¿½ï¿½B
+	//ï¿½ï¿½]ï¿½ï¿½İ’è‚·ï¿½ï¿½
 	Quaternion addRot;
 	Quaternion addLot;
 	Transform* m_transform;
@@ -28,6 +28,7 @@ private:
 	PhysicsStaticObject m_Object;
 	Player* m_player = nullptr;
 };
+
 
 
 
