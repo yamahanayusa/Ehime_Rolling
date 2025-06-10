@@ -16,7 +16,7 @@
 #include "Jakoten.h"
 #include "Bumper.h"
 #include "sandFloor.h"
-#include "Kiwi.h"
+#include "Item.h"
 
 Game::Game()
 {
@@ -122,7 +122,7 @@ void Game::Stage1()
 		}
 		//アイテム(みかん)
 		if (objData.EqualObjectName(L"mikan") == true) {
-			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan] = NewGO<Mikan>(0, "mikan");
 			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
 			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);

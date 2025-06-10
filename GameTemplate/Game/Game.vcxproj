@@ -230,9 +230,7 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="GameOver.cpp" />
-    <ClCompile Include="Jakoten.cpp" />
-    <ClCompile Include="Kiwi.cpp" />
-    <ClCompile Include="Mikan.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="sandFloor.cpp" />
     <ClCompile Include="TimeOver.cpp" />
     <ClCompile Include="IceFloor.cpp" />
@@ -257,9 +255,8 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GameOver.h" />
-    <ClInclude Include="Jakoten.h" />
-    <ClInclude Include="Kiwi.h" />
-    <ClInclude Include="Mikan.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemMotion.h" />
     <ClInclude Include="sandFloor.h" />
     <ClInclude Include="TimeOver.h" />
     <ClInclude Include="IceFloor.h" />

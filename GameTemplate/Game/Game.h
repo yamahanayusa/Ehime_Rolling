@@ -19,6 +19,7 @@ class Jakoten;
 class Bumper;
 class sandFloor;
 class Kiwi;
+class Item;
 
 class Game : public IGameObject
 {
