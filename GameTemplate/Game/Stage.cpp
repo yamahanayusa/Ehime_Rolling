@@ -15,9 +15,9 @@ Stage::~Stage()
 
 bool Stage::Start()
 {
-	//m_modelRender.Init("Assets/Stage/stage1.tkm");
+	m_modelRender.Init("Assets/Stage/stage1.tkm");
 	//m_modelRender.Init("Assets/Stage/stage3.tkm");
-	m_modelRender.Init("Assets/Stage/stage4.tkm");
+	//m_modelRender.Init("Assets/Stage/stage4.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	return true;
@@ -46,44 +46,45 @@ void Stage::Rotation()
 		return;
 	}
 
+	Matrix mTrans, mWorld;
+	mTrans.MakeTranslation(m_transform->m_localPosition);
+	mRot.MakeRotationFromQuaternion(m_transform->m_localRotation);
+	mWorld = mRot * mTrans;
+	
 	// 背景の回転
 	//左右方向の傾き
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
 	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.006f);
-	// プレイヤーの位置が原点に来るように背景を動かす行列を作成する
-	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
-	mBiasInv = mBias;
-	// 動かした背景をもとに戻す行列を作成
-	mBiasInv.Inverse();
-	// 追加で回転させる行列を作成
-	mRot.MakeRotationFromQuaternion(addRot);
-	// 移動させた背景を回転させる
-	mFinal.Multiply(mBias, mRot);
-	// 背景の位置を戻す
-	mFinal.Multiply(mFinal, mBiasInv);
-
-	// 最終的に出来上がった行列から回転クォータニオンを作る
-	addRot.SetRotation(mFinal);
-
-	m_transform->m_localRotation.Multiply(addRot);
-
-	//上下方向の傾き
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
 	addLot.SetRotation(rightXZ, g_pad[0]->GetLStickYF() * 0.006f);
+	Quaternion qAdd;
+	qAdd.Multiply(addRot, addLot);
 
-	mRot.MakeRotationFromQuaternion(addLot);
-	mFinal.Multiply(mBias, mRot);
-	mFinal.Multiply(mFinal, mBiasInv);
-	addLot.SetRotation(mFinal);
+	// プレイヤーの位置が原点に来るように背景を動かす
+	Vector3 playerPos = m_player->m_ballPosition;
+	mWorld._41 -= playerPos.x;
+	mWorld._42 -= playerPos.y;
+	mWorld._43 -= playerPos.z;
 
-	m_transform->m_localRotation.Multiply(addLot);
+	// 追加で回転させる行列を作成
+	mRot.MakeRotationFromQuaternion(qAdd);
+	mWorld.Multiply(mWorld, mRot);
+	// 背景の位置を戻す
+	mWorld._41 += playerPos.x;
+	mWorld._42 += playerPos.y;
+	mWorld._43 += playerPos.z;
+
+	// 最終的に出来上がった行列から回転クォータニオンを作る]
+	m_transform->m_localRotation.SetRotation(mWorld);
+	m_transform->m_localPosition.Set(mWorld._41, mWorld._42, mWorld._43);
 	//
-	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_transform->m_localRotation);
+	m_Object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
+	m_modelRender.SetPosition(m_transform->m_localPosition);
 	//モデルレンダーのアップデート
 	m_modelRender.Update();
 }
