@@ -3,13 +3,15 @@
 #include "Title.h"
 #include "Timer.h"
 #include "Score.h"
-#include "Chest.h"
+#include "Flag.h"
 #include "Mikan.h"
 #include "TimeOver.h"
 #include "GameOver.h"
 #include "GameClear.h"
 #include "GameCamera.h"
-#include "Stage.h"
+#include "Stage01.h"
+#include "Stage03.h"
+#include "Stage04.h"
 #include "Player.h"
 #include "IceFloor.h"
 #include "Transform.h"
@@ -28,15 +30,18 @@ Game::~Game()
 	for (int mikan = 0;mikan < 2;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
-	DeleteGO(m_chest);  
+	for (int bumper = 0;bumper < 4;bumper++) {
+		DeleteGO(m_bumper[bumper]);
+	}
+	DeleteGO(m_falg);  
 	DeleteGO(m_player);
 	DeleteGO(m_gameCamera);
-	DeleteGO(m_stage);
+	DeleteGO(m_stage01);
+	DeleteGO(m_stage03);
+	DeleteGO(m_stage04);
 	DeleteGO(m_iceFloor);
-	//DeleteGO(m_mikan);
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
-	DeleteGO(m_bumper);
 	DeleteGO(m_sandFloor);
 	DeleteGO(m_kiwi);
 	/*DeleteGO(m_timer);
@@ -47,12 +52,32 @@ bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
-	Stage1();
-	//Stage3();
+	switch (m_state)
+	{
+	case 1:
+		Stage1();
+		break;
+	case 2:
+		Stage1(); // ステージ2のレベルデータがないため、仮でステージ3をロード
+		break;
+	case 3:
+		Stage3();
+		break;
+	case 4:
+		Stage4(); // ステージ4のレベルデータがないため、仮でステージ3をロード
+		break;
+	case 5:
+		Stage3(); // ステージ5のレベルデータがないため、仮でステージ3をロード
+		break;
+	default:
+		// デフォルトのステージをロード (例: ステージ1)
+		Stage1();
+		break;
+	}
 	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
-	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
+	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-1800.0f,0.0f });
 	//BGM.
 	//g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
 	m_soundSource = NewGO<SoundSource>(0);
@@ -105,19 +130,19 @@ void Game::Stage1()
 	//レベルの構築
 	m_levelRender.Init("Assets/level3D/stage1Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
-		if (objData.EqualObjectName(L"stage1") == true) {
-			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->GetTransform()->m_localPosition.Set(objData.position);
-			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+		if (objData.EqualObjectName(L"ground") == true) {
+			m_stage01 = NewGO<Stage01>(0, "stage01");
+			m_stage01->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage01->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage01->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_chest = NewGO<Chest>(1, "chest");
-			m_chest->GetTransform()->m_localPosition.Set(objData.position);
-			m_chest->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_chest->GetTransform()->m_localScale.Set(objData.scale);
+			m_falg = NewGO<Flag>(1, "flag");
+			m_falg->GetTransform()->m_localPosition.Set(objData.position);
+			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_falg->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//アイテム(みかん)
@@ -129,7 +154,7 @@ void Game::Stage1()
 			mikan++;
 			return true;
 		}
-		});
+	});
 }
 
 
@@ -139,11 +164,11 @@ void Game::Stage3()
 	//レベルの構築
 	m_levelRender.Init("Assets/level3D/stage3Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
-		if (objData.EqualObjectName(L"stage") == true) {
-			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->GetTransform()->m_localPosition.Set(objData.position);
-			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+		if (objData.EqualObjectName(L"ground") == true) {
+			m_stage03 = NewGO<Stage03>(0, "stage03");
+			m_stage03->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage03->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage03->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//氷の床
@@ -156,10 +181,10 @@ void Game::Stage3()
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_chest = NewGO<Chest>(1, "chest");
-			m_chest->GetTransform()->m_localPosition.Set(objData.position);
-			m_chest->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_chest->GetTransform()->m_localScale.Set(objData.scale);
+			m_falg = NewGO<Flag>(1, "flag");
+			m_falg->GetTransform()->m_localPosition.Set(objData.position);
+			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_falg->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//アイテム(みかん)
@@ -169,6 +194,65 @@ void Game::Stage3()
 			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
 			mikan++;
+			return true;
+		}
+	});
+}
+
+void Game::Stage4()
+{
+	int mikan = 0;
+	int bumper = 0;
+	//レベルの構築
+	m_levelRender.Init("Assets/level3D/stage4Level.tkl", [&](LevelObjectData& objData) {
+		//ステージ
+		if (objData.EqualObjectName(L"ground") == true) {
+			m_stage04 = NewGO<Stage04>(0, "stage04");
+			m_stage04->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage04->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage04->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//砂の床
+		if (objData.EqualObjectName(L"sandfloor") == true) {
+			m_sandFloor = NewGO<SandFloor>(1, "sandFloor");
+			m_sandFloor->GetTransform()->m_localPosition.Set(objData.position);
+			m_sandFloor->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_sandFloor->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"flag") == true) {
+			m_falg = NewGO<Flag>(1, "flag");
+			m_falg->GetTransform()->m_localPosition.Set(objData.position);
+			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//アイテム(みかん)
+		if (objData.EqualObjectName(L"mikan") == true) {
+			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
+			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
+			mikan++;
+			return true;
+		}
+		//バンパー
+		if (objData.EqualObjectName(L"bumper") == true) {
+			m_bumper[bumper] = NewGO<Bumper>(1, "bumper");
+			m_bumper[bumper]->GetTransform()->m_localPosition.Set(objData.position);
+			m_bumper[bumper]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_bumper[bumper]->GetTransform()->m_localScale.Set(objData.scale);
+			bumper++;
+			return true;
+		}
+		//キウイ
+		if (objData.EqualObjectName(L"kiwi") == true) {
+			m_kiwi = NewGO<Kiwi>(1, "kiwi");
+			m_kiwi->GetTransform()->m_localPosition.Set(objData.position);
+			m_kiwi->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_kiwi->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 	});

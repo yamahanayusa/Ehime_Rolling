@@ -3,8 +3,9 @@
 #include "Title.h"
 #include "Game.h"
 #include "Score.h"
-#include "Chest.h"
+#include "Flag.h"
 #include "Timer.h"
+#include "StageSelect.h"
 
 GameClear::GameClear()
 {
@@ -19,7 +20,7 @@ GameClear::~GameClear()
 bool GameClear::Start()
 {
 	m_score = FindGO<Score>("score");
-	m_chest = FindGO<Chest>("chest");
+	m_chest = FindGO<Flag>("flag");
 	m_timer = FindGO<Timer>("timer");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
 	//m_game = FindGO<Game>("game");
@@ -36,7 +37,7 @@ void GameClear::Update()
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
 		//タイトルのオブジェクトをつくる
-		NewGO<Title>(0, "title");
+		NewGO<StageSelect>(0, "stageSelect");
 		DeleteGO(m_timer);
 		DeleteGO(m_score);
 		//自身を削除する

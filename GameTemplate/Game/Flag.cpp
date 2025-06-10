@@ -1,24 +1,26 @@
 #include "stdafx.h"
-#include "Chest.h"
+#include "Flag.h"
 #include "Game.h"
 #include "Score.h"
 #include "Timer.h" 
 #include "Player.h"
 #include "GameClear.h"
-#include "Stage.h"
+#include "Stage01.h"
+#include "Stage03.h"
+#include "Stage04.h"
 #include "Transform.h"
 
-Chest::Chest()
+Flag::Flag()
 {
 	m_transform = new Transform();
 }
 
-Chest::~Chest()
+Flag::~Flag()
 {
 	delete m_transform;
 }
 
-bool Chest::Start()
+bool Flag::Start()
 {
 	//モデルの表示。
 	m_modelRender.Init("Assets/modelData/flag.tkm");
@@ -27,22 +29,37 @@ bool Chest::Start()
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
 	m_player = FindGO<Player>("player");
-	m_stage = FindGO<Stage>("stage");
+	m_stage01 = FindGO<Stage01>("stage01");
+	m_stage03 = FindGO<Stage03>("stage03");
+	m_stage04 = FindGO<Stage04>("stage04");
   
-	m_transform->SetParent(m_stage->m_transform);
+	switch (m_game->m_state)
+	{
+	case 1:
+		m_transform->SetParent(m_stage01->m_transform);
+		break;
+	case 2:
+		m_transform->SetParent(m_stage01->m_transform);
+		break;
+	case 3:
+		m_transform->SetParent(m_stage03->m_transform);
+		break;
+	case 4:
+		m_transform->SetParent(m_stage04->m_transform);
+		break;
+	case 5:
+		break;
+	}
 	return true;
 }
 
-void Chest::Update()
+void Flag::Update()
 {
-	//移動処理。
-	Move();
-
 	//更新処理。
 	m_transform->Update();
 
 	//絵描きさんの更新処理。
-	m_modelRender.Update();
+	UpdateModelRenderer();
 
 	//プレイヤーからチェストに向かうベクトルを計算。
 	Vector3	diff = m_player->rbPos - m_transform->m_position;
@@ -62,15 +79,17 @@ void Chest::Update()
 	}
 }
 
-void Chest::Move()
+void Flag::UpdateModelRenderer()
 {
 	//絵描きさんに座標を教える。
-	m_modelRender.SetPosition(m_transform->m_position);
-	m_modelRender.SetRotation(m_transform->m_rotation);
-	m_modelRender.SetScale(m_transform->m_scale);
+	m_modelRender.SetPosition(m_transform->GetPosition());
+	m_modelRender.SetRotation(m_transform->GetRotation());
+	m_modelRender.SetScale(m_transform->GetScale());
+	//絵描きさんの更新処理。
+	m_modelRender.Update();
 }
 
-void Chest::Render(RenderContext& rc)
+void Flag::Render(RenderContext& rc)
 {
 	//描画する。
 	m_modelRender.Draw(rc);

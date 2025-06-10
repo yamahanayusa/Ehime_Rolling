@@ -1,37 +1,25 @@
 #pragma once
-
 class Player;
 class Transform;
-
-class Stage : public IGameObject
+class Stage03 : public IGameObject
 {
 public:
-	Stage();
-	~Stage();
-	//スタート
+	Stage03();
+	~Stage03();
 	bool Start();
-	//アップデート
 	void Update();
-	//回転処理
 	void Rotation();
-	//レンダー
 	void Render(RenderContext& rc);
-
 	Transform* GetTransform()
 	{
 		return m_transform;
 	}
-
-	/// <summary>
-	/// ワールド行列を取得する
-	/// </summary>
 	Matrix GetWorldMatrix() const
 	{
 		return m_modelRender.GetWorldMatrix(0);
 	}
-
-	Vector3	m_scale = Vector3::One;//大きさ。
-	//回転を設定する
+	Vector3	m_scale = Vector3::One;//�傫���B
+	//��]��ݒ肷��
 	Quaternion addRot;
 	Quaternion addLot;
 	Transform* m_transform;
@@ -40,3 +28,7 @@ private:
 	PhysicsStaticObject m_Object;
 	Player* m_player = nullptr;
 };
+
+
+
+

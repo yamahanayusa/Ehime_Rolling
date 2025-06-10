@@ -58,7 +58,7 @@ void Transform::Update()
 
 		// ‰ñ“]
 		m_rotation = m_localRotation;
-		m_rotation.Add(m_parent->m_rotation);
+		m_rotation.Multiply(m_parent->m_rotation);
 	}
 
 	else

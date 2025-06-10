@@ -16,10 +16,9 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TimeOver.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="Chest.cpp" />
+    <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameClear.cpp" />
-    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -27,6 +26,11 @@
     <ClCompile Include="Bumper.cpp" />
     <ClCompile Include="sandFloor.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="StageManager.cpp" />
+    <ClCompile Include="StageSelect.cpp" />
+    <ClCompile Include="Stage01.cpp" />
+    <ClCompile Include="Stage03.cpp" />
+    <ClCompile Include="Stage04.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -38,17 +42,20 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="TimeOver.h" />
     <ClInclude Include="Score.h" />
-    <ClInclude Include="Chest.h" />
+    <ClInclude Include="Flag.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="GameClear.h" />
-    <ClInclude Include="Stage.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="IceFloor.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Bumper.h" />
     <ClInclude Include="sandFloor.h" />
-    <ClInclude Include="ItemMotion.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="StageManager.h" />
+    <ClInclude Include="StageSelect.h" />
+    <ClInclude Include="Stage01.h" />
+    <ClInclude Include="Stage03.h" />
+    <ClInclude Include="Stage04.h" />
   </ItemGroup>
 </Project>

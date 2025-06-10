@@ -1,42 +1,35 @@
 #include "stdafx.h"
-#include "Stage.h"
+#include "Stage04.h"
 #include "Player.h"
 #include "Transform.h"
 
-Stage::Stage()
+Stage04::Stage04()
 {
-	m_transform = new Transform();
+	m_transform = new Transform(); // Transform‚Ì¶¬
 }
-
-Stage::~Stage()
+Stage04::~Stage04()
 {
-	delete m_transform;
+	delete m_transform; // Transform‚Ìíœ
 }
-
-bool Stage::Start()
+bool Stage04::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage1.tkm");
-	//m_modelRender.Init("Assets/Stage/stage3.tkm");
+	m_modelRender.Init("Assets/Stage/stage4.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	return true;
 }
-
-
-void Stage::Update()
+void Stage04::Update()
 {
-	m_transform->Update();
-
-	//å›è»¢å‡¦ç†
+	// ‰ñ“]ˆ—
 	Rotation();
-
-	//ãƒ¢ãƒ‡ãƒ«ã®æ›´æ–°å‡¦ç†ã€‚
+	// XVˆ—
+	m_transform->Update();
+	// ƒ‚ƒfƒ‹‚ÌXVˆ—
 	m_modelRender.Update();
 }
-
-void Stage::Rotation()
+void Stage04::Rotation()
 {
-	// èƒŒæ™¯ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç©ºé–“ã«ç§»å‹•ã•ã›ã‚‹è¡Œåˆ—ã‚’è¨ˆç®—ã™ã‚‹
+	// ”wŒi‚ğƒvƒŒƒCƒ„[‹óŠÔ‚ÉˆÚ“®‚³‚¹‚és—ñ‚ğŒvZ‚·‚é
 	Matrix mBias, mRot, mBiasInv, mFinal;
 
 	if (m_player == nullptr) {
@@ -46,30 +39,30 @@ void Stage::Rotation()
 		return;
 	}
 
-	// èƒŒæ™¯ã®å›è»¢
-	//å·¦å³æ–¹å‘ã®å‚¾ã
+	// ”wŒi‚Ì‰ñ“]
+	//¶‰E•ûŒü‚ÌŒX‚«
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
 	addRot.SetRotation(forwardXZ, g_pad[0]->GetLStickXF() * -0.006f);
-	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒåŸç‚¹ã«æ¥ã‚‹ã‚ˆã†ã«èƒŒæ™¯ã‚’å‹•ã‹ã™è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
+	// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ªŒ´“_‚É—ˆ‚é‚æ‚¤‚É”wŒi‚ğ“®‚©‚·s—ñ‚ğì¬‚·‚é
 	mBias.MakeTranslation(m_player->m_ballPosition * -1.0f);
 	mBiasInv = mBias;
-	// å‹•ã‹ã—ãŸèƒŒæ™¯ã‚’ã‚‚ã¨ã«æˆ»ã™è¡Œåˆ—ã‚’ä½œæˆ
+	// “®‚©‚µ‚½”wŒi‚ğ‚à‚Æ‚É–ß‚·s—ñ‚ğì¬
 	mBiasInv.Inverse();
-	// è¿½åŠ ã§å›è»¢ã•ã›ã‚‹è¡Œåˆ—ã‚’ä½œæˆ
+	// ’Ç‰Á‚Å‰ñ“]‚³‚¹‚és—ñ‚ğì¬
 	mRot.MakeRotationFromQuaternion(addRot);
-	// ç§»å‹•ã•ã›ãŸèƒŒæ™¯ã‚’å›è»¢ã•ã›ã‚‹
+	// ˆÚ“®‚³‚¹‚½”wŒi‚ğ‰ñ“]‚³‚¹‚é
 	mFinal.Multiply(mBias, mRot);
-	// èƒŒæ™¯ã®ä½ç½®ã‚’æˆ»ã™
+	// ”wŒi‚ÌˆÊ’u‚ğ–ß‚·
 	mFinal.Multiply(mFinal, mBiasInv);
 
-	// æœ€çµ‚çš„ã«å‡ºæ¥ä¸ŠãŒã£ãŸè¡Œåˆ—ã‹ã‚‰å›è»¢ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ä½œã‚‹
+	// ÅI“I‚Éo—ˆã‚ª‚Á‚½s—ñ‚©‚ç‰ñ“]ƒNƒH[ƒ^ƒjƒIƒ“‚ğì‚é
 	addRot.SetRotation(mFinal);
 
 	m_transform->m_localRotation.Multiply(addRot);
 
-	//ä¸Šä¸‹æ–¹å‘ã®å‚¾ã
+	//ã‰º•ûŒü‚ÌŒX‚«
 	Vector3 rightXZ = g_camera3D->GetRight();
 	rightXZ.y = 0.0f;
 	rightXZ.Normalize();
@@ -84,12 +77,11 @@ void Stage::Rotation()
 	//
 	m_Object.GetBody()->SetPositionAndRotation(Vector3::Zero, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
-	//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+	//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[‚ÌƒAƒbƒvƒf[ƒg
 	m_modelRender.Update();
 }
-
-void Stage::Render(RenderContext& rc)
+void Stage04::Render(RenderContext& rc)
 {
-	//ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹
+	//ƒ‚ƒfƒ‹‚Ì•`‰æ
 	m_modelRender.Draw(rc);
 }
