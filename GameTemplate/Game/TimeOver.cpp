@@ -2,6 +2,7 @@
 #include "TimeOver.h"
 #include "Title.h"
 #include "Game.h"
+#include "StageSelect.h"
 
 TimeOver::TimeOver()
 {
@@ -27,7 +28,7 @@ void TimeOver::Update()
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
 		//タイトルのオブジェクトをつくる
-		NewGO<Title>(0, "title");
+		NewGO<StageSelect>(0, "stageSelect");
 		//自身を削除する
 		DeleteGO(this);
 		DeleteGO(m_game);

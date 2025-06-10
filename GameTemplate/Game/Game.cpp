@@ -9,7 +9,9 @@
 #include "GameOver.h"
 #include "GameClear.h"
 #include "GameCamera.h"
-#include "Stage.h"
+#include "Stage01.h"
+#include "Stage03.h"
+#include "Stage04.h"
 #include "Player.h"
 #include "IceFloor.h"
 #include "Transform.h"
@@ -34,7 +36,9 @@ Game::~Game()
 	DeleteGO(m_falg);  
 	DeleteGO(m_player);
 	DeleteGO(m_gameCamera);
-	DeleteGO(m_stage);
+	DeleteGO(m_stage01);
+	DeleteGO(m_stage03);
+	DeleteGO(m_stage04);
 	DeleteGO(m_iceFloor);
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
@@ -48,13 +52,32 @@ bool Game::Start()
 {
 	g_camera3D->SetPosition({ 0.0f, 100.0f, -600.0f });
 	GameStateUpdate();
-	Stage1();
-	//Stage3();
-	//Stage4();
+	switch (m_state)
+	{
+	case 1:
+		Stage1();
+		break;
+	case 2:
+		Stage1(); // ステージ2のレベルデータがないため、仮でステージ3をロード
+		break;
+	case 3:
+		Stage3();
+		break;
+	case 4:
+		Stage4(); // ステージ4のレベルデータがないため、仮でステージ3をロード
+		break;
+	case 5:
+		Stage3(); // ステージ5のレベルデータがないため、仮でステージ3をロード
+		break;
+	default:
+		// デフォルトのステージをロード (例: ステージ1)
+		Stage1();
+		break;
+	}
 	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
-	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-2000.0f,0.0f });
+	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-1800.0f,0.0f });
 	//BGM.
 	//g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
 	m_soundSource = NewGO<SoundSource>(0);
@@ -108,10 +131,10 @@ void Game::Stage1()
 	m_levelRender.Init("Assets/level3D/stage1Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
 		if (objData.EqualObjectName(L"ground") == true) {
-			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->GetTransform()->m_localPosition.Set(objData.position);
-			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+			m_stage01 = NewGO<Stage01>(0, "stage01");
+			m_stage01->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage01->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage01->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//ゴール
@@ -142,10 +165,10 @@ void Game::Stage3()
 	m_levelRender.Init("Assets/level3D/stage3Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
 		if (objData.EqualObjectName(L"ground") == true) {
-			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->GetTransform()->m_localPosition.Set(objData.position);
-			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+			m_stage03 = NewGO<Stage03>(0, "stage03");
+			m_stage03->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage03->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage03->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//氷の床
@@ -184,10 +207,10 @@ void Game::Stage4()
 	m_levelRender.Init("Assets/level3D/stage4Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
 		if (objData.EqualObjectName(L"ground") == true) {
-			m_stage = NewGO<Stage>(0, "stage");
-			m_stage->GetTransform()->m_localPosition.Set(objData.position);
-			m_stage->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_stage->GetTransform()->m_localScale.Set(objData.scale);
+			m_stage04 = NewGO<Stage04>(0, "stage04");
+			m_stage04->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage04->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage04->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 		//砂の床

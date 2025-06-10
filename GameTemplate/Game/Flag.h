@@ -5,7 +5,9 @@ class Score;
 class Timer;
 class Player;
 class Transform;
-class Stage;
+class Stage01;
+class Stage03;
+class Stage04;
 
 class Flag :public IGameObject
 {
@@ -26,7 +28,9 @@ public:
 	Score*						m_score = nullptr;						//スコア。
     Timer*						m_timer = nullptr;						//タイマー。
 	Player*						m_player = nullptr;						//プレイヤー。
-	Stage*						m_stage = nullptr;						//ステージ。
+    Stage01* m_stage01 = nullptr;
+	Stage03* m_stage03 = nullptr;						//ステージ。
+	Stage04* m_stage04 = nullptr;					//ステージ。
 
 	ModelRender					m_modelRender;								//モデルレンダ―。
     int							m_tortalScore = 0;

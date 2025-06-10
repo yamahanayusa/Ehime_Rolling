@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "sandFloor.h"
-#include "stage.h"
+#include "stage04.h"
+#include"Player.h"
 #include "transform.h"
 
 SandFloor::SandFloor()
@@ -18,20 +19,39 @@ bool SandFloor::Start()
 	m_modelRender.Init("Assets/modelData/sandFloor.tkm");
 	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
-	m_stage = FindGO<Stage>("stage");
+	m_stage04 = FindGO<Stage04>("stage04");
 
-	m_transform->SetParent(m_stage->m_transform);
+	m_transform->SetParent(m_stage04->m_transform);
 
 	return true;
 }
 
 void SandFloor::Update()
 {
+	Slide();
 	//更新処理。
 	m_transform->Update();
 
 	//絵描きさんの更新処理。
 	UpdateModelRenderer();
+}
+
+void SandFloor::Slide()
+{
+	if (m_player == nullptr) {
+		m_player = FindGO<Player>("player");
+	}
+	if (m_player == nullptr) {
+		return;
+	}
+	//プレイヤーと砂の床の距離感を求める
+	Vector3 distance = m_player->rbPos - m_position;
+	if (distance.Length() < 150.0f)
+	{
+		m_player->rbInitData.mass = 10000000.0f;
+		m_player->rbInitData.restitution = -1000000;
+		m_player->m_rigidBody.SetFriction(100000000);
+	}
 }
 
 void SandFloor::UpdateModelRenderer()

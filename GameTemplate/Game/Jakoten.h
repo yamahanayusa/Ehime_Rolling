@@ -4,7 +4,7 @@ class Player;
 class Score;
 class Timer;
 class Mikan;
-class Stage;
+class Stage03;
 class Transform;
 class Jakoten :public IGameObject
 {
@@ -37,7 +37,7 @@ private:
 	Player*						m_player = nullptr;
 	Score*						m_score = nullptr;
 	Timer*						m_timer = nullptr;
-	Stage*						m_stage	=nullptr;
+	Stage03*						m_stage03	=nullptr;
 	Transform*					m_transform=nullptr;
 
 	//モデル表示系。

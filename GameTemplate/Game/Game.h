@@ -12,7 +12,9 @@ class GameOver;
 class GameClear;
 class GameCamera;
 class Title;
-class Stage;
+class Stage01;
+class Stage03;
+class Stage04;
 class IceFloor;
 class Transform;
 class Jakoten;
@@ -42,7 +44,7 @@ public:
 		enGameOver
 	};
 	EnGameState m_gameState = enTitle;
-
+	int m_state;
 private:
 	LevelRender m_levelRender;
 
@@ -55,7 +57,9 @@ private:
 	GameClear*				m_gameClear;
 	Score*					m_score;
 	Kiwi*					m_kiwi = nullptr;
-	Stage*					m_stage	= nullptr;
+	Stage01*					m_stage01	= nullptr;
+	Stage03* m_stage03 = nullptr;
+	Stage04* m_stage04 = nullptr;
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
 	IceFloor*				m_iceFloor = nullptr;

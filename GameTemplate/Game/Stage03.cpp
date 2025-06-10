@@ -1,42 +1,36 @@
 #include "stdafx.h"
-#include "Stage.h"
+#include "Stage03.h"
 #include "Player.h"
 #include "Transform.h"
 
-Stage::Stage()
+Stage03::Stage03()
 {
 	m_transform = new Transform();
 }
 
-Stage::~Stage()
+Stage03::~Stage03()
 {
 	delete m_transform;
 }
-
-bool Stage::Start()
+bool Stage03::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage1.tkm");
-	//m_modelRender.Init("Assets/Stage/stage3.tkm");
-	//m_modelRender.Init("Assets/Stage/stage4.tkm");
+	m_modelRender.Init("Assets/Stage/stage3.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
-
 	return true;
 }
 
-void Stage::Update()
+void Stage03::Update()
 {
-	//回転処理
+	//��]����
 	Rotation();
-
 	m_transform->Update();
-
-	//モデルの更新処理。
+	//���f���̍X�V�����B
 	m_modelRender.Update();
 }
 
-void Stage::Rotation()
+void Stage03::Rotation()
 {
-	// 背景をプレイヤー空間に移動させる行列を計算する
+	// �w�i���v���C���[��ԂɈړ�������s����v�Z����
 	Matrix mBias, mRot, mBiasInv, mFinal;
 
 	if (m_player == nullptr) {
@@ -51,8 +45,8 @@ void Stage::Rotation()
 	mRot.MakeRotationFromQuaternion(m_transform->m_localRotation);
 	mWorld = mRot * mTrans;
 	
-	// 背景の回転
-	//左右方向の傾き
+	// �w�i�̉�]
+	//���E�����̌X��
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
@@ -85,12 +79,10 @@ void Stage::Rotation()
 	m_Object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
 	m_modelRender.SetPosition(m_transform->m_localPosition);
-	//モデルレンダーのアップデート
+	//���f�������_�[�̃A�b�v�f�[�g
 	m_modelRender.Update();
 }
-
-void Stage::Render(RenderContext& rc)
+void Stage03::Render(RenderContext& rc)
 {
-	//モデルを描画する
 	m_modelRender.Draw(rc);
 }
