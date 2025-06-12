@@ -2,69 +2,118 @@
 #include "Transform.h"
 
 Transform::Transform()
+	:m_position(Vector3::Zero)
+	, m_localPosition(Vector3::Zero)
+	, m_scale(Vector3::One)
+	, m_localScale(Vector3::One)
+	, m_rotation(Quaternion::Identity)
+	, m_localRotation(Quaternion::Identity)
+	, m_rotationMatrix(Matrix::Identity)
+	, m_worldMatrix(Matrix::Identity)
+	, m_parent(nullptr)
 {
-
+	m_children.clear();
 }
 
 Transform::~Transform()
 {
-
-}
-
-bool Transform::Start()
-{
-	return true;
-}
-
-void Transform::Update()
-{
-	//親がいるなら。
-	if (m_parent != nullptr) 
-	{
-		// 親のワールド行列を取得。
-		Matrix mStageParentMat;		//親の回転拡大行列
-		Matrix mParentTransMat;		//親の平行移動行列
-		Matrix mParentScalMat;		//親の回転行列
-		Matrix mParentRotMat;		//親の拡大行列
-		Matrix mParentWorldMat;		//親のワールド行列
-		
-		mParentTransMat.MakeTranslation(m_parent->m_position);
-		mParentScalMat.MakeScaling(m_parent->m_scale);
-		mParentRotMat.MakeRotationFromQuaternion(m_parent->m_rotation);
-		mStageParentMat.Multiply(mParentScalMat, mParentRotMat);
-		mParentWorldMat.Multiply(mStageParentMat, mParentTransMat);
-
-		////自分のローカル座標* 親のワールド行列。
-		//mStageParentMat.Multiply(mStageParentMat, mTrans);
-		////自分のローカルスケール*親のスケール。
-		//mStageParentMat.Multiply(mStageParentMat, mScale);
-		////自分のローカル回転*親の回転。
-		//mStageParentMat.Multiply(mStageParentMat, mRot);
-
-		//平行移動行列を作成。
-		// 親のワールド行列に自身の平行移動行列を足して、ワールド座標を取得するため。
-		Matrix mTrans;
-		mTrans.MakeTranslation(m_localPosition);
-		// 座標更新
-		Matrix pos;
-		pos.Multiply(mTrans, mStageParentMat);
-		m_position.Set(pos.m[3][0], pos.m[3][1], pos.m[3][2]);
-
-		// 拡縮
-		m_scale = m_localScale;
-		m_scale.x *= m_parent->m_scale.x;
-		m_scale.y *= m_parent->m_scale.y;
-		m_scale.z *= m_parent->m_scale.z;
-
-		// 回転
-		m_rotation = m_localRotation;
-		m_rotation.Multiply(m_parent->m_rotation);
+	if (m_parent) {
+		m_parent->RemoveChild(this);
 	}
+	Release();
+}
 
+void Transform::UpdateTransform()
+{
+
+	if (m_parent) {
+		//座標計算
+		Matrix localPos;
+		localPos.MakeTranslation(m_localPosition);
+
+		Matrix pos;
+		pos.Multiply(localPos, m_parent->m_worldMatrix);
+
+		//多分平行移動の部分を取ってるだけ
+		m_position.x = pos.m[3][0];
+		m_position.y = pos.m[3][1];
+		m_position.z = pos.m[3][2];
+
+		//スケール
+		m_scale.x = m_localScale.x * m_parent->m_scale.x;
+		m_scale.y = m_localScale.y * m_parent->m_scale.y;
+		m_scale.z = m_localScale.z * m_parent->m_scale.z;
+
+		//回転
+		m_rotation = m_parent->m_rotation * m_localRotation;
+
+	}
 	else
 	{
+		//ローカルの値をそのままコピー
 		m_position = m_localPosition;
 		m_scale = m_localScale;
 		m_rotation = m_localRotation;
+	}
+
+	//回転行列
+	m_rotationMatrix.MakeRotationFromQuaternion(m_rotation);
+	//ワールド行列更新
+	UpdateWorldMatrix();
+}
+
+void Transform::UpdateWorldMatrix()
+{
+	Matrix scal, pos, world;
+	scal.MakeScaling(m_scale);
+	pos.MakeTranslation(m_position);
+
+	world.Multiply(scal, m_rotationMatrix);
+	m_worldMatrix.Multiply(world, pos);
+
+	//子も更新
+	for (Transform* child : m_children)
+	{
+		child->UpdateTransform();
+	}
+}
+
+
+void Transform::Release()
+{
+	//イテレータ生成
+	std::vector<Transform*>::iterator it = m_children.begin();
+	//vectorの終わりまで回す
+	while (it != m_children.end())
+	{
+		//子トランスフォームからの紐づけを外す
+		(*it)->m_parent = nullptr;
+		//子トランスフォームへの紐づけを外す
+		it = m_children.erase(it);
+	}
+	//念のためvectorの要素を全削除
+	m_children.clear();
+}
+
+void Transform::RemoveChild(Transform* t)
+{
+	//イテレータ生成
+	std::vector<Transform*>::iterator it = m_children.begin();
+	//vectorを回す
+	while (it != m_children.end())
+	{
+		//イテレータから子トランスフォームのポインタを受け取る
+		Transform* child = (*it);
+		//受け取った子トランスフォームがしてされた物なら
+		if (child == t)
+		{
+			//紐づけを外す
+			child->m_parent = nullptr;
+			m_children.erase(it);
+			//処理を終了
+			return;
+		}
+		//イテレータを進める
+		++it;
 	}
 }

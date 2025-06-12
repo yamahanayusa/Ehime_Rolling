@@ -24,12 +24,12 @@
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Mikan.cpp" />
-    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Jakoten.cpp" />
     <ClCompile Include="Bumper.cpp" />
     <ClCompile Include="sandFloor.cpp" />
     <ClCompile Include="Kiwi.cpp" />
     <ClCompile Include="StageManager.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -49,11 +49,11 @@
     <ClInclude Include="IceFloor.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Mikan.h" />
-    <ClInclude Include="Transform.h" />
     <ClInclude Include="Jakoten.h" />
     <ClInclude Include="Bumper.h" />
     <ClInclude Include="sandFloor.h" />
     <ClInclude Include="Kiwi.h" />
     <ClInclude Include="StageManager.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
 </Project>

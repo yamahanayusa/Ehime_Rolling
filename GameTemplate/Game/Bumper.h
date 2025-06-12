@@ -3,6 +3,7 @@ class Game;
 class Player;
 class Stage;
 class Transform;
+
 class Bumper:public IGameObject
 {
 public:

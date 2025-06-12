@@ -40,7 +40,7 @@ void Kiwi::Update()
 	m_player = FindGO<Player>("player");
 
 	//更新処理。
-	m_transform->Update();
+	m_transform->UpdateTransform();
 
 	//絵描きさんの更新処理。
 	UpdateModelRenderer();
@@ -85,9 +85,9 @@ void Kiwi::Update()
 void Kiwi::UpdateModelRenderer()
 {
 	//絵描きさんに座標を教える。
-	m_modelRender.SetPosition(m_transform->GetPosition());
-	m_modelRender.SetRotation(m_transform->GetRotation());
-	m_modelRender.SetScale(m_transform->GetScale());
+	m_modelRender.SetPosition(m_transform->m_position);
+	m_modelRender.SetRotation(m_transform->m_rotation);
+	m_modelRender.SetScale(m_transform->m_scale);
 	//絵描きさんの更新処理。
 	m_modelRender.Update();
 }
