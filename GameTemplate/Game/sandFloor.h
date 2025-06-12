@@ -1,6 +1,7 @@
 #pragma once
 
-class Stage;
+class Player;
+class Stage04;
 class Transform;
 
 class SandFloor : public IGameObject
@@ -10,6 +11,7 @@ public:
 	~ SandFloor();
 	bool Start();
 	void Update();
+	void Slide();
 	void UpdateModelRenderer();			//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
 	void Render(RenderContext& rc);
 
@@ -19,9 +21,11 @@ public:
 	}
 
 private:
-	Stage*					m_stage = nullptr;
+	Stage04*					m_stage04 = nullptr;
 	Transform*				m_transform = nullptr;
+	Player* m_player = nullptr;
 
+	Vector3 			m_position;
 	PhysicsStaticObject		m_object;
 	ModelRender				m_modelRender;
 };

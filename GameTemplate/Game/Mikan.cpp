@@ -4,7 +4,9 @@
 #include "Score.h"
 #include "Timer.h" 
 #include "Player.h"
-#include "Stage.h"
+#include "Stage01.h"
+#include "Stage03.h"
+#include "Stage04.h"
 #include "Transform.h"
 
 namespace {
@@ -30,9 +32,27 @@ bool Mikan::Start()
 
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
-	m_stage = FindGO<Stage>("stage");
+	m_stage01 = FindGO<Stage01>("stage01");
+	m_stage03 = FindGO<Stage03>("stage03");
+	m_stage04 = FindGO<Stage04>("stage04");
 
-	m_transform->SetParent(m_stage->m_transform);
+	switch (m_game->m_state)
+	{
+	case 1:
+		m_transform->SetParent(m_stage01->m_transform);
+		break;
+	case 2:
+		m_transform->SetParent(m_stage01->m_transform);
+		break;
+	case 3:
+		m_transform->SetParent(m_stage03->m_transform);
+		break;
+	case 4:
+		m_transform->SetParent(m_stage04->m_transform);
+		break;
+	case 5:
+		break;
+	}
 	return true;
 }
 

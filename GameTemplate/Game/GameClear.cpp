@@ -5,6 +5,7 @@
 #include "Score.h"
 #include "Flag.h"
 #include "Timer.h"
+#include "StageSelect.h"
 
 GameClear::GameClear()
 {
@@ -36,7 +37,7 @@ void GameClear::Update()
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
 		//タイトルのオブジェクトをつくる
-		NewGO<Title>(0, "title");
+		NewGO<StageSelect>(0, "stageSelect");
 		DeleteGO(m_timer);
 		DeleteGO(m_score);
 		//自身を削除する

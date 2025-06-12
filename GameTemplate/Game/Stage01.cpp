@@ -1,25 +1,28 @@
 #include "stdafx.h"
-#include "Stage.h"
+#include "Stage01.h"
 #include "Player.h"
 #include "Transform.h"
 
-Stage::Stage()
+//�ǉ�
+
+Stage01::Stage01()
 {
 	m_transform = new Transform();
 }
 
-Stage::~Stage()
+Stage01::~Stage01()
 {
 	delete m_transform;
 }
-bool Stage::Start()
+
+bool Stage01::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage4.tkm");
+	m_modelRender.Init("Assets/Stage01/stage1.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	return true;
 }
 
-void Stage::Update()
+void Stage01::Update()
 {
 	//��]����
 	Rotation();
@@ -27,12 +30,10 @@ void Stage::Update()
 	//���f���̍X�V�����B
 	m_modelRender.Update();
 }
-
-void Stage::Rotation()
+void Stage01::Rotation()
 {
 	// �w�i���v���C���[��ԂɈړ�������s����v�Z����
 	Matrix mBias, mRot, mBiasInv, mFinal;
-
 	if (m_player == nullptr) {
 		m_player = FindGO<Player>("player");
 	}
@@ -83,7 +84,7 @@ void Stage::Rotation()
 	//���f�������_�[�̃A�b�v�f�[�g
 	m_modelRender.Update();
 }
-void Stage::Render(RenderContext& rc)
+void Stage01::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);
 }

@@ -4,7 +4,7 @@
 #include "Score.h"
 #include "Timer.h" 
 #include "Player.h"
-#include "Stage.h"
+#include "Stage04.h"
 #include "Transform.h"
 
 namespace {
@@ -30,8 +30,8 @@ bool Kiwi::Start()
 	
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
-	m_stage = FindGO<Stage>("stage");
-	m_transform->SetParent(m_stage->m_transform);
+	m_stage04 = FindGO<Stage04>("stage04");
+	m_transform->SetParent(m_stage04->m_transform);
 	return true;
 }
 

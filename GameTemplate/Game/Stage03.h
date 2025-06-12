@@ -1,11 +1,11 @@
 #pragma once
 class Player;
 class Transform;
-class Stage : public IGameObject
+class Stage03 : public IGameObject
 {
 public:
-	Stage();
-	~Stage();
+	Stage03();
+	~Stage03();
 	bool Start();
 	void Update();
 	void Rotation();

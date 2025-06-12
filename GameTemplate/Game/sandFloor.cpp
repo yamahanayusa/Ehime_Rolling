@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "sandFloor.h"
-#include "stage.h"
-#include "Transform.h"
+#include "stage04.h"
+#include"Player.h"
+#include "transform.h"
 
 SandFloor::SandFloor()
 {
@@ -18,30 +19,49 @@ bool SandFloor::Start()
 	m_modelRender.Init("Assets/modelData/sandFloor.tkm");
 	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
-	m_stage = FindGO<Stage>("stage");
+	m_stage04 = FindGO<Stage04>("stage04");
 
-	m_transform->SetParent(m_stage->m_transform);
+	m_transform->SetParent(m_stage04->m_transform);
 
 	return true;
 }
 
 void SandFloor::Update()
 {
-	//XVˆ—B
+	Slide();
+	//ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½B
 	m_transform->UpdateTransform();
 
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//ï¿½Gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌXï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½B
 	UpdateModelRenderer();
+}
+
+void SandFloor::Slide()
+{
+	if (m_player == nullptr) {
+		m_player = FindGO<Player>("player");
+	}
+	if (m_player == nullptr) {
+		return;
+	}
+	//ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Æï¿½ï¿½Ìï¿½ï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½
+	Vector3 distance = m_player->rbPos - m_position;
+	if (distance.Length() < 150.0f)
+	{
+		m_player->rbInitData.mass = 10000000.0f;
+		m_player->rbInitData.restitution = -1000000;
+		m_player->m_rigidBody.SetFriction(100000000);
+	}
 }
 
 void SandFloor::UpdateModelRenderer()
 {
-	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
+	//ï¿½Gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 	m_modelRender.SetPosition(m_transform->m_position);
 	m_modelRender.SetRotation(m_transform->m_rotation);
 	m_modelRender.SetScale(m_transform->m_scale);
 	m_object.SetPositionAndRotation(m_transform->m_position, m_transform->m_rotation);
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//ï¿½Gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌXï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½B
 	m_modelRender.Update();
 }
 
