@@ -1,34 +1,34 @@
 #include "stdafx.h"
-#include "Stage03.h"
+#include "Stage.h"
 #include "Player.h"
 #include "Transform.h"
 
-Stage03::Stage03()
+Stage::Stage()
 {
 	m_transform = new Transform();
 }
 
-Stage03::~Stage03()
+Stage::~Stage()
 {
 	delete m_transform;
 }
-bool Stage03::Start()
+bool Stage::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage3.tkm");
+	m_modelRender.Init("Assets/Stage/stage4.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	return true;
 }
 
-void Stage03::Update()
+void Stage::Update()
 {
 	//��]����
 	Rotation();
-	m_transform->Update();
+	m_transform->UpdateTransform();
 	//���f���̍X�V�����B
 	m_modelRender.Update();
 }
 
-void Stage03::Rotation()
+void Stage::Rotation()
 {
 	// �w�i���v���C���[��ԂɈړ�������s����v�Z����
 	Matrix mBias, mRot, mBiasInv, mFinal;
@@ -79,10 +79,11 @@ void Stage03::Rotation()
 	m_Object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
 	m_modelRender.SetPosition(m_transform->m_localPosition);
+	m_transform->UpdateTransform();
 	//���f�������_�[�̃A�b�v�f�[�g
 	m_modelRender.Update();
 }
-void Stage03::Render(RenderContext& rc)
+void Stage::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);
 }
