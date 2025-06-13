@@ -5,6 +5,7 @@
 #include "Timer.h" 
 #include "Player.h"
 #include "Stage04.h"
+#include "Stage05.h"
 #include "Transform.h"
 
 namespace {
@@ -31,7 +32,17 @@ bool Kiwi::Start()
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
 	m_stage04 = FindGO<Stage04>("stage04");
-	m_transform->SetParent(m_stage04->m_transform);
+	m_stage05 = FindGO<Stage05>("stage05");
+	switch (m_game->m_state)
+	{
+	case 4:
+		m_transform->SetParent(m_stage04->m_transform);
+		break;
+	case 5:
+		m_transform->SetParent(m_stage05->m_transform);
+		break;
+	}
+
 	return true;
 }
 
@@ -47,7 +58,7 @@ void Kiwi::Update()
 
 	if (m_isCollected) {
 		m_flyUpTimer += g_gameTime->GetFrameDeltaTime();
-		m_transform->m_position.y += m_velocity.y * g_gameTime->GetFrameDeltaTime();
+		m_transform->m_localPosition.y += m_velocity.y * g_gameTime->GetFrameDeltaTime();
 		m_velocity.y -= 2000.0f * g_gameTime->GetFrameDeltaTime(); // d—Í
 
 		if (m_flyUpTimer >= FLY_UP_TIME) {
