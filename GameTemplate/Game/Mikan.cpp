@@ -5,6 +5,7 @@
 #include "Timer.h" 
 #include "Player.h"
 #include "Stage01.h"
+#include "Stage02.h"
 #include "Stage03.h"
 #include "Stage04.h"
 #include "Stage05.h"
@@ -34,6 +35,7 @@ bool Mikan::Start()
 	m_game = FindGO<Game>("game");
 	m_score = FindGO<Score>("score");
 	m_stage01 = FindGO<Stage01>("stage01");
+	m_stage02 = FindGO<Stage02>("stage02");
 	m_stage03 = FindGO<Stage03>("stage03");
 	m_stage04 = FindGO<Stage04>("stage04");
 	m_stage05 = FindGO<Stage05>("stage05");
@@ -44,7 +46,7 @@ bool Mikan::Start()
 		m_transform->SetParent(m_stage01->m_transform);
 		break;
 	case 2:
-		m_transform->SetParent(m_stage01->m_transform);
+		m_transform->SetParent(m_stage02->m_transform);
 		break;
 	case 3:
 		m_transform->SetParent(m_stage03->m_transform);

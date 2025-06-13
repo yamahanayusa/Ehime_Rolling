@@ -6,6 +6,7 @@ class Timer;
 class Player;
 class Transform;
 class Stage01;
+class Stage02;
 class Stage03;
 class Stage04;
 class Stage05;
@@ -30,6 +31,7 @@ public:
     Timer*						m_timer = nullptr;						//タイマー。
 	Player*						m_player = nullptr;						//プレイヤー。
     Stage01* m_stage01 = nullptr;
+	Stage02* m_stage02 = nullptr;
 	Stage03* m_stage03 = nullptr;						//ステージ。
 	Stage04* m_stage04 = nullptr;					//ステージ。
 	Stage05* m_stage05 = nullptr;
