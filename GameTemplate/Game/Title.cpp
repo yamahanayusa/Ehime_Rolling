@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Score.h"
 #include "StageSelect.h"
+#include "Describe.h"
 
 Title::Title()
 {
@@ -25,7 +26,7 @@ void Title::Update()
 
 	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		m_stageSelect = NewGO<StageSelect>(0, "stageSelect");
+		m_describe = NewGO<Describe>(0, "describe");
 		DeleteGO(this);
 	}
 }

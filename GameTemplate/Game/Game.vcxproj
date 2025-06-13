@@ -224,6 +224,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Describe.cpp" />
     <ClCompile Include="Stage01.cpp" />
     <ClCompile Include="Stage03.cpp" />
     <ClCompile Include="Stage04.cpp" />
@@ -255,6 +256,7 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Describe.h" />
     <ClInclude Include="Stage01.h" />
     <ClInclude Include="Stage03.h" />
     <ClInclude Include="Stage04.h" />
