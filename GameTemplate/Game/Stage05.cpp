@@ -1,46 +1,37 @@
 #include "stdafx.h"
-#include "Stage01.h"
+#include "Stage05.h"
 #include "Player.h"
 #include "Transform.h"
-#include "CountDown.h"
 
-//ï¿½Ç‰ï¿½
-
-Stage01::Stage01()
+Stage05::Stage05()
 {
 	m_transform = new Transform();
 }
 
-Stage01::~Stage01()
+Stage05::~Stage05()
 {
 	delete m_transform;
 }
-
-bool Stage01::Start()
+bool Stage05::Start()
 {
-	m_modelRender.Init("Assets/Stage01/stage1.tkm");
+	m_modelRender.Init("Assets/Stage/stage5.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
-	m_countDown = FindGO<CountDown>("countDown");
-
 	return true;
 }
 
-void Stage01::Update()
+void Stage05::Update()
 {
-	if (m_countDown->GetShowGO()) {
-		return;
-	}
-	//ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½
-	//å›è»¢å‡¦ç†
+	//‰ñ“]ˆ—
 	Rotation();
-	//æ›´æ–°å‡¦ç†ã€‚
+	//XVˆ—B
 	m_transform->UpdateTransform();
-	//ãƒ¢ãƒ‡ãƒ«ã®æ›´æ–°å‡¦ç†ã€‚
+	//ƒ‚ƒfƒ‹‚ÌXVˆ—B
 	m_modelRender.Update();
 }
-void Stage01::Rotation()
+
+void Stage05::Rotation()
 {
-	// èƒŒæ™¯ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç©ºé–“ã«ç§»å‹•ã•ã›ã‚‹è¡Œåˆ—ã‚’è¨ˆç®—ã™ã‚‹
+	// ”wŒi‚ğƒvƒŒƒCƒ„[‹óŠÔ‚ÉˆÚ“®‚³‚¹‚és—ñ‚ğŒvZ‚·‚é
 	Matrix mBias, mRot, mBiasInv, mFinal;
 
 	if (m_player == nullptr) {
@@ -55,8 +46,8 @@ void Stage01::Rotation()
 	mRot.MakeRotationFromQuaternion(m_transform->m_localRotation);
 	mWorld = mRot * mTrans;
 
-	// èƒŒæ™¯ã®å›è»¢
-	//å·¦å³æ–¹å‘ã®å‚¾ã
+	// ”wŒi‚Ì‰ñ“]
+	//¶‰E•ûŒü‚ÌŒX‚«
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
@@ -68,31 +59,32 @@ void Stage01::Rotation()
 	Quaternion qAdd;
 	qAdd.Multiply(addRot, addLot);
 
-	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ãŒåŸç‚¹ã«æ¥ã‚‹ã‚ˆã†ã«èƒŒæ™¯ã‚’å‹•ã‹ã™
+	// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ªŒ´“_‚É—ˆ‚é‚æ‚¤‚É”wŒi‚ğ“®‚©‚·
 	Vector3 playerPos = m_player->m_ballPosition;
 	mWorld._41 -= playerPos.x;
 	mWorld._42 -= playerPos.y;
 	mWorld._43 -= playerPos.z;
 
-	// è¿½åŠ ã§å›è»¢ã•ã›ã‚‹è¡Œåˆ—ã‚’ä½œæˆ
+	// ’Ç‰Á‚Å‰ñ“]‚³‚¹‚és—ñ‚ğì¬
 	mRot.MakeRotationFromQuaternion(qAdd);
 	mWorld.Multiply(mWorld, mRot);
-	// èƒŒæ™¯ã®ä½ç½®ã‚’æˆ»ã™
+	// ”wŒi‚ÌˆÊ’u‚ğ–ß‚·
 	mWorld._41 += playerPos.x;
 	mWorld._42 += playerPos.y;
 	mWorld._43 += playerPos.z;
 
-	// æœ€çµ‚çš„ã«å‡ºæ¥ä¸ŠãŒã£ãŸè¡Œåˆ—ã‹ã‚‰å›è»¢ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’ä½œã‚‹]
+	// ÅI“I‚Éo—ˆã‚ª‚Á‚½s—ñ‚©‚ç‰ñ“]ƒNƒH[ƒ^ƒjƒIƒ“‚ğì‚é]
 	m_transform->m_localRotation.SetRotation(mWorld);
 	m_transform->m_localPosition.Set(mWorld._41, mWorld._42, mWorld._43);
 	//
 	m_Object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
 	m_modelRender.SetPosition(m_transform->m_localPosition);
-	//ãƒ¢ãƒ‡ãƒ«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+	//ƒ‚ƒfƒ‹ƒŒƒ“ƒ_[‚ÌƒAƒbƒvƒf[ƒg
 	m_modelRender.Update();
 }
-void Stage01::Render(RenderContext& rc)
+void Stage05::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);
 }
+

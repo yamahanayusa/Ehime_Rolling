@@ -4,7 +4,8 @@ class Player;
 class Score;
 class Timer;
 class Mikan;
-class Stage03;
+//class Stage03;
+class Stage05;
 class Transform;
 class Jakoten :public IGameObject
 {
@@ -27,18 +28,20 @@ public:
 		m_position = pos;
 	}
 
-	Vector3 GetPos()
-	{
-		return m_position;
-	}
+	//Vector3 GetPos()
+	//{
+	//	return m_position;
+	//}
 
 private:
 	//ポインタ系。
 	Player*						m_player = nullptr;
 	Score*						m_score = nullptr;
 	Timer*						m_timer = nullptr;
-	Stage03*						m_stage03	=nullptr;
+	//Stage03*						m_stage03	=nullptr;
+	Stage05* m_stage05 = nullptr;
 	Transform*					m_transform=nullptr;
+	Game* m_game;						//ゲーム。
 
 	//モデル表示系。
 	ModelRender					m_modelRender;						//モデルレンダ―。

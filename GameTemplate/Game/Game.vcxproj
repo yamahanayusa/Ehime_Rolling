@@ -225,9 +225,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CountDown.cpp" />
+    <ClCompile Include="Describe.cpp" />
     <ClCompile Include="Stage01.cpp" />
     <ClCompile Include="Stage03.cpp" />
     <ClCompile Include="Stage04.cpp" />
+    <ClCompile Include="Stage05.cpp" />
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="Bumper.cpp" />
     <ClCompile Include="Flag.cpp" />
@@ -257,9 +259,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CountDown.h" />
+    <ClInclude Include="Describe.h" />
     <ClInclude Include="Stage01.h" />
     <ClInclude Include="Stage03.h" />
     <ClInclude Include="Stage04.h" />
+    <ClInclude Include="Stage05.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="Bumper.h" />
     <ClInclude Include="Flag.h" />

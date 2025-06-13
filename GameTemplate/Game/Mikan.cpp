@@ -7,6 +7,7 @@
 #include "Stage01.h"
 #include "Stage03.h"
 #include "Stage04.h"
+#include "Stage05.h"
 #include "Transform.h"
 
 namespace {
@@ -35,6 +36,7 @@ bool Mikan::Start()
 	m_stage01 = FindGO<Stage01>("stage01");
 	m_stage03 = FindGO<Stage03>("stage03");
 	m_stage04 = FindGO<Stage04>("stage04");
+	m_stage05 = FindGO<Stage05>("stage05");
 
 	switch (m_game->m_state)
 	{
@@ -51,6 +53,7 @@ bool Mikan::Start()
 		m_transform->SetParent(m_stage04->m_transform);
 		break;
 	case 5:
+		m_transform->SetParent(m_stage05->m_transform);
 		break;
 	}
 	return true;
@@ -63,7 +66,7 @@ void Mikan::Update()
 	// 取得後のぶっ飛ばし処理
 	if (m_isCollected) {
 		m_flyUpTimer += g_gameTime->GetFrameDeltaTime();
-		m_transform->m_position.y += m_velocity.y * g_gameTime->GetFrameDeltaTime();
+		m_transform->m_localPosition.y += m_velocity.y * g_gameTime->GetFrameDeltaTime();
 		m_velocity.y -= 2000.0f * g_gameTime->GetFrameDeltaTime();	// 重力
 
 		//上昇時間がFLY_UP_TIMEを超えたら削除。

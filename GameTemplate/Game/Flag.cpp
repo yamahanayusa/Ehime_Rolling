@@ -8,6 +8,7 @@
 #include "Stage01.h"
 #include "Stage03.h"
 #include "Stage04.h"
+#include"Stage05.h"
 #include "Transform.h"
 
 Flag::Flag()
@@ -32,6 +33,7 @@ bool Flag::Start()
 	m_stage01 = FindGO<Stage01>("stage01");
 	m_stage03 = FindGO<Stage03>("stage03");
 	m_stage04 = FindGO<Stage04>("stage04");
+	m_stage05 = FindGO<Stage05>("stage05");
   
 	switch (m_game->m_state)
 	{
@@ -48,6 +50,7 @@ bool Flag::Start()
 		m_transform->SetParent(m_stage04->m_transform);
 		break;
 	case 5:
+		m_transform->SetParent(m_stage05->m_transform);
 		break;
 	}
 	return true;
