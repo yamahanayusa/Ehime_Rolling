@@ -5,6 +5,7 @@ class Player;
 class Score;
 class Timer;
 class Stage01;
+class Stage02;
 class Stage03;
 class Stage04;
 class Stage05;
@@ -31,6 +32,7 @@ ModelRender		m_modelRender;				//モデルレンダ―。
 	Score*		m_score;
 	Timer*		m_timer;
 	Stage01* m_stage01 = nullptr;
+	Stage02* m_stage02 = nullptr;
 	Stage03* m_stage03 = nullptr;
 	Stage04* m_stage04 = nullptr;
 	Stage05* m_stage05 = nullptr;

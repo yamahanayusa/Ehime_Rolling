@@ -35,6 +35,7 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Describe.cpp" />
     <ClCompile Include="Stage05.cpp" />
+    <ClCompile Include="Stage02.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -65,5 +66,6 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Describe.h" />
     <ClInclude Include="Stage05.h" />
+    <ClInclude Include="Stage02.h" />
   </ItemGroup>
 </Project>

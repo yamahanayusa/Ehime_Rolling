@@ -1,0 +1,31 @@
+#pragma once
+class Player;
+class Transform;
+class Stage02 : public IGameObject
+{
+public:
+	Stage02();
+	~Stage02();
+	bool Start();
+	void Update();
+	void Rotation();
+	void Render(RenderContext& rc);
+	Transform* GetTransform()
+	{
+		return m_transform;
+	}
+	Matrix GetWorldMatrix() const
+	{
+		return m_modelRender.GetWorldMatrix(0);
+	}
+	Vector3	m_scale = Vector3::One;//?????B
+	//??]??????
+	Quaternion addRot;
+	Quaternion addLot;
+	Transform* m_transform;
+private:
+	ModelRender m_modelRender;
+	PhysicsStaticObject m_Object;
+	Player* m_player = nullptr;
+};
+

@@ -10,6 +10,7 @@
 #include "GameClear.h"
 #include "GameCamera.h"
 #include "Stage01.h"
+#include "Stage02.h"
 #include "Stage03.h"
 #include "Stage04.h"
 #include "Stage05.h"
@@ -39,6 +40,7 @@ Game::~Game()
 	DeleteGO(m_player);
 	DeleteGO(m_gameCamera);
 	DeleteGO(m_stage01);
+	DeleteGO(m_stage02);
 	DeleteGO(m_stage03);
 	DeleteGO(m_stage04);
 	DeleteGO(m_stage05);
@@ -61,7 +63,7 @@ bool Game::Start()
 		Stage1();
 		break;
 	case 2:
-		Stage1(); // ステージ2のレベルデータがないため、仮でステージ3をロード
+		Stage2(); // ステージ2のレベルデータがないため、仮でステージ3をロード
 		break;
 	case 3:
 		Stage3();
@@ -156,6 +158,38 @@ void Game::Stage1()
 	});
 }
 
+void Game::Stage2()
+{
+	int mikan = 0;
+	//レベルの構築
+	m_levelRender.Init("Assets/level3D/stage2Level.tkl", [&](LevelObjectData& objData) {
+		//ステージ
+		if (objData.EqualObjectName(L"ground") == true) {
+			m_stage02 = NewGO<Stage02>(0, "stage02");
+			m_stage02->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage02->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage02->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"flag") == true) {
+			m_falg = NewGO<Flag>(1, "flag");
+			m_falg->GetTransform()->m_localPosition.Set(objData.position);
+			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//アイテム(みかん)
+		if (objData.EqualObjectName(L"mikan") == true) {
+			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
+			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
+			mikan++;
+			return true;
+		}
+		});
+}
 
 void Game::Stage3()
 {
