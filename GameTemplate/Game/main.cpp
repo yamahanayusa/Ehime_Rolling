@@ -36,6 +36,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 	/*Gameクラスのオブジェクトを作成。*/
 	/*NewGO<Game>(0, "game");*/
+
+	//デフォルトだと２秒経つと物理挙動を行うオブジェクトが無効になるので,その時間を長くする。
+	gDeactivationTime = 10000.0f;
 	
 	NewGO<Title>(0, "title");
 
