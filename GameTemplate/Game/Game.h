@@ -21,6 +21,7 @@ class Jakoten;
 class Bumper;
 class SandFloor;
 class Kiwi;
+class CountDown;
 
 class Game : public IGameObject
 {
@@ -68,6 +69,7 @@ private:
 	SoundSource*			m_soundSource = nullptr;
 	Mikan*					m_mikan[5];
 	Bumper*					m_bumper[4];
+	CountDown*				m_countDown;
 	Vector3					m_pos;
 	int						m_resultTime = 0;
 };

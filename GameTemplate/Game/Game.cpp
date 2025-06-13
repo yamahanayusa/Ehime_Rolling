@@ -19,6 +19,7 @@
 #include "Bumper.h"
 #include "SandFloor.h"
 #include "Kiwi.h"
+#include "CountDown.h"
 
 Game::Game()
 {
@@ -44,6 +45,7 @@ Game::~Game()
 	DeleteGO(m_soundSource);
 	DeleteGO(m_sandFloor);
 	DeleteGO(m_kiwi);
+	DeleteGO(m_countDown);
 	/*DeleteGO(m_timer);
 	DeleteGO(m_score);*/
 }
@@ -74,6 +76,7 @@ bool Game::Start()
 		Stage1();
 		break;
 	}
+
 	//当たり判定
 	//PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 	//重力の設定
@@ -269,6 +272,7 @@ void Game::GameStateUpdate()
 
 	if (enInGame)
 	{
+		m_countDown=NewGO<CountDown>(0,"countDown");
 		m_score = NewGO<Score>(0, "score");
 		m_timer = NewGO<Timer>(0, "timer");
 		m_player = NewGO<Player>(0, "player");

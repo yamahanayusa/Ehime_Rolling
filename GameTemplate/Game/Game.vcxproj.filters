@@ -32,6 +32,8 @@
     <ClCompile Include="Stage01.cpp" />
     <ClCompile Include="Stage03.cpp" />
     <ClCompile Include="Stage04.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="CountDown.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -59,5 +61,7 @@
     <ClInclude Include="Stage01.h" />
     <ClInclude Include="Stage03.h" />
     <ClInclude Include="Stage04.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="CountDown.h" />
   </ItemGroup>
 </Project>
