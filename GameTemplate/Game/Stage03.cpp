@@ -21,16 +21,17 @@ bool Stage03::Start()
 
 void Stage03::Update()
 {
-	//��]����
+	//回転処理
 	Rotation();
-	m_transform->Update();
-	//���f���̍X�V�����B
+	//更新処理。
+	m_transform->UpdateTransform();
+	//モデルの更新処理。
 	m_modelRender.Update();
 }
 
 void Stage03::Rotation()
 {
-	// �w�i���v���C���[��ԂɈړ�������s����v�Z����
+	// 背景をプレイヤー空間に移動させる行列を計算する
 	Matrix mBias, mRot, mBiasInv, mFinal;
 
 	if (m_player == nullptr) {
@@ -45,8 +46,8 @@ void Stage03::Rotation()
 	mRot.MakeRotationFromQuaternion(m_transform->m_localRotation);
 	mWorld = mRot * mTrans;
 	
-	// �w�i�̉�]
-	//���E�����̌X��
+	// 背景の回転
+	//左右方向の傾き
 	Vector3 forwardXZ = g_camera3D->GetForward();
 	forwardXZ.y = 0.0f;
 	forwardXZ.Normalize();
@@ -79,7 +80,7 @@ void Stage03::Rotation()
 	m_Object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
 	m_modelRender.SetPosition(m_transform->m_localPosition);
-	//���f�������_�[�̃A�b�v�f�[�g
+	//モデルレンダーのアップデート
 	m_modelRender.Update();
 }
 void Stage03::Render(RenderContext& rc)
