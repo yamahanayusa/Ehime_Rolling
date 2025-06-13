@@ -8,6 +8,7 @@ class Transform;
 class Stage01;
 class Stage03;
 class Stage04;
+class Stage05;
 
 class Flag :public IGameObject
 {
@@ -31,6 +32,7 @@ public:
     Stage01* m_stage01 = nullptr;
 	Stage03* m_stage03 = nullptr;						//ステージ。
 	Stage04* m_stage04 = nullptr;					//ステージ。
+	Stage05* m_stage05 = nullptr;
 
 	ModelRender					m_modelRender;								//モデルレンダ―。
     int							m_tortalScore = 0;

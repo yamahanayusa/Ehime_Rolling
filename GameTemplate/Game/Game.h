@@ -15,6 +15,7 @@ class Title;
 class Stage01;
 class Stage03;
 class Stage04;
+class Stage05;
 class IceFloor;
 class Transform;
 class Jakoten;
@@ -33,6 +34,7 @@ public:
 	void Stage1();
 	void Stage3();
 	void Stage4();
+	void Stage5();
 	void GameStateUpdate();
 	void Render(RenderContext& rc);
 
@@ -61,13 +63,14 @@ private:
 	Stage01*					m_stage01	= nullptr;
 	Stage03* m_stage03 = nullptr;
 	Stage04* m_stage04 = nullptr;
+	Stage05* m_stage05 = nullptr;
 	Player*					m_player = nullptr;
 	GameCamera*				m_gameCamera = nullptr;
 	IceFloor*				m_iceFloor = nullptr;
 	SandFloor*				m_sandFloor = nullptr;
 	Transform*				m_transform = nullptr;
 	SoundSource*			m_soundSource = nullptr;
-	Mikan*					m_mikan[5];
+	Mikan*					m_mikan[30];
 	Bumper*					m_bumper[4];
 	Vector3					m_pos;
 	int						m_resultTime = 0;

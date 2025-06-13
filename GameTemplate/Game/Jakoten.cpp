@@ -5,7 +5,8 @@
 #include "Score.h"
 #include "Mikan.h"
 #include "Timer.h"
-#include "Stage03.h"
+//#include "Stage03.h"
+#include "Stage05.h"
 #include "Transform.h"
 
 //定数。
@@ -31,22 +32,29 @@ bool Jakoten::Start()
 	//モデルの初期化。
 	m_modelRender.Init("Assets/modelData/Jakoten.tkm");
 	m_modelRender.SetScale(1.0f, 1.0f, 1.0f);
-
+	m_game = FindGO<Game>("game");
 	m_player = FindGO<Player>("player");
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
-	m_stage03 = FindGO<Stage03>("stage03");
-	m_transform->SetParent(m_stage03->m_transform);
+	//m_stage03 = FindGO<Stage03>("stage03");
+	m_stage05 = FindGO<Stage05>("stage05");
 
+	switch (m_game->m_state)
+	{
+	case 5:
+		m_transform->SetParent(m_stage05->m_transform);
+	}
 	m_buffTimer = BUFF_TIME;
 	return true;
 }
 
 void Jakoten::Update()
 {
+	m_player = FindGO<Player>("player");
+
 	if (m_isCollected) {
 		m_flyUpTimer += g_gameTime->GetFrameDeltaTime();								//上昇時間
-		m_transform->m_position.y += m_velocity.y * g_gameTime->GetFrameDeltaTime();
+		m_transform->m_localPosition.y += m_velocity.y * g_gameTime->GetFrameDeltaTime();
 		m_velocity.y -= 2000.0f * g_gameTime->GetFrameDeltaTime();						// 重力
 
 		//上昇時間がFLY_UP_TIMEを超えたら削除。
@@ -66,7 +74,8 @@ void Jakoten::Update()
 	UpdateModelRenderer();
 
 	//プレイヤーがみかんに向かうベクトルを計算。
-	Vector3 diff = m_player->rbPos - m_position;
+	Vector3 diff = m_player->rbPos - m_transform->m_position;
+
 	//アイテムの獲得。
 	if (diff.Length() <= 120.0f)
 	{

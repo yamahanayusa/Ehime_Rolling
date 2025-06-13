@@ -12,6 +12,7 @@
 #include "Stage01.h"
 #include "Stage03.h"
 #include "Stage04.h"
+#include "Stage05.h"
 #include "Player.h"
 #include "IceFloor.h"
 #include "Transform.h"
@@ -28,7 +29,7 @@ Game::Game()
 
 Game::~Game()
 {
-	for (int mikan = 0;mikan < 5;mikan++) {
+	for (int mikan = 0;mikan < 30;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
 	for (int bumper = 0;bumper < 4;bumper++) {
@@ -40,6 +41,7 @@ Game::~Game()
 	DeleteGO(m_stage01);
 	DeleteGO(m_stage03);
 	DeleteGO(m_stage04);
+	DeleteGO(m_stage05);
 	DeleteGO(m_iceFloor);
 	DeleteGO(m_jakoten);
 	DeleteGO(m_soundSource);
@@ -68,11 +70,7 @@ bool Game::Start()
 		Stage4(); // ステージ4のレベルデータがないため、仮でステージ3をロード
 		break;
 	case 5:
-		Stage3(); // ステージ5のレベルデータがないため、仮でステージ3をロード
-		break;
-	default:
-		// デフォルトのステージをロード (例: ステージ1)
-		Stage1();
+		Stage5(); // ステージ5のレベルデータがないため、仮でステージ3をロード
 		break;
 	}
 	//当たり判定
@@ -254,6 +252,55 @@ void Game::Stage4()
 			m_kiwi->GetTransform()->m_localPosition.Set(objData.position);
 			m_kiwi->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_kiwi->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+	});
+}
+
+void Game::Stage5()
+{
+	int mikan = 0;
+	//レベルの構築
+	m_levelRender.Init("Assets/level3D/stage5Level.tkl", [&](LevelObjectData& objData) {
+		//ステージ
+		if (objData.EqualObjectName(L"graund") == true) {
+			m_stage05 = NewGO<Stage05>(0, "stage05");
+			m_stage05->GetTransform()->m_localPosition.Set(objData.position);
+			m_stage05->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_stage05->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"flag") == true) {
+			m_falg = NewGO<Flag>(1, "flag");
+			m_falg->GetTransform()->m_localPosition.Set(objData.position);
+			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//アイテム(みかん)
+		if (objData.EqualObjectName(L"mikan") == true) {
+			m_mikan[mikan] = NewGO<Mikan>(1, "mikan");
+			m_mikan[mikan]->GetTransform()->m_localPosition.Set(objData.position);
+			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
+			mikan++;
+			return true;
+		}
+		//キウイ
+		if (objData.EqualObjectName(L"kiwi") == true) {
+			m_kiwi = NewGO<Kiwi>(1, "kiwi");
+			m_kiwi->GetTransform()->m_localPosition.Set(objData.position);
+			m_kiwi->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_kiwi->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//じゃこ天
+		if (objData.EqualObjectName(L"jakoten") == true) {
+			m_jakoten = NewGO<Jakoten>(1, "jakoten");
+			m_jakoten->GetTransform()->m_localPosition.Set(objData.position);
+			m_jakoten->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_jakoten->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 	});
