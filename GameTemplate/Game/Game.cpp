@@ -19,6 +19,7 @@
 #include "Bumper.h"
 #include "SandFloor.h"
 #include "Kiwi.h"
+#include "Describe.h"
 
 Game::Game()
 {
