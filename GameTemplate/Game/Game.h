@@ -66,7 +66,7 @@ private:
 	SandFloor*				m_sandFloor = nullptr;
 	Transform*				m_transform = nullptr;
 	SoundSource*			m_soundSource = nullptr;
-	Mikan*					m_mikan[2];
+	Mikan*					m_mikan[5];
 	Bumper*					m_bumper[4];
 	Vector3					m_pos;
 	int						m_resultTime = 0;

@@ -1,56 +1,50 @@
 #pragma once
 
-class Transform : public Noncopyable
+class Transform
 {
+	//public関数
 public:
 	Transform();
 	~Transform();
-	bool Start();
-	void Update();
 
-	void SetParent(Transform* parent) {
-		m_parent = parent;
-	}
+	//更新処理
+	void UpdateTransform();
+	//ワールド行列更新、UpdateTransformの方で呼ばれるので呼び出す必要なし
+	void UpdateWorldMatrix();
 
-	void SetLocalPosition(Vector3 position) {
-		m_localPosition = position;
-	}
-	void SetLocalScale(Vector3 scale) {
-		m_localScale = scale;
-	}
-	void SetLocalRotation(Quaternion rotation) {
-		m_localRotation = rotation;
-	}
+	//全ての子トランスフォームとの紐づけを外す
+	void Release();
 
+	//特定の子トランスフォームとの紐づけを外す
+	void RemoveChild(Transform* t);
 
-	const Vector3 GetPosition() {
-		return m_position;
-	}
-	const Vector3 GetScale() {
-		return m_scale;
-	}
-	const Quaternion GetRotation() {
-		return m_rotation;
+	//親トランスフォームを設定
+	void SetParent(Transform* p)
+	{
+		m_parent = p;
+		m_parent->m_children.push_back(this);
 	}
 
-	const Vector3 GetLocalPosition() {
-		return m_localPosition;
-	}
-	const Vector3 GetLocalScale() {
-		return m_localScale;
-	}
-	const Quaternion GetLocalRotation() {
-		return m_localRotation;
-	}
-
+	//public変数
 public:
-	Transform*	m_parent = nullptr;
-	
-	Vector3		m_position;			//座標。
-	Vector3		m_scale;			//拡縮。
-	Vector3		m_localPosition;	//ローカル座標。
-	Vector3		m_localScale;		//ローカル拡縮。
+	//自身のパラメータ
+	Vector3 m_localPosition;
+	Quaternion m_localRotation;
+	Vector3 m_localScale;
 
-	Quaternion	m_rotation;			//回転。
-	Quaternion	m_localRotation;	//ローカル回転。
+	//親トランスフォームを考慮したパラメータ
+	Vector3 m_position;
+	Quaternion m_rotation;
+	Vector3 m_scale;
+
+	//private変数
+	//基本的に関数以外から弄る必要なし
+private:
+
+	Matrix m_rotationMatrix;
+	Matrix m_worldMatrix;
+
+	Transform* m_parent;
+	std::vector<Transform*> m_children;
+
 };

@@ -29,10 +29,10 @@ bool SandFloor::Start()
 void SandFloor::Update()
 {
 	Slide();
-	//XVˆ—B
-	m_transform->Update();
+	//ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½B
+	m_transform->UpdateTransform();
 
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//ï¿½Gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌXï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½B
 	UpdateModelRenderer();
 }
 
@@ -44,7 +44,7 @@ void SandFloor::Slide()
 	if (m_player == nullptr) {
 		return;
 	}
-	//ƒvƒŒƒCƒ„[‚Æ»‚Ì°‚Ì‹——£Š´‚ğ‹‚ß‚é
+	//ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Æï¿½ï¿½Ìï¿½ï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½
 	Vector3 distance = m_player->rbPos - m_position;
 	if (distance.Length() < 150.0f)
 	{
@@ -56,12 +56,12 @@ void SandFloor::Slide()
 
 void SandFloor::UpdateModelRenderer()
 {
-	//ŠG•`‚«‚³‚ñ‚ÉÀ•W‚ğ‹³‚¦‚éB
-	m_modelRender.SetPosition(m_transform->GetPosition());
-	m_modelRender.SetRotation(m_transform->GetRotation());
-	m_modelRender.SetScale(m_transform->GetScale());
+	//ï¿½Gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+	m_modelRender.SetPosition(m_transform->m_position);
+	m_modelRender.SetRotation(m_transform->m_rotation);
+	m_modelRender.SetScale(m_transform->m_scale);
 	m_object.SetPositionAndRotation(m_transform->m_position, m_transform->m_rotation);
-	//ŠG•`‚«‚³‚ñ‚ÌXVˆ—B
+	//ï¿½Gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌXï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½B
 	m_modelRender.Update();
 }
 
