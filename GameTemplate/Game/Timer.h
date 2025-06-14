@@ -1,5 +1,6 @@
 #pragma once
 class Game;
+class CountDown;
 class Timer :public IGameObject
 {
 public:
@@ -20,5 +21,6 @@ private:
 	SpriteRender m_spriteRender;
 	FontRender m_fontRender;
 	Game* m_game;
+	CountDown* m_countDown;
 };
 

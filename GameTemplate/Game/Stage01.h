@@ -2,6 +2,7 @@
 
 class Player;
 class Transform;
+class CountDown;
 
 //’Ç‰Á
 
@@ -38,6 +39,6 @@ private:
 	ModelRender m_modelRender;
 	PhysicsStaticObject m_Object;
 	Player* m_player = nullptr;
-
+	CountDown* m_countDown;
 };
 
