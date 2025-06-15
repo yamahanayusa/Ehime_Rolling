@@ -2,6 +2,7 @@
 #include "Stage02.h"
 #include "Player.h"
 #include "Transform.h"
+#include "CountDown.h"
 
 Stage02::Stage02()
 {
@@ -16,11 +17,16 @@ bool Stage02::Start()
 {
 	m_modelRender.Init("Assets/Stage/stage02.tkm");
 	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
+	m_countDown = FindGO<CountDown>("countDown");
+
 	return true;
 }
 
 void Stage02::Update()
 {
+	if (m_countDown->GetShowGO()) {
+		return;
+	}
 	//‰ñ“]ˆ—
 	Rotation();
 	//XVˆ—B
