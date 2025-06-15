@@ -1,6 +1,8 @@
 #pragma once
 class Player;
 class Transform;
+class CountDown;
+
 class Stage05 : public IGameObject
 {
 public:
@@ -27,4 +29,6 @@ private:
 	ModelRender m_modelRender;
 	PhysicsStaticObject m_Object;
 	Player* m_player = nullptr;
+	CountDown* m_countDown;
+
 };
