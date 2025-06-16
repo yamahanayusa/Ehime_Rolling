@@ -63,6 +63,7 @@ void Timer::Update()
 	if (m_time <= 10.0f)
 	{
 		m_fontRender.SetColor({ 1.0f,0.0f,0.0f,1.0f });
+		m_fontRender.SetPosition(Vector3(-25.0f, 500.0f, 0.0f));
 	}
 
 	if (m_time <= 0.0f)
