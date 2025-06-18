@@ -18,7 +18,7 @@ Bumper::~Bumper()
 bool Bumper::Start()
 {
 	m_modelRender.Init("Assets/modelData/bumper/bumper.tkm");
-	//m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
+	//m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 
 	m_stage04 = FindGO<Stage04>("stage04");
 

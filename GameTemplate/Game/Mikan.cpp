@@ -12,7 +12,7 @@
 #include "Transform.h"
 
 namespace {
-	const int SCORE = 100;					//みかんのスコア
+	const int	SCORE = 100;					//みかんのスコア
 	const float FLY_UP_VELOCITY = 800.0f;	//上方向に飛ばす時の初速
 	const float FLY_UP_TIME = 0.5f;			//上昇する時間
 }

@@ -1,6 +1,8 @@
 #pragma once
+
 class Game;
 class StageSelect;
+
 class Describe :public IGameObject
 {
 public:
@@ -12,8 +14,9 @@ public:
 
 	void Render(RenderContext& rc);
 
-	SpriteRender m_spriteRender;
-	Game* m_game;
-	StageSelect* m_stageSelect;
+	SpriteRender	m_spriteRender;
+
+	Game*			m_game			 = nullptr;
+	StageSelect*	m_stageSelect	 = nullptr;
 };
 

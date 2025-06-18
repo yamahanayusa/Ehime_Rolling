@@ -4,8 +4,6 @@ class Player;
 class Transform;
 class CountDown;
 
-//’Ç‰Á
-
 class Stage01 :public IGameObject
 {
 public:
@@ -30,15 +28,21 @@ public:
 		return m_modelRender.GetWorldMatrix(0);
 	}
 
-	Vector3 m_scale = Vector3::One;//‘å‚«‚³
-	//‰ñ“]‚ğİ’è‚·‚é
-	Quaternion addRot;
-	Quaternion addLot;
-	Transform* m_transform;
+	Transform* m_transform = nullptr;
+
 private:
-	ModelRender m_modelRender;
-	PhysicsStaticObject m_Object;
-	Player* m_player = nullptr;
-	CountDown* m_countDown;
+
+	ModelRender			m_modelRender;
+	PhysicsStaticObject m_object;
+
+	//‘å‚«‚³
+	Vector3			m_scale		= Vector3::One;
+
+	//‰ñ“]‚ğİ’è‚·‚é
+	Quaternion		addRot		= Quaternion::Identity;
+	Quaternion		addLot		= Quaternion::Identity;
+
+	Player*			m_player		= nullptr;
+	CountDown*		m_countDown		= nullptr;
 };
 
