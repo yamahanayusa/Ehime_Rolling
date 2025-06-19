@@ -50,34 +50,36 @@ public:
 		enGameOver
 	};
 	EnGameState m_gameState = enTitle;
-	int m_state;
-private:
-	LevelRender m_levelRender;
 
-	Title*					m_title;
-	Flag*					m_falg = nullptr;
-	Timer*					m_timer;
-	Jakoten*				m_jakoten;
-	TimeOver*				m_timeOver;
-	GameOver*				m_gameOver;
-	GameClear*				m_gameClear;
-	Score*					m_score;
-	Kiwi*					m_kiwi = nullptr;
-	Stage01*					m_stage01	= nullptr;
-	Stage02* m_stage02 = nullptr;
-	Stage03* m_stage03 = nullptr;
-	Stage04* m_stage04 = nullptr;
-	Stage05* m_stage05 = nullptr;
-	Player*					m_player = nullptr;
-	GameCamera*				m_gameCamera = nullptr;
-	IceFloor*				m_iceFloor = nullptr;
-	SandFloor*				m_sandFloor = nullptr;
-	Transform*				m_transform = nullptr;
-	SoundSource*			m_soundSource = nullptr;
-	Mikan*					m_mikan[30];
-	Bumper*					m_bumper[4];
-	CountDown*				m_countDown;
-	Vector3					m_pos;
-	int						m_resultTime = 0;
+	int			m_state;
+
+private:
+	LevelRender		m_levelRender;
+
+	Title*			m_title			= nullptr;
+	Flag*			m_falg			= nullptr;
+	Timer*			m_timer			= nullptr;
+	Jakoten*		m_jakoten		= nullptr;
+	TimeOver*		m_timeOver		= nullptr;
+	GameOver*		m_gameOver		= nullptr;
+	GameClear*		m_gameClear		= nullptr;
+	Score*			m_score			= nullptr;
+	Kiwi*			m_kiwi			= nullptr;
+	Stage01*		m_stage01		= nullptr;
+	Stage02*		m_stage02		= nullptr;
+	Stage03*		m_stage03		= nullptr;
+	Stage04*		m_stage04		= nullptr;
+	Stage05*		m_stage05		= nullptr;
+	Player*			m_player		= nullptr;
+	GameCamera*		m_gameCamera	= nullptr;
+	IceFloor*		m_iceFloor		= nullptr;
+	SandFloor*		m_sandFloor		= nullptr;
+	Transform*		m_transform		= nullptr;
+	SoundSource*	m_soundSource	= nullptr;
+	CountDown*		m_countDown		= nullptr;
+	Mikan*			m_mikan[30];
+	Bumper*			m_bumper[4];
+
+	int				m_resultTime	= 0;
 };
 

@@ -23,15 +23,14 @@ public:
 	}
 
 private:
-	
-	Stage03*					m_stage03 = nullptr;
+	Stage03*				m_stage03 = nullptr;
 	Player*					m_player = nullptr;
 	Transform*				m_transform = nullptr;
 
 	PhysicsStaticObject		m_object;
 	ModelRender				m_modelRender;
 
-	Vector3					m_position;
+	Vector3					m_position = Vector3::Zero;
 	Vector3					m_virtualPosition = { 980.0f,0.0f,1200.0f };
 	Vector3					m_icepos = m_virtualPosition - m_position;
 };

@@ -1,5 +1,7 @@
 #pragma once
+
 class Timer;
+
 class Score :public IGameObject
 {
 public:

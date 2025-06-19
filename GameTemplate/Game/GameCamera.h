@@ -16,8 +16,11 @@ public:
 	bool Start();
 	//アップデート
 	void Update();
-	Player* m_player = nullptr;//プレイヤー	
-	Vector3 m_toCameraPos = Vector3::One;//カメラポス
-	SpringCamera  m_springCamera;//ばねカメラ
+
+private:
+	Vector3			m_toCameraPos	= Vector3::One;	//カメラポス
+	SpringCamera	m_springCamera;					//ばねカメラ
+
+	Player*			m_player		= nullptr;		//プレイヤー	
 };
 

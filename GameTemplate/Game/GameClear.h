@@ -1,8 +1,10 @@
 #pragma once
+
 class Game;
 class Score;
 class Timer;
 class Flag;
+
 //ゲームクリア
 class GameClear :public IGameObject
 {
@@ -18,12 +20,13 @@ public:
 	//
 	void TortalScore();
 
-	//メンバ変数
-	SpriteRender m_spriteRender; //スプライトレンダー
-	FontRender m_fontRender; //
-	Game* m_game;
-	Score* m_score;
-	Timer* m_timer;
-	Flag* m_chest;
+private:
+	SpriteRender	m_spriteRender;
+	FontRender		m_fontRender;
+
+	Game*		m_game		= nullptr;
+	Score*		m_score		= nullptr;
+	Timer*		m_timer		= nullptr;
+	Flag*		m_chest		= nullptr;
 };
 

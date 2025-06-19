@@ -26,23 +26,21 @@ public:
 		return m_transform;
 	}
 
-	Game*						m_game = nullptr;						//ゲーム。
-	Score*						m_score = nullptr;						//スコア。
-    Timer*						m_timer = nullptr;						//タイマー。
-	Player*						m_player = nullptr;						//プレイヤー。
-    Stage01* m_stage01 = nullptr;
-	Stage02* m_stage02 = nullptr;
-	Stage03* m_stage03 = nullptr;						//ステージ。
-	Stage04* m_stage04 = nullptr;					//ステージ。
-	Stage05* m_stage05 = nullptr;
-
-	ModelRender					m_modelRender;								//モデルレンダ―。
-    int							m_tortalScore = 0;
-	bool						m_clearFlag = false;
-
 private:
-	Transform*					m_transform = nullptr;					//トランスフォーム
+	ModelRender					m_modelRender;
+	PhysicsStaticObject			m_object;
 
-	PhysicsStaticObject			m_Object;
+	Transform*		m_transform		= nullptr;
+	Game*			m_game			= nullptr;
+	Score*			m_score			= nullptr;
+	Timer*			m_timer			= nullptr;
+	Player*			m_player		= nullptr;
+	Stage01*		m_stage01		= nullptr;
+	Stage02*		m_stage02		= nullptr;
+	Stage03*		m_stage03		= nullptr;
+	Stage04*		m_stage04		= nullptr;
+	Stage05*		m_stage05		= nullptr;
+
+	bool			m_clearFlag		= false;
 };
 
