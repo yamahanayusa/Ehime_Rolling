@@ -15,7 +15,7 @@ Stage04::~Stage04()
 }
 bool Stage04::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage4.tkm");
+	m_modelRender.Init("Assets/Stage4/stage4.tkm");
 	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	m_countDown = FindGO<CountDown>("countDown");
 
