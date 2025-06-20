@@ -52,12 +52,13 @@ public:
 	EnGameState m_gameState = enTitle;
 
 	int			m_state;
+	Vector3     m_flagPos = Vector3::Zero;
 
 private:
 	LevelRender		m_levelRender;
 
 	Title*			m_title			= nullptr;
-	Flag*			m_falg			= nullptr;
+	Flag*			m_flag			= nullptr;
 	Timer*			m_timer			= nullptr;
 	Jakoten*		m_jakoten		= nullptr;
 	TimeOver*		m_timeOver		= nullptr;
@@ -80,6 +81,6 @@ private:
 	Mikan*			m_mikan[30];
 	Bumper*			m_bumper[4];
 
-	int				m_resultTime	= 0;
+	int				m_resultTime = 0;
 };
 
