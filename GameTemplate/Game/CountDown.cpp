@@ -64,7 +64,7 @@ void CountDown::Update()
         //表示する大きさを設定する。
         m_fontRender.SetScale(7.0f);
         //黒色にアルファ適用。
-        Vector4 color = g_vec4Black;
+        Vector4 color = { 0.0f,1.0f,1.0f,1.0f };
         color.w = alpha; //アルファ設定。
         m_fontRender.SetColor(color);//色の設定。
     }
