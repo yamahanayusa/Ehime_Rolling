@@ -6,7 +6,6 @@
 #include "Stage04.h"
 #include "Mikan.h"
 #include "Flag.h"
-#include "Bumper.h"
 #include "Jakoten.h"
 #include "IceFloor.h"
 #include "SandFloor.h"
@@ -91,15 +90,6 @@ void StageManager::Init(const char* falePath) {
 			kiwi->GetTransform()->m_localRotation.Set(objData.rotation);
 			kiwi->GetTransform()->m_localScale.Set(objData.scale);
 			m_kiwi.push_back(kiwi);
-			return true;
-		}
-		//ƒoƒ“ƒp[
-		if (objData.EqualObjectName(L"bumper") == true) {
-			auto bumper = NewGO<Bumper>(1, "bumper");
-			bumper->GetTransform()->m_localPosition.Set(objData.position);
-			bumper->GetTransform()->m_localRotation.Set(objData.rotation);
-			bumper->GetTransform()->m_localScale.Set(objData.scale);
-			m_bumper.push_back(bumper);
 			return true;
 		}
 	});

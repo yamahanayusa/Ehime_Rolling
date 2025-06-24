@@ -18,7 +18,6 @@
 #include "IceFloor.h"
 #include "Transform.h"
 #include "Jakoten.h"
-#include "Bumper.h"
 #include "SandFloor.h"
 #include "Kiwi.h"
 #include "CountDown.h"
@@ -33,9 +32,6 @@ Game::~Game()
 {
 	for (int mikan = 0;mikan < 30;mikan++) {
 		DeleteGO(m_mikan[mikan]);
-	}
-	for (int bumper = 0;bumper < 4;bumper++) {
-		DeleteGO(m_bumper[bumper]);
 	}
 	DeleteGO(m_flag);  
 	DeleteGO(m_player);
@@ -276,15 +272,6 @@ void Game::Stage4()
 			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
 			mikan++;
-			return true;
-		}
-		//バンパー
-		if (objData.EqualObjectName(L"bumper") == true) {
-			m_bumper[bumper] = NewGO<Bumper>(1, "bumper");
-			m_bumper[bumper]->GetTransform()->m_localPosition.Set(objData.position);
-			m_bumper[bumper]->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_bumper[bumper]->GetTransform()->m_localScale.Set(objData.scale);
-			bumper++;
 			return true;
 		}
 		//キウイ

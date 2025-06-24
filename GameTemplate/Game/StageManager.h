@@ -6,7 +6,6 @@ class Stage03;
 class Stage04; 
 class Mikan;
 class Flag;
-class Bumper;
 class Jakoten;
 class IceFloor;
 class SandFloor;
@@ -36,7 +35,6 @@ private:
 
 	std::vector<Kiwi*> m_kiwi;
 	std::vector<Mikan*> m_mikan;
-	std::vector<Bumper*> m_bumper;
 
 	LevelRender m_levelRender;
 };
