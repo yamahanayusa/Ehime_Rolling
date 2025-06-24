@@ -10,6 +10,8 @@
 #include "Stage04.h"
 #include "Stage05.h"
 #include "Transform.h"
+#include "sound/SoundSource.h"
+#include "sound/SoundEngine.h"
 
 namespace {
 	const int	SCORE = 100;					//みかんのスコア
@@ -39,6 +41,7 @@ bool Mikan::Start()
 	m_stage03 = FindGO<Stage03>("stage03");
 	m_stage04 = FindGO<Stage04>("stage04");
 	m_stage05 = FindGO<Stage05>("stage05");
+	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/GetItem.wav");	//音の読み込み。
 
 	switch (m_game->m_state)
 	{

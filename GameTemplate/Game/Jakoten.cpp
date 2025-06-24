@@ -8,6 +8,8 @@
 //#include "Stage03.h"
 #include "Stage05.h"
 #include "Transform.h"
+#include "sound/SoundSource.h"
+#include "sound/SoundEngine.h"
 
 //定数。
 namespace {
@@ -38,6 +40,7 @@ bool Jakoten::Start()
 	m_timer = FindGO<Timer>("timer");
 	//m_stage03 = FindGO<Stage03>("stage03");
 	m_stage05 = FindGO<Stage05>("stage05");
+	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/GetItem.wav");	//音の読み込み。
 
 	switch (m_game->m_state)
 	{
@@ -85,6 +88,9 @@ void Jakoten::Update()
 		m_flyUpTimer = 0.0f;									//上昇時間のリセット
 		m_buffTimer -= g_gameTime->GetFrameDeltaTime();			//バフタイマーを減らす
 		m_score->SetBuffMultipier(BUFF_MULTIPIER, BUFF_TIME);	//バフ倍率と継続時間
+		SoundSource* se = NewGO<SoundSource>(0);
+		se->Init(5);
+		se->Play(false);
 		//DeleteGO(this);
 		return;
 	}		
