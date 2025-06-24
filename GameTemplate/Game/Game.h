@@ -20,7 +20,6 @@ class Stage05;
 class IceFloor;
 class Transform;
 class Jakoten;
-class Bumper;
 class SandFloor;
 class Kiwi;
 class CountDown;
@@ -79,7 +78,6 @@ private:
 	SoundSource*	m_soundSource	= nullptr;
 	CountDown*		m_countDown		= nullptr;
 	Mikan*			m_mikan[30];
-	Bumper*			m_bumper[4];
 
 	int				m_resultTime = 0;
 };
