@@ -15,8 +15,8 @@ Stage02::~Stage02()
 }
 bool Stage02::Start()
 {
-	m_modelRender.Init("Assets/Stage/stage02.tkm");
-	m_Object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
+	m_modelRender.Init("Assets/Stage2/stage02.tkm");
+	m_object.CreateFromModel(m_modelRender.GetModel(), m_modelRender.GetWorldMatrix(0));
 	m_countDown = FindGO<CountDown>("countDown");
 
 	return true;
@@ -83,7 +83,7 @@ void Stage02::Rotation()
 	m_transform->m_localRotation.SetRotation(mWorld);
 	m_transform->m_localPosition.Set(mWorld._41, mWorld._42, mWorld._43);
 	//
-	m_Object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
+	m_object.GetBody()->SetPositionAndRotation(m_transform->m_localPosition, m_transform->m_localRotation);
 	m_modelRender.SetRotation(m_transform->m_localRotation);
 	m_modelRender.SetPosition(m_transform->m_localPosition);
 	//モデルレンダーのアップデート

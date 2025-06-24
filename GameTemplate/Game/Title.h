@@ -1,8 +1,9 @@
 #pragma once
+
 class Game;
 class StageSelect;
 class Describe;
-//class Score;
+
 class Title :public IGameObject
 {
 public:
@@ -10,12 +11,12 @@ public:
 	~Title();
 	void Update();
 	bool Start();
-	//描画関数。
 	void Render(RenderContext& rc);
-	//スプライトレンダ―。
-	SpriteRender m_spriteRender;
-	Game* m_game;
-	StageSelect* m_stageSelect;
-	Describe* m_describe;
+
+private:
+	SpriteRender	m_spriteRender;
+	Game*			m_game			= nullptr;
+	StageSelect*	m_stageSelect	= nullptr;
+	Describe*		m_describe		= nullptr;
 };
 

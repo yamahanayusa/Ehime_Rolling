@@ -12,7 +12,7 @@
 #include "Transform.h"
 
 namespace {
-	const int SCORE = 100;					//みかんのスコア
+	const int	SCORE = 100;					//みかんのスコア
 	const float FLY_UP_VELOCITY = 800.0f;	//上方向に飛ばす時の初速
 	const float FLY_UP_TIME = 0.5f;			//上昇する時間
 }
@@ -91,7 +91,7 @@ void Mikan::Update()
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
 	//ベクトルの長さが120.0fより小さかったら。
 
-	if (diff.Length() <= 120.0f&&!m_isCollected)
+	if (diff.Length() <= 60.0f&&!m_isCollected)
 	{
 		m_isCollected = true;							//取得済みフラグを立てる。
 		m_velocity = Vector3(0, FLY_UP_VELOCITY, 0);	// 上方向にぶっ飛ばす

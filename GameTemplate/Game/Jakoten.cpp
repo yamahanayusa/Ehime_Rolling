@@ -77,7 +77,7 @@ void Jakoten::Update()
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
 
 	//アイテムの獲得。
-	if (diff.Length() <= 120.0f)
+	if (diff.Length() <= 60.0f)
 	{
 		m_isCollected = true;									//取得済みフラグを立てる。
 		m_transform->m_position = m_position;					//初期位置に戻さずにその場て飛ばす

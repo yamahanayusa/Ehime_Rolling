@@ -5,6 +5,7 @@
 
 //クラス宣言
 class Player;
+class Game;
 
 class GameCamera :public IGameObject
 {
@@ -16,8 +17,19 @@ public:
 	bool Start();
 	//アップデート
 	void Update();
-	Player* m_player = nullptr;//プレイヤー	
-	Vector3 m_toCameraPos = Vector3::One;//カメラポス
-	SpringCamera  m_springCamera;//ばねカメラ
+	//カメライベント
+	void CameraEvent();
+
+private:
+	Vector3			m_toCameraPos		= Vector3::One;	//カメラポス
+	Vector3			m_toCameraTargetPos	= Vector3::One;	//カメラポス
+	SpringCamera	m_springCamera;					//ばねカメラ
+
+	Game*			m_game			= nullptr;
+	Player*			m_player		= nullptr;	
+
+	bool	m_isCameraEvent = false;
+	bool	m_isInit		= false;
+	float	t = 0.0f;
 };
 

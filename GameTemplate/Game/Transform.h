@@ -28,23 +28,23 @@ public:
 	//public変数
 public:
 	//自身のパラメータ
-	Vector3 m_localPosition;
-	Quaternion m_localRotation;
-	Vector3 m_localScale;
+	Vector3		m_localPosition;
+	Quaternion	m_localRotation;
+	Vector3		m_localScale;
 
 	//親トランスフォームを考慮したパラメータ
-	Vector3 m_position;
-	Quaternion m_rotation;
-	Vector3 m_scale;
+	Vector3		m_position;
+	Quaternion	m_rotation;
+	Vector3		m_scale;
 
 	//private変数
 	//基本的に関数以外から弄る必要なし
 private:
 
-	Matrix m_rotationMatrix;
-	Matrix m_worldMatrix;
+	Matrix		m_rotationMatrix;
+	Matrix		m_worldMatrix;
 
-	Transform* m_parent;
+	Transform*	m_parent;
 	std::vector<Transform*> m_children;
 
 };

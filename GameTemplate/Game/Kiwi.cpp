@@ -72,7 +72,7 @@ void Kiwi::Update()
 	//プレイヤーがキウイに向かうベクトルを計算。
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
 	//ベクトルの長さが120.0fより小さかったら。
-	if (diff.Length() <= 120.0f)
+	if (diff.Length() <= 60.0f)
 	{
 		m_isCollected = true;
 		m_transform->m_position = m_transform->m_position;

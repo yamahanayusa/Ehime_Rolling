@@ -37,7 +37,7 @@ Game::~Game()
 	for (int bumper = 0;bumper < 4;bumper++) {
 		DeleteGO(m_bumper[bumper]);
 	}
-	DeleteGO(m_falg);  
+	DeleteGO(m_flag);  
 	DeleteGO(m_player);
 	DeleteGO(m_gameCamera);
 	DeleteGO(m_stage01);
@@ -143,10 +143,11 @@ void Game::Stage1()
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_falg = NewGO<Flag>(1, "flag");
-			m_falg->GetTransform()->m_localPosition.Set(objData.position);
-			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			m_flag = NewGO<Flag>(1, "flag");
+			m_flag->GetTransform()->m_localPosition.Set(objData.position);
+			m_flag->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_flag->GetTransform()->m_localScale.Set(objData.scale);
+			m_flagPos = objData.position;
 			return true;
 		}
 		//アイテム(みかん)
@@ -176,10 +177,11 @@ void Game::Stage2()
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_falg = NewGO<Flag>(1, "flag");
-			m_falg->GetTransform()->m_localPosition.Set(objData.position);
-			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			m_flag = NewGO<Flag>(1, "flag");
+			m_flag->GetTransform()->m_localPosition.Set(objData.position);
+			m_flag->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_flag->GetTransform()->m_localScale.Set(objData.scale);
+			m_flagPos = objData.position;
 			return true;
 		}
 		//アイテム(みかん)
@@ -217,10 +219,11 @@ void Game::Stage3()
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_falg = NewGO<Flag>(1, "flag");
-			m_falg->GetTransform()->m_localPosition.Set(objData.position);
-			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			m_flag = NewGO<Flag>(1, "flag");
+			m_flag->GetTransform()->m_localPosition.Set(objData.position);
+			m_flag->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_flag->GetTransform()->m_localScale.Set(objData.scale);
+			m_flagPos = objData.position;
 			return true;
 		}
 		//アイテム(みかん)
@@ -259,10 +262,11 @@ void Game::Stage4()
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_falg = NewGO<Flag>(1, "flag");
-			m_falg->GetTransform()->m_localPosition.Set(objData.position);
-			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			m_flag = NewGO<Flag>(1, "flag");
+			m_flag->GetTransform()->m_localPosition.Set(objData.position);
+			m_flag->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_flag->GetTransform()->m_localScale.Set(objData.scale);
+			m_flagPos = objData.position;
 			return true;
 		}
 		//アイテム(みかん)
@@ -309,10 +313,11 @@ void Game::Stage5()
 		}
 		//ゴール
 		if (objData.EqualObjectName(L"flag") == true) {
-			m_falg = NewGO<Flag>(1, "flag");
-			m_falg->GetTransform()->m_localPosition.Set(objData.position);
-			m_falg->GetTransform()->m_localRotation.Set(objData.rotation);
-			m_falg->GetTransform()->m_localScale.Set(objData.scale);
+			m_flag = NewGO<Flag>(1, "flag");
+			m_flag->GetTransform()->m_localPosition.Set(objData.position);
+			m_flag->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_flag->GetTransform()->m_localScale.Set(objData.scale);
+			m_flagPos = objData.position;
 			return true;
 		}
 		//アイテム(みかん)

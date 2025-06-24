@@ -1,10 +1,10 @@
 #pragma once
 
 class Game;
+
 class Player : public IGameObject
 {
 public:
-
 	Player();
 	~Player();
 	//スタート
@@ -14,21 +14,20 @@ public:
 	//レンダー
 	void Render(RenderContext& rc);
 
-	Vector3                 m_position;//座標。
-	Vector3                 m_scale = Vector3::One;//スケール
-	
-	Vector3                 m_moveSpeed;//移動速度
-	Vector3                 m_ballPosition;
-	CharacterController     m_charaCon;//キャラコン
+	Vector3         m_position		= Vector3::Zero;	//座標。
+	Vector3         m_ballPosition	= Vector3::Zero;
+	Vector3         m_scale			= Vector3::One;		//スケール
+
 	// 剛体の位置と回転を取得する
-	Vector3 rbPos;
-	Quaternion rbRot;
-	Game* m_game;
-	RigidBodyInitData rbInitData;
-	RigidBody m_rigidBody;	// 剛体
+	Vector3			rbPos = Vector3::Zero;
+	Quaternion		rbRot = Quaternion::Identity;
+	RigidBodyInitData	rbInitData;
+	RigidBody			m_rigidBody;	// 剛体
+	
 private:
+	CharacterController     m_charaCon;		//キャラコン
+	ModelRender			m_ballRender;
+	SphereCollider		m_sphereCollider;	// ボールの形状
 
-	ModelRender m_ballRender;
-	SphereCollider m_sphereCollider; // ボールの形状
-
+	Game* m_game = nullptr;
 };

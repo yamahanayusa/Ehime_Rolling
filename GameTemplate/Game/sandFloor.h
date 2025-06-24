@@ -21,11 +21,11 @@ public:
 	}
 
 private:
-	Stage04*					m_stage04 = nullptr;
-	Transform*				m_transform = nullptr;
-	Player* m_player = nullptr;
+	Stage04*		m_stage04		= nullptr;
+	Transform*		m_transform		= nullptr;
+	Player*			m_player		= nullptr;
 
-	Vector3 			m_position;
+	Vector3 				m_position;
 	PhysicsStaticObject		m_object;
 	ModelRender				m_modelRender;
 };

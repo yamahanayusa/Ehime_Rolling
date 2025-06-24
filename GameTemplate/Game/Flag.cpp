@@ -70,7 +70,7 @@ void Flag::Update()
 	Vector3	diff = m_player->rbPos - m_transform->m_position;
 
 	//ベクトルの長さが120.0fより小さかったら。
-	if (diff.Length() <= 120.0f)
+	if (diff.Length() <= 25.0f)
 	{
 		m_clearFlag = true;
 		if (m_clearFlag == true)
