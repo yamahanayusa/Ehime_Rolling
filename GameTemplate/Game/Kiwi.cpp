@@ -7,6 +7,8 @@
 #include "Stage04.h"
 #include "Stage05.h"
 #include "Transform.h"
+#include "sound/SoundSource.h"
+#include"sound/SoundEngine.h"
 
 namespace {
 	const int SCORE = 200;					//キウイのスコア
@@ -33,6 +35,7 @@ bool Kiwi::Start()
 	m_score = FindGO<Score>("score");
 	m_stage04 = FindGO<Stage04>("stage04");
 	m_stage05 = FindGO<Stage05>("stage05");
+	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/GetItem.wav");
 	switch (m_game->m_state)
 	{
 	case 4:

@@ -29,9 +29,6 @@ void Stage03::Update()
 		return;
 	}
 	//��]����
-	Rotation();
-	m_transform->UpdateTransform();
-	//���f���̍X�V�����B
 	//回転処理
 	Rotation();
 	//更新処理。

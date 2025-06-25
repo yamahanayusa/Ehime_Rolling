@@ -20,7 +20,6 @@ class Stage05;
 class IceFloor;
 class Transform;
 class Jakoten;
-class Bumper;
 class SandFloor;
 class Kiwi;
 class CountDown;
@@ -53,12 +52,13 @@ public:
 	EnGameState m_gameState = enTitle;
 
 	int	 m_state	= 0;
+	Vector3     m_flagPos = Vector3::Zero;
 
 private:
 	LevelRender		m_levelRender;
 
 	Title*			m_title			= nullptr;
-	Flag*			m_falg			= nullptr;
+	Flag*			m_flag			= nullptr;
 	Timer*			m_timer			= nullptr;
 	Jakoten*		m_jakoten		= nullptr;
 	TimeOver*		m_timeOver		= nullptr;
@@ -80,8 +80,7 @@ private:
 	CountDown*		m_countDown		= nullptr;
 	Goal*			m_goal			= nullptr;
 	Mikan*			m_mikan[30];
-	Bumper*			m_bumper[4];
 
-	int				m_resultTime	= 0;
+	int				m_resultTime = 0;
 };
 
