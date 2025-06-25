@@ -22,6 +22,7 @@
 #include "Kiwi.h"
 #include "CountDown.h"
 #include "Describe.h"
+#include "goal.h"
 
 Game::Game()
 {
@@ -47,6 +48,7 @@ Game::~Game()
 	DeleteGO(m_sandFloor);
 	DeleteGO(m_kiwi);
 	DeleteGO(m_countDown);
+	DeleteGO(m_goal);
 	/*DeleteGO(m_timer);
 	DeleteGO(m_score);*/
 }
@@ -137,7 +139,7 @@ void Game::Stage1()
 			m_stage01->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
-		//ゴール
+		//フラッグ
 		if (objData.EqualObjectName(L"flag") == true) {
 			m_flag = NewGO<Flag>(1, "flag");
 			m_flag->GetTransform()->m_localPosition.Set(objData.position);
@@ -153,6 +155,14 @@ void Game::Stage1()
 			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
 			mikan++;
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"goal") == true) {
+			m_goal = NewGO<Goal>(1, "goal");
+			m_goal->GetTransform()->m_localPosition.Set(objData.position);
+			m_goal->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_goal->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 	});
@@ -171,7 +181,7 @@ void Game::Stage2()
 			m_stage02->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
-		//ゴール
+		//フラッグ
 		if (objData.EqualObjectName(L"flag") == true) {
 			m_flag = NewGO<Flag>(1, "flag");
 			m_flag->GetTransform()->m_localPosition.Set(objData.position);
@@ -189,7 +199,15 @@ void Game::Stage2()
 			mikan++;
 			return true;
 		}
-		});
+		//ゴール
+		if (objData.EqualObjectName(L"goal") == true) {
+			m_goal = NewGO<Goal>(1, "goal");
+			m_goal->GetTransform()->m_localPosition.Set(objData.position);
+			m_goal->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_goal->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+	});
 }
 
 void Game::Stage3()
@@ -213,7 +231,7 @@ void Game::Stage3()
 			m_iceFloor->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
-		//ゴール
+		//フラッグ
 		if (objData.EqualObjectName(L"flag") == true) {
 			m_flag = NewGO<Flag>(1, "flag");
 			m_flag->GetTransform()->m_localPosition.Set(objData.position);
@@ -229,6 +247,14 @@ void Game::Stage3()
 			m_mikan[mikan]->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_mikan[mikan]->GetTransform()->m_localScale.Set(objData.scale);
 			mikan++;
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"goal") == true) {
+			m_goal = NewGO<Goal>(1, "goal");
+			m_goal->GetTransform()->m_localPosition.Set(objData.position);
+			m_goal->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_goal->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 	});
@@ -256,7 +282,7 @@ void Game::Stage4()
 			m_sandFloor->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
-		//ゴール
+		//フラッグ
 		if (objData.EqualObjectName(L"flag") == true) {
 			m_flag = NewGO<Flag>(1, "flag");
 			m_flag->GetTransform()->m_localPosition.Set(objData.position);
@@ -282,6 +308,14 @@ void Game::Stage4()
 			m_kiwi->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
+		//ゴール
+		if (objData.EqualObjectName(L"goal") == true) {
+			m_goal = NewGO<Goal>(1, "goal");
+			m_goal->GetTransform()->m_localPosition.Set(objData.position);
+			m_goal->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_goal->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
 	});
 }
 
@@ -298,7 +332,7 @@ void Game::Stage5()
 			m_stage05->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
-		//ゴール
+		//フラッグ
 		if (objData.EqualObjectName(L"flag") == true) {
 			m_flag = NewGO<Flag>(1, "flag");
 			m_flag->GetTransform()->m_localPosition.Set(objData.position);
@@ -330,6 +364,14 @@ void Game::Stage5()
 			m_jakoten->GetTransform()->m_localPosition.Set(objData.position);
 			m_jakoten->GetTransform()->m_localRotation.Set(objData.rotation);
 			m_jakoten->GetTransform()->m_localScale.Set(objData.scale);
+			return true;
+		}
+		//ゴール
+		if (objData.EqualObjectName(L"goal") == true) {
+			m_goal = NewGO<Goal>(1, "goal");
+			m_goal->GetTransform()->m_localPosition.Set(objData.position);
+			m_goal->GetTransform()->m_localRotation.Set(objData.rotation);
+			m_goal->GetTransform()->m_localScale.Set(objData.scale);
 			return true;
 		}
 	});
