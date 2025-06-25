@@ -25,6 +25,7 @@ class SandFloor;
 class Kiwi;
 class CountDown;
 class Describe;
+class Goal;
 
 class Game : public IGameObject
 {
@@ -51,7 +52,7 @@ public:
 	};
 	EnGameState m_gameState = enTitle;
 
-	int			m_state;
+	int	 m_state	= 0;
 
 private:
 	LevelRender		m_levelRender;
@@ -77,6 +78,7 @@ private:
 	Transform*		m_transform		= nullptr;
 	SoundSource*	m_soundSource	= nullptr;
 	CountDown*		m_countDown		= nullptr;
+	Goal*			m_goal			= nullptr;
 	Mikan*			m_mikan[30];
 	Bumper*			m_bumper[4];
 
