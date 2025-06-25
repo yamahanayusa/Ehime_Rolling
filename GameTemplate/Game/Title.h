@@ -16,6 +16,7 @@ public:
 private:
 	SpriteRender	m_spriteRender;
 	Game*			m_game			= nullptr;
+	SoundSource*	m_soundSource	= nullptr;
 	StageSelect*	m_stageSelect	= nullptr;
 	Describe*		m_describe		= nullptr;
 };

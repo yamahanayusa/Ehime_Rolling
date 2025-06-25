@@ -13,11 +13,18 @@ Title::Title()
 
 Title::~Title()
 {
-
+	DeleteGO(m_soundSource);
 }
 
 bool Title::Start()
 {
+	//BGM.
+	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/title.wav");
+	m_soundSource = NewGO<SoundSource>(0);
+	//ResistWaveFileBankで指定した番号。
+	m_soundSource->Init(0);
+	//BGMは曲をループさせる。
+	m_soundSource->Play(true);
 	return true;
 }
 

@@ -28,5 +28,6 @@ private:
 	Score*		m_score		= nullptr;
 	Timer*		m_timer		= nullptr;
 	Flag*		m_chest		= nullptr;
+	SoundSource* m_soundSource = nullptr;
 };
 

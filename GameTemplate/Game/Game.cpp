@@ -79,10 +79,10 @@ bool Game::Start()
 	//重力の設定
 	PhysicsWorld::GetInstance()->SetGravity({ 0.0f,-1800.0f,0.0f });
 	//BGM.
-	//g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
+	g_soundEngine->ResistWaveFileBank(1, "Assets/sound/BGM.wav");
 	m_soundSource = NewGO<SoundSource>(0);
 	//ResistWaveFileBankで指定した番号。
-	m_soundSource->Init(0);
+	m_soundSource->Init(1);
 	//BGMは曲をループさせる。
 	m_soundSource->Play(true);
 	FindGO<Player>("player");
