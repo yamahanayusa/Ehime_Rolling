@@ -11,7 +11,7 @@ TimeOver::TimeOver()
 
 TimeOver::~TimeOver()
 {
-
+	DeleteGO(m_soundSource);
 }
 
 bool TimeOver::Start()
@@ -19,6 +19,14 @@ bool TimeOver::Start()
 	//ゲームオーバーの画像を読み込む
 	spriteRender.Init("Assets/sprite/TimeOver.dds", 1920.0f, 1080.0f);
 	m_game = FindGO<Game>("game");
+
+	//BGM.
+	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/BGM.wav");
+	m_soundSource = NewGO<SoundSource>(0);
+	//ResistWaveFileBankで指定した番号。
+	m_soundSource->Init(0);
+	//BGMは曲をループさせる。
+	m_soundSource->Play(true);
 	return true;
 }
 

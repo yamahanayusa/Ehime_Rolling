@@ -17,6 +17,7 @@ private:
 	SpriteRender	m_spriteRender;		//スプライトレンダー。
 
 	Game*	m_game	= nullptr;
+	SoundSource* m_soundSource = nullptr;
 };
 
 
