@@ -10,7 +10,7 @@ StageSelect::StageSelect()
     m_spriteRender.SetScale({ 1.0f, 1.0f, 1.0f }); //
     m_spriteRender.Update(); //
 
-    m_spriteRender0.Init("Assets/StageSelect/black.dds", 315.0f, 165.0f); //
+    m_spriteRender0.Init("Assets/StageSelect/yellow.dds", 315.0f, 165.0f); //
     // カーソルの初期位置を設定 (m_button=0, つまりステージ選択なし、または最初のステージ)
     // ここでは、デフォルトでステージ1の位置にカーソルを置くことにします。
     m_spriteRender0.SetPosition({ -500.0f, 100.0f, 0.0f }); // ステージ1の位置
