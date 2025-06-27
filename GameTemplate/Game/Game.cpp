@@ -325,7 +325,7 @@ void Game::Stage5()
 	//レベルの構築
 	m_levelRender.Init("Assets/level3D/stage5Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
-		if (objData.EqualObjectName(L"graund") == true) {
+		if (objData.EqualObjectName(L"ground") == true) {
 			m_stage05 = NewGO<Stage05>(0, "stage05");
 			m_stage05->GetTransform()->m_localPosition.Set(objData.position);
 			m_stage05->GetTransform()->m_localRotation.Set(objData.rotation);
