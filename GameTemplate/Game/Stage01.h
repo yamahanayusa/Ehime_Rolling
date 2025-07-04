@@ -12,7 +12,7 @@ public:
 	//スタート
 	bool Start();
 	//アップデート
-	void  Update();
+	void Update();
 	//回転処理
 	void Rotation();
 	//レンダー
@@ -45,4 +45,3 @@ private:
 	Player*			m_player		= nullptr;
 	CountDown*		m_countDown		= nullptr;
 };
-

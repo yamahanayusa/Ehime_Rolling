@@ -89,8 +89,6 @@ void Kiwi::Update()
 
 		m_score->SdRender(SCORE);
 
-		//DeleteGO(this);
-
 		return;
 	}
 	return;

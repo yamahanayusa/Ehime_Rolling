@@ -21,8 +21,8 @@ public:
 	void CameraEvent();
 
 private:
-	Vector3			m_toCameraPos		= Vector3::One;	//カメラポス
-	Vector3			m_toCameraTargetPos	= Vector3::One;	//カメラポス
+	Vector3			m_toCameraPos		= Vector3::One;
+	Vector3			m_toCameraTargetPos	= Vector3::One;
 	SpringCamera	m_springCamera;					//ばねカメラ
 
 	Game*			m_game			= nullptr;

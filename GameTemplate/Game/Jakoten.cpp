@@ -5,7 +5,6 @@
 #include "Score.h"
 #include "Mikan.h"
 #include "Timer.h"
-//#include "Stage03.h"
 #include "Stage05.h"
 #include "Transform.h"
 #include "sound/SoundSource.h"
@@ -38,7 +37,6 @@ bool Jakoten::Start()
 	m_player = FindGO<Player>("player");
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
-	//m_stage03 = FindGO<Stage03>("stage03");
 	m_stage05 = FindGO<Stage05>("stage05");
 	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/GetItem.wav");	//音の読み込み。
 
@@ -91,7 +89,6 @@ void Jakoten::Update()
 		SoundSource* se = NewGO<SoundSource>(0);
 		se->Init(5);
 		se->Play(false);
-		//DeleteGO(this);
 		return;
 	}		
 	return;

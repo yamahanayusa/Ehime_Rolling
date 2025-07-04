@@ -40,7 +40,3 @@ private:
 	Player*			m_player	= nullptr;
 	CountDown*		m_countDown = nullptr;
 };
-
-
-
-

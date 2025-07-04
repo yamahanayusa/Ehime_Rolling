@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "GameCamera.h"
-
 #include "Player.h"
 #include "Game.h"
-
-//2025/03/04
 
 GameCamera::GameCamera()
 {

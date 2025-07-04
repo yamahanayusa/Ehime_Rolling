@@ -9,10 +9,12 @@ Stage04::Stage04()
 {
 	m_transform = new Transform(); // Transformの生成
 }
+
 Stage04::~Stage04()
 {
 	delete m_transform; // Transformの削除
 }
+
 bool Stage04::Start()
 {
 	m_modelRender.Init("Assets/Stage4/stage4.tkm");
@@ -22,6 +24,7 @@ bool Stage04::Start()
 
 	return true;
 }
+
 void Stage04::Update()
 {
 	if (m_countDown->GetShowGO()) {
@@ -34,6 +37,7 @@ void Stage04::Update()
 	// モデルの更新処理
 	m_modelRender.Update();
 }
+
 void Stage04::Rotation()
 {
 	// 背景をプレイヤー空間に移動させる行列を計算する
@@ -78,7 +82,7 @@ void Stage04::Rotation()
 	mWorld._42 += playerPos.y;
 	mWorld._43 += playerPos.z;
 
-	// 最終的に出来上がった行列から回転クォータニオンを作る]
+	// 最終的に出来上がった行列から回転クォータニオンを作る
 	m_transform->m_localRotation.SetRotation(mWorld);
 	m_transform->m_localPosition.Set(mWorld._41, mWorld._42, mWorld._43);
 	//
@@ -88,6 +92,7 @@ void Stage04::Rotation()
 	//モデルレンダーのアップデート
 	m_modelRender.Update();
 }
+
 void Stage04::Render(RenderContext& rc)
 {
 	//モデルの描画

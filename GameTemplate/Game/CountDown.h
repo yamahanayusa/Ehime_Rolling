@@ -1,6 +1,6 @@
 #pragma once
 
-class CountDown:public IGameObject
+class CountDown :public IGameObject
 {
 public:
 	CountDown();

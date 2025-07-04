@@ -49,8 +49,6 @@ Game::~Game()
 	DeleteGO(m_kiwi);
 	DeleteGO(m_countDown);
 	DeleteGO(m_goal);
-	/*DeleteGO(m_timer);
-	DeleteGO(m_score);*/
 }
 
 bool Game::Start()
@@ -63,16 +61,16 @@ bool Game::Start()
 		Stage1();
 		break;
 	case 2:
-		Stage2(); // ステージ2のレベルデータがないため、仮でステージ3をロード
+		Stage2();
 		break;
 	case 3:
 		Stage3();
 		break;
 	case 4:
-		Stage4(); // ステージ4のレベルデータがないため、仮でステージ3をロード
+		Stage4();
 		break;
 	case 5:
-		Stage5(); // ステージ5のレベルデータがないため、仮でステージ3をロード
+		Stage5();
 		break;
 	}
 
@@ -108,22 +106,6 @@ void Game::Update()
 		DeleteGO(m_score);
 		DeleteGO(this);
 	}
-
-	////Aボタンが押されたら。
-	//if (g_pad[0]->IsTrigger(enButtonA))
-	//{
-	//	//BGMが再生中なら。
-	//	if (m_soundSource->IsPlaying())
-	//	{
-	//		//停止させる。
-	//		m_soundSource->Stop();
-	//	}
-	//	//停止中なら。
-	//	else
-	//	{
-	//		m_soundSource->Play(true);
-	//	}
-	//}
 }
 
 void Game::Stage1()
@@ -379,47 +361,11 @@ void Game::Stage5()
 
 void Game::GameStateUpdate()
 {
-	m_gameState = enInGame;
-
-	if (enStageSelect)
-	{
-		
-	}
-
-	if (enInGame)
-	{
-		m_countDown=NewGO<CountDown>(0,"countDown");
-		m_score = NewGO<Score>(0, "score");
-		m_timer = NewGO<Timer>(0, "timer");
-		m_player = NewGO<Player>(0, "player");
-		//m_soundSource = NewGO<SoundSource>(0,"soundSource");
-
-	/*	m_stage = NewGO<Stage>(0, "stage");
-		m_iceFloor = NewGO<IceFloor>(0, "iceFloor");*/
-		/*m_gamecamera = NewGO<GameCamera>(0, "gameCamera");*/
-
-	/*	m_mikan = NewGO<Mikan>(0, "mikan");*/
-		/*m_mikan->m_position = { 400.0f,0.0f,-400.0f };
-		m_mikan->m_firstPosition = m_mikan->m_position;*/
-
-		//m_chest = NewGO<Chest>(0, "chest");
-		//m_chest->m_position = { 400.0f,0.0f,-500.0f };
-		////m_chest->m_firstPosition = m_chest->m_position;
-		////m_chest->m_position = { -450.0f,-70.0f,-1570.0f };
-		////m_chest->m_firstPosition = m_chest->m_position;
-
-		//じゃこ天。
-		//m_jakoten = NewGO<Jakoten>(0, "Jakoten");
-		//m_jakoten->SetPos({ 100.0f, 0.0f, -300.0f });
-    
-		m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
-
-		//m_bumper = NewGO<Bumper>(0, "bumper");
-		//m_bumper->SetPos({ 0.0f,0.0f,0.0f });
-
-		/*m_kiwi = NewGO<Kiwi>(0, "Kiwi");
-		m_kiwi->SetPos({ -100.0f,0.0f,-300.0f });*/
-	}
+	m_countDown=NewGO<CountDown>(0,"countDown");
+	m_score = NewGO<Score>(0, "score");
+	m_timer = NewGO<Timer>(0, "timer");
+	m_player = NewGO<Player>(0, "player");
+	m_gameCamera = NewGO<GameCamera>(0, "gameCamera");
 }
 	
 void Game::Render(RenderContext & rc)

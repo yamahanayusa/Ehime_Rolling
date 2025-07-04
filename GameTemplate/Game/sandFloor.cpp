@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "sandFloor.h"
-#include "stage04.h"
-#include"Player.h"
-#include "transform.h"
+#include "SandFloor.h"
+#include "Stage04.h"
+#include "Player.h"
+#include "Transform.h"
 
 SandFloor::SandFloor()
 {
@@ -29,10 +29,11 @@ bool SandFloor::Start()
 void SandFloor::Update()
 {
 	Slide();
-	//�X�V�����B
+
+	//更新処理。
 	m_transform->UpdateTransform();
 
-	//�G�`������̍X�V�����B
+	//絵描きさんの更新処理。
 	UpdateModelRenderer();
 }
 
@@ -44,7 +45,7 @@ void SandFloor::Slide()
 	if (m_player == nullptr) {
 		return;
 	}
-	//�v���C���[�ƍ��̏��̋����������߂�
+	//プレイヤーと砂の道の距離感を求める
 	Vector3 distance = m_player->rbPos - m_position;
 	if (distance.Length() < 150.0f)
 	{
@@ -56,12 +57,12 @@ void SandFloor::Slide()
 
 void SandFloor::UpdateModelRenderer()
 {
-	//�G�`������ɍ��W��������B
+	//絵描きさんに座標を教える。
 	m_modelRender.SetPosition(m_transform->m_position);
 	m_modelRender.SetRotation(m_transform->m_rotation);
 	m_modelRender.SetScale(m_transform->m_scale);
 	m_object.SetPositionAndRotation(m_transform->m_position, m_transform->m_rotation);
-	//�G�`������̍X�V�����B
+	//絵描きさんの更新処理。
 	m_modelRender.Update();
 }
 

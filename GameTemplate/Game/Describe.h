@@ -11,9 +11,9 @@ public:
 
 	void Update();
 	bool Start();
-
 	void Render(RenderContext& rc);
 
+private:
 	SpriteRender	m_spriteRender;
 
 	Game*			m_game			 = nullptr;

@@ -4,8 +4,6 @@
 #include "Transform.h"
 #include "CountDown.h"
 
-//�ǉ�
-
 Stage01::Stage01()
 {
 	m_transform = new Transform();
@@ -30,7 +28,6 @@ void Stage01::Update()
 	if (m_countDown->GetShowGO()) {
 		return;
 	}
-	//��]����
 	//回転処理
 	Rotation();
 	//更新処理。
@@ -82,7 +79,7 @@ void Stage01::Rotation()
 	mWorld._42 += playerPos.y;
 	mWorld._43 += playerPos.z;
 
-	// 最終的に出来上がった行列から回転クォータニオンを作る]
+	// 最終的に出来上がった行列から回転クォータニオンを作る
 	m_transform->m_localRotation.SetRotation(mWorld);
 	m_transform->m_localPosition.Set(mWorld._41, mWorld._42, mWorld._43);
 	//
@@ -92,6 +89,7 @@ void Stage01::Rotation()
 	//モデルレンダーのアップデート
 	m_modelRender.Update();
 }
+
 void Stage01::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);

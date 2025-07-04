@@ -20,7 +20,6 @@ bool Player::Start()
 
 	//球体の大きさ
 	m_sphereCollider.Create(17.0f);
-	//RigidBodyInitData rbInitData;
 	rbInitData.collider = &m_sphereCollider;
 	rbInitData.mass = 10.0f;
 	rbInitData.pos = m_ballPosition;
@@ -44,12 +43,6 @@ void Player::Update()
 	m_ballRender.SetRotation(rbRot);
 	m_ballRender.Update();
 	m_ballPosition = rbPos;
-	/*if (rbPos.y <= -3000.0f)
-	{
-		m_game->m_gameState = m_game->enGameOver;
-		m_game->GameStateUpdate();
-		//DeleteGO(m_game);
-	}*/
 }
 
 

@@ -29,11 +29,6 @@ public:
 		m_position = pos;
 	}
 
-	//Vector3 GetPos()
-	//{
-	//	return m_position;
-	//}
-
 private:
 	//ポインタ系。
 	Player*			m_player		= nullptr;

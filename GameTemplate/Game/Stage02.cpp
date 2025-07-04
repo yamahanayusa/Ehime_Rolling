@@ -13,6 +13,7 @@ Stage02::~Stage02()
 {
 	delete m_transform;
 }
+
 bool Stage02::Start()
 {
 	m_modelRender.Init("Assets/Stage2/stage02.tkm");
@@ -79,7 +80,7 @@ void Stage02::Rotation()
 	mWorld._42 += playerPos.y;
 	mWorld._43 += playerPos.z;
 
-	// 最終的に出来上がった行列から回転クォータニオンを作る]
+	// 最終的に出来上がった行列から回転クォータニオンを作る
 	m_transform->m_localRotation.SetRotation(mWorld);
 	m_transform->m_localPosition.Set(mWorld._41, mWorld._42, mWorld._43);
 	//
@@ -89,6 +90,7 @@ void Stage02::Rotation()
 	//モデルレンダーのアップデート
 	m_modelRender.Update();
 }
+
 void Stage02::Render(RenderContext& rc)
 {
 	m_modelRender.Draw(rc);

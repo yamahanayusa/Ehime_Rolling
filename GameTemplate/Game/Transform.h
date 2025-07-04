@@ -25,7 +25,6 @@ public:
 		m_parent->m_children.push_back(this);
 	}
 
-	//public変数
 public:
 	//自身のパラメータ
 	Vector3		m_localPosition;
@@ -37,8 +36,6 @@ public:
 	Quaternion	m_rotation;
 	Vector3		m_scale;
 
-	//private変数
-	//基本的に関数以外から弄る必要なし
 private:
 
 	Matrix		m_rotationMatrix;

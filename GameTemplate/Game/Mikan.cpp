@@ -99,7 +99,6 @@ void Mikan::Update()
 		m_isCollected = true;							//取得済みフラグを立てる。
 		m_velocity = Vector3(0, FLY_UP_VELOCITY, 0);	// 上方向にぶっ飛ばす
 		m_flyUpTimer = 0.0f;							// 上昇時間をリセット
-		//DeleteGO(this);
 		//スコアの加算。
 		m_score->AddItemGetScore(SCORE);
 		SoundSource* se = NewGO<SoundSource>(0);
