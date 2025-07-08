@@ -224,6 +224,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseStage.cpp" />
     <ClCompile Include="CountDown.cpp" />
     <ClCompile Include="Describe.cpp" />
     <ClCompile Include="Goal.cpp" />
@@ -259,6 +260,7 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseStage.h" />
     <ClInclude Include="CountDown.h" />
     <ClInclude Include="Describe.h" />
     <ClInclude Include="Goal.h" />

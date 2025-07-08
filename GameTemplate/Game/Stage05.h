@@ -1,41 +1,37 @@
 #pragma once
 
-class Player;
-class Transform;
-class CountDown;
+#include "BaseStage.h" // BaseStage を継承するのでインクルード
+#include "Transform.h" // Transform を独自に持つので、ここでインクルード
 
-class Stage05 : public IGameObject
+class Stage05 : public BaseStage
 {
 public:
-	Stage05();
-	~Stage05();
-	bool Start();
-	void Update();
-	void Rotation();
-	void Render(RenderContext& rc);
+    // コンストラクタで、基底クラスのコンストラクタにモデルパスを渡す
+    Stage05();
+    // デストラクタ: 独自の m_transform を削除
+    ~Stage05();
 
-	Transform* GetTransform()
-	{
-		return m_transform;
-	}
+    // 基底クラスのメソッドをオーバーライドし、独自の m_transform を渡す
+    bool Start() override;
+    void Update() override;
+    void Rotation(Transform* transform) override;
+    void Render(RenderContext& rc) override; // Render も Transform を渡す形にOverride
 
-	Matrix GetWorldMatrix() const
-	{
-		return m_modelRender.GetWorldMatrix(0);
-	}
+    // 独自の GetTransform() を実装
+    Transform* GetTransform()
+    {
+        return m_transform;
+    }
 
-	Transform*		m_transform		= nullptr;
-private:
-	ModelRender			m_modelRender;
-	PhysicsStaticObject m_object;
+    Matrix GetWorldMatrix() const
+    {
+        // 独自の Transform からワールド行列を取得
+        if (m_transform) {
+            return m_modelRender.GetWorldMatrix(0);
+        }
+        return Matrix::Identity; // エラー時のデフォルト
+    }
+    Transform* m_transform = nullptr;
+private: // 各ステージが独自の Transform を持つ
 
-	//大きさ
-	Vector3			m_scale	= Vector3::One;
-
-	//回転を設定する
-	Quaternion		addRot	= Quaternion::Identity;
-	Quaternion		addLot	= Quaternion::Identity;
-
-	Player*			m_player	= nullptr;
-	CountDown*		m_countDown = nullptr;
 };
