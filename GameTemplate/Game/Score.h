@@ -10,29 +10,18 @@ public:
 	bool Start() override;
 	void Update() override;
 	void Render(RenderContext& rc) override;
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <returns></returns>
+
 	int GetTortalScore()
 	{
 		m_tortalScore = m_itemGetScore + m_timeScore;
 		return m_tortalScore;
 	}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="addScore"></param>
 	void AddItemGetScore(int addScore)
 	{
 		m_itemGetScore += addScore * m_buffMultipier;
 	}
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="multipier"></param>
-	/// <param name="buffSecond"></param>
+	
 	void SetBuffMultipier(float multipier,float buffSecond)
 	{
 		m_buffMultipier = multipier;
@@ -55,19 +44,11 @@ public:
 	void UpdateSdRender(float deltaTime);
 
 private:	
-	/// <summary>
-	/// 
-	/// </summary>
+
 	void ResultScoreCalc();
 
-	/// <summary>
-	/// 
-	/// </summary>
 	void TimeScoreCalc();
-	
-	/// <summary>
-	///
-	/// </summary>
+
 	void ResultScoreDisp();
 
 private:
