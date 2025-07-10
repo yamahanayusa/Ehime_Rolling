@@ -12,10 +12,11 @@
 
 //定数。
 namespace {
-	const float BUFF_MULTIPIER = 2.0f;		//バフの倍率。
-	const float BUFF_TIME = 10.0f;			//バフの継続時間。
-	const float FLY_UP_VELOCITY = 800.0f;	//上方向に飛ばす時の初速
-	const float FLY_UP_TIME = 0.5f;			//上昇する時間
+	const float BUFF_MULTIPIER = 2.0f;			//バフの倍率。
+	const float BUFF_TIME = 10.0f;				//バフの継続時間。
+	const float FLY_UP_VELOCITY = 800.0f;		//上方向に飛ばす時の初速
+	const float FLY_UP_TIME = 0.5f;				//上昇する時間
+	const float JAKOTEN_GET_DISTANCE = 60.0f;	// じゃこ天取得判定距離
 }
 
 Jakoten::Jakoten()
@@ -78,7 +79,7 @@ void Jakoten::Update()
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
 
 	//アイテムの獲得。
-	if (diff.Length() <= 60.0f)
+	if (diff.Length() <= JAKOTEN_GET_DISTANCE)
 	{
 		m_isCollected = true;									//取得済みフラグを立てる。
 		m_transform->m_position = m_position;					//初期位置に戻さずにその場て飛ばす

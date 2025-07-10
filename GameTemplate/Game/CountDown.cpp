@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "CountDown.h"
 
+namespace{
+    const float MAX_ALPHA = 1.0f;
+}
+
 CountDown::CountDown()
 { 
 
@@ -30,7 +34,7 @@ void CountDown::Update()
     //フェードタイマー進行。
     m_fadeTimer += g_gameTime->GetFrameDeltaTime();
     float alpha = (m_fadeTimer / m_fadeDuration);
-    if (alpha > 1.0f) alpha = 1.0f;
+    if (alpha > MAX_ALPHA) alpha = MAX_ALPHA;
 
     //表示テキスト設定。
     std::wstring m_text;

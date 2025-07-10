@@ -57,6 +57,9 @@ public:
 private:
 	LevelRender		m_levelRender;
 
+	int		m_resultTime	= 0;
+	static constexpr int MIKAN_MAX	= 30;
+
 	Title*			m_title			= nullptr;
 	Flag*			m_flag			= nullptr;
 	Timer*			m_timer			= nullptr;
@@ -79,8 +82,6 @@ private:
 	SoundSource*	m_soundSource	= nullptr;
 	CountDown*		m_countDown		= nullptr;
 	Goal*			m_goal			= nullptr;
-	Mikan*			m_mikan[30];
-
-	int				m_resultTime = 0;
+	Mikan*			m_mikan[MIKAN_MAX];
 };
 

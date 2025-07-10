@@ -17,7 +17,7 @@ GameOver::~GameOver()
 bool GameOver::Start()
 {
 	//ゲームオーバーの画像を読み込む
-	m_spriteRender.Init("Assets/sprite/Gameover.dds", 1920.0f, 1080.0f);
+	m_spriteRender.Init("Assets/sprite/GameOver.dds", 1920.0f, 1080.0f);
 
 	//BGM.
 	g_soundEngine->ResistWaveFileBank(2, "Assets/sound/gameover.wav");

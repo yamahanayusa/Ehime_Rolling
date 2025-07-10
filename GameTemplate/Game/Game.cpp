@@ -22,7 +22,7 @@
 #include "Kiwi.h"
 #include "CountDown.h"
 #include "Describe.h"
-#include "goal.h"
+#include "Goal.h"
 
 Game::Game()
 {
@@ -31,7 +31,7 @@ Game::Game()
 
 Game::~Game()
 {
-	for (int mikan = 0;mikan < 30;mikan++) {
+	for (int mikan = 0;mikan < MIKAN_MAX;mikan++) {
 		DeleteGO(m_mikan[mikan]);
 	}
 	DeleteGO(m_flag);  
@@ -245,7 +245,6 @@ void Game::Stage3()
 void Game::Stage4()
 {
 	int mikan = 0;
-	int bumper = 0;
 	//レベルの構築
 	m_levelRender.Init("Assets/level3D/stage4Level.tkl", [&](LevelObjectData& objData) {
 		//ステージ
