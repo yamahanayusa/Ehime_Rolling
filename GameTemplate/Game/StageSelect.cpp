@@ -1,56 +1,49 @@
 #include "stdafx.h"
 #include "StageSelect.h"
-#include "Game.h" 
+#include "Game.h"
 
 StageSelect::StageSelect()
 {
-    // 画像を読み込む
-    m_spriteRender.Init("Assets/StageSelect/Select.dds", 1920.0f, 1080.0f); //
-    m_spriteRender.SetPosition({ 0.0f, 0.0f, 0.0f }); //
-    m_spriteRender.SetScale({ 1.0f, 1.0f, 1.0f }); //
-    m_spriteRender.Update(); //
+    // 背景画像の初期化 (変更なし)
+    m_backgroundSprite.Init("Assets/StageSelect/Select.dds", 1920.0f, 1080.0f);
+    m_backgroundSprite.SetPosition({ 0.0f, 0.0f, 0.0f });
+    m_backgroundSprite.SetScale({ 1.0f, 1.0f, 1.0f });
+    m_backgroundSprite.Update();
 
-    m_spriteRender0.Init("Assets/StageSelect/yellow.dds", 315.0f, 165.0f); //
-    // カーソルの初期位置を設定 (m_button=0, つまりステージ選択なし、または最初のステージ)
-    // ここでは、デフォルトでステージ1の位置にカーソルを置くことにします。
-    m_spriteRender0.SetPosition({ -500.0f, 100.0f, 0.0f }); // ステージ1の位置
-    m_spriteRender0.SetScale({ 1.5f, 1.5f, 1.0f }); //
-    m_spriteRender0.Update(); //
+    // カーソル画像の初期化 (変更なし)
+    m_cursorSprite.Init("Assets/StageSelect/yellow.dds", 315.0f, 165.0f);
+    m_cursorSprite.SetScale({ 1.5f, 1.5f, 1.0f });
 
-    m_spriteRender1.Init("Assets/StageSelect/one.dds", 300.0f, 150.0f); //
-    m_spriteRender1.SetPosition({ -500.0f, 100.0f, 0.0f }); //
-    m_spriteRender1.SetScale({ 1.5f, 1.5f, 1.0f }); //
-    m_spriteRender1.Update(); //
+    // 各ステージ画像の初期化をループで行う
+    // m_stageSprites.resize(NUM_STAGES); // unique_ptrの場合はresizeではなくemplace_backやpush_back
+    for (int i = 0; i < NUM_STAGES; ++i) {
+        const StageButtonInfo& info = STAGE_BUTTON_INFOS[i];
 
-    m_spriteRender2.Init("Assets/StageSelect/Two.dds", 300.0f, 150.0f); //
-    m_spriteRender2.SetPosition({ 0.0f, 100.0f, 0.0f }); //
-    m_spriteRender2.SetScale({ 1.5f, 1.5f, 1.0f }); //
-    m_spriteRender2.Update(); //
+        // 新しいSpriteRenderオブジェクトをヒープに作成し、unique_ptrで管理
+        std::unique_ptr<SpriteRender> sprite = std::make_unique<SpriteRender>();
+        sprite->Init(info.imagePath, 300.0f, 150.0f);
+        sprite->SetPosition({ info.posX, info.posY, 0.0f });
+        sprite->SetScale({ 1.5f, 1.5f, 1.0f });
+        sprite->Update();
 
-    m_spriteRender3.Init("Assets/StageSelect/Three.dds", 300.0f, 150.0f); //
-    m_spriteRender3.SetPosition({ 500.0f, 100.0f, 0.0f }); //
-    m_spriteRender3.SetScale({ 1.5f, 1.5f, 1.0f }); //
-    m_spriteRender3.Update(); //
+        m_stageSprites.push_back(std::move(sprite)); // unique_ptrはムーブセマンティクスで追加
+    }
 
-    m_spriteRender4.Init("Assets/StageSelect/Four.dds", 300.0f, 150.0f); //
-    m_spriteRender4.SetPosition({ -300.0f, -200.0f, 0.0f }); //
-    m_spriteRender4.SetScale({ 1.5f, 1.5f, 1.0f }); //
-    m_spriteRender4.Update(); //
-
-    m_spriteRender5.Init("Assets/StageSelect/Five.dds", 300.0f, 150.0f); //
-    m_spriteRender5.SetPosition({ 300.0f, -200.0f, 0.0f }); //
-    m_spriteRender5.SetScale({ 1.5f, 1.5f, 1.0f }); //
-    m_spriteRender5.Update(); //
-
-    // 初期選択ステージを1に設定
-    m_button = 1; // ステージ1から開始
-    m_selectedStage = 1; // 選択ステージも1に設定
+    // 初期選択ステージを設定 (0-based index)
+    m_currentSelection = 0; // デフォルトで最初のステージ (ステージ1) を選択
+    // カーソルを初期位置に設定
+    m_cursorSprite.SetPosition({
+        STAGE_BUTTON_INFOS[m_currentSelection].posX,
+        STAGE_BUTTON_INFOS[m_currentSelection].posY,
+        0.0f
+        });
+    m_cursorSprite.Update();
 }
 
 StageSelect::~StageSelect()
 {
-    // StageSelectがGameオブジェクトを直接生成・所有しないため、
-    // ここでDeleteGO(m_game)は呼び出しません。
+    // unique_ptrを使用しているため、明示的なdeleteは不要
+    // m_stageSpritesの要素はunique_ptrが自動的に解放します
 }
 
 bool StageSelect::Start()
@@ -60,102 +53,51 @@ bool StageSelect::Start()
 
 void StageSelect::Update()
 {
+    bool selectionChanged = false;
+
     if (g_pad[0]->IsTrigger(enButtonRight))
     {
-        m_button++;
-        // 5つのステージ（1-5）なので、5の次は1に戻る
-        if (m_button > 5) {
-            m_button = 1; // ステージ1に戻る
+        m_currentSelection++;
+        if (m_currentSelection >= NUM_STAGES) {
+            m_currentSelection = 0; // 最初に戻る
         }
-
-        // m_selectedStage に選択されたステージ番号を格納
-        m_selectedStage = m_button;
-
-        // カーソル (m_spriteRender0) の位置を更新
-        switch (m_button)
-        {
-        case 1:
-            m_spriteRender0.SetPosition({ -500.0f, 100.0f, 0.0f }); //
-            break;
-        case 2:
-            m_spriteRender0.SetPosition({ 0.0f, 100.0f, 0.0f }); //
-            break;
-        case 3:
-            m_spriteRender0.SetPosition({ 500.0f, 100.0f, 0.0f }); //
-            break;
-        case 4:
-            m_spriteRender0.SetPosition({ -300.0f, -200.0f, 0.0f }); //
-            break;
-        case 5:
-            m_spriteRender0.SetPosition({ 300.0f, -200.0f, 0.0f }); //
-            break;
-        default:
-            // m_buttonは1-5の範囲に制御されているので、通常ここには来ない
-            break;
-        }
-        m_spriteRender0.Update(); //
+        selectionChanged = true;
     }
 
     if (g_pad[0]->IsTrigger(enButtonLeft))
     {
-        m_button--;
-        // 5つのステージ（1-5）なので、5の次は1に戻る
-        if (m_button < 1) {
-            m_button = 5; // ステージ1に戻る
+        m_currentSelection--;
+        if (m_currentSelection < 0) {
+            m_currentSelection = NUM_STAGES - 1; // 最後に戻る
         }
-
-        // m_selectedStage に選択されたステージ番号を格納
-        m_selectedStage = m_button;
-
-        // カーソル (m_spriteRender0) の位置を更新
-        switch (m_button)
-        {
-        case 1:
-            m_spriteRender0.SetPosition({ -500.0f, 100.0f, 0.0f }); //
-            break;
-        case 2:
-            m_spriteRender0.SetPosition({ 0.0f, 100.0f, 0.0f }); //
-            break;
-        case 3:
-            m_spriteRender0.SetPosition({ 500.0f, 100.0f, 0.0f }); //
-            break;
-        case 4:
-            m_spriteRender0.SetPosition({ -300.0f, -200.0f, 0.0f }); //
-            break;
-        case 5:
-            m_spriteRender0.SetPosition({ 300.0f, -200.0f, 0.0f }); //
-            break;
-        default:
-            // m_buttonは1-5の範囲に制御されているので、通常ここには来ない
-            break;
-        }
-        m_spriteRender0.Update(); //
+        selectionChanged = true;
     }
 
-    if (g_pad[0]->IsTrigger(enButtonA)) //
-    {
-        // Aボタンが押されたら、選択されたステージでゲームを開始
-        // ここで初めてGameオブジェクトを生成します。
-        Game* newGame = NewGO<Game>(0, "game"); //
+    if (selectionChanged) {
+        const StageButtonInfo& currentInfo = STAGE_BUTTON_INFOS[m_currentSelection];
+        m_cursorSprite.SetPosition({ currentInfo.posX, currentInfo.posY, 0.0f });
+        m_cursorSprite.Update();
+    }
 
-        // 生成されたGameオブジェクトに、選択されたステージ番号を渡します。
-        if (newGame) { //
-            newGame->m_state = m_selectedStage; // Gameクラスのm_stateに直接代入
+    if (g_pad[0]->IsTrigger(enButtonA))
+    {
+        Game* newGame = NewGO<Game>(0, "game");
+
+        if (newGame) {
+            newGame->m_state = m_currentSelection + 1;
         }
 
-        // StageSelectオブジェクトは役割を終えたので削除します。
-        DeleteGO(this); //
+        DeleteGO(this);
     }
 }
 
 void StageSelect::Render(RenderContext& rc)
 {
-    //画像を描画する。
-    m_spriteRender.Draw(rc); //
-    m_spriteRender0.Draw(rc); //
-    m_spriteRender1.Draw(rc); //
-    m_spriteRender2.Draw(rc); //
-    m_spriteRender3.Draw(rc); //
-    m_spriteRender4.Draw(rc); //
-    m_spriteRender5.Draw(rc); //
+    m_backgroundSprite.Draw(rc);
+    m_cursorSprite.Draw(rc);
+
+    // unique_ptrのポインタをデリファレンスしてDrawを呼び出す
+    for (const auto& spritePtr : m_stageSprites) { // auto& でユニークポインタの参照を取得
+        spritePtr->Draw(rc); // ->演算子でポインタ先のSpriteRenderオブジェクトにアクセス
+    }
 }
