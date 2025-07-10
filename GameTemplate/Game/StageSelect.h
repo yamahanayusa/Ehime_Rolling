@@ -1,26 +1,41 @@
 #pragma once
-//#include "GameObject.h" // GameObjectを継承していると仮定
+#include <vector>
+#include <memory> // std::unique_ptrを使用するため
+// #include "GameObject.h" // IGameObjectの定義元を仮定
 
 class Game; // Gameクラスの前方宣言
+
+// 各ステージボタンの情報を保持する構造体
+struct StageButtonInfo {
+    const char* imagePath;
+    float posX;
+    float posY;
+};
 
 class StageSelect : public IGameObject
 {
 public:
-    StageSelect(); //
-    ~StageSelect(); //
-    bool Start() override; //
-    void Update() override; //
-    void Render(RenderContext& rc) override; //
+    StageSelect();
+    ~StageSelect();
+    bool Start() override;
+    void Update() override;
+    void Render(RenderContext& rc) override;
 
 private:
-    SpriteRender m_spriteRender; //
-    SpriteRender m_spriteRender0; // カーソル用の黒い四角
-    SpriteRender m_spriteRender1; // ステージ1画像
-    SpriteRender m_spriteRender2; // ステージ2画像
-    SpriteRender m_spriteRender3; // ステージ3画像
-    SpriteRender m_spriteRender4; // ステージ4画像
-    SpriteRender m_spriteRender5; // ステージ5画像
+    SpriteRender m_backgroundSprite; // 背景用
+    SpriteRender m_cursorSprite;     // カーソル用
 
-    int m_button = 0; // 現在選択中のステージボタンのインデックス (0-5)
-    int m_selectedStage = 0; // 実際にGameオブジェクトに渡すステージ番号
+    // ステージ画像用のSpriteRenderをunique_ptrのベクターで管理
+    std::vector<std::unique_ptr<SpriteRender>> m_stageSprites; // ここをUnique_ptrに変更
+
+    int m_currentSelection = 0; // 現在選択中のステージボタンのインデックス (0-based)
+
+    static constexpr StageButtonInfo STAGE_BUTTON_INFOS[] = {
+        {"Assets/StageSelect/one.dds",  -500.0f, 100.0f}, // Stage 1
+        {"Assets/StageSelect/Two.dds",  0.0f,    100.0f}, // Stage 2
+        {"Assets/StageSelect/Three.dds", 500.0f,  100.0f}, // Stage 3
+        {"Assets/StageSelect/Four.dds", -300.0f, -200.0f}, // Stage 4
+        {"Assets/StageSelect/Five.dds", 300.0f,  -200.0f}  // Stage 5
+    };
+    static constexpr int NUM_STAGES = sizeof(STAGE_BUTTON_INFOS) / sizeof(STAGE_BUTTON_INFOS[0]);
 };
