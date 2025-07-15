@@ -1,23 +1,23 @@
 #pragma once
 
-#include "BaseStage.h" // BaseStage ‚ğŒp³‚·‚é‚Ì‚ÅƒCƒ“ƒNƒ‹[ƒh
-#include "Transform.h" // Transform ‚ğ“Æ©‚É‚Â‚Ì‚ÅA‚±‚±‚ÅƒCƒ“ƒNƒ‹[ƒh
+#include "BaseStage.h" // BaseStage ã‚’ç¶™æ‰¿ã™ã‚‹ã®ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
+#include "Transform.h" // Transform ã‚’ç‹¬è‡ªã«æŒã¤ã®ã§ã€ã“ã“ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 
 class Stage01 : public BaseStage
 {
 public:
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅAŠî’êƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Éƒ‚ƒfƒ‹ƒpƒX‚ğ“n‚·
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã€åŸºåº•ã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã«ãƒ¢ãƒ‡ãƒ«ãƒ‘ã‚¹ã‚’æ¸¡ã™
     Stage01();
-    // ƒfƒXƒgƒ‰ƒNƒ^: “Æ©‚Ì m_transform ‚ğíœ
+    // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿: ç‹¬è‡ªã® m_transform ã‚’å‰Šé™¤
     ~Stage01();
 
-    // Šî’êƒNƒ‰ƒX‚Ìƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh‚µA“Æ©‚Ì m_transform ‚ğ“n‚·
+    // åŸºåº•ã‚¯ãƒ©ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã€ç‹¬è‡ªã® m_transform ã‚’æ¸¡ã™
     bool Start() override;
     void Update() override;
     void Rotation(Transform* transform) override;
-    void Render(RenderContext& rc) override; // Render ‚à Transform ‚ğ“n‚·Œ`‚ÉOverride
+    void Render(RenderContext& rc) override; // Render ã‚‚ Transform ã‚’æ¸¡ã™å½¢ã«Override
 
-    // “Æ©‚Ì GetTransform() ‚ğÀ‘•
+    // ç‹¬è‡ªã® GetTransform() ã‚’å®Ÿè£…
     Transform* GetTransform()
     {
         return m_transform;
@@ -25,13 +25,13 @@ public:
 
     Matrix GetWorldMatrix() const
     {
-        // “Æ©‚Ì Transform ‚©‚çƒ[ƒ‹ƒhs—ñ‚ğæ“¾
+        // ç‹¬è‡ªã® Transform ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’å–å¾—
         if (m_transform) {
             return m_modelRender.GetWorldMatrix(0);
         }
-        return Matrix::Identity; // ƒGƒ‰[‚ÌƒfƒtƒHƒ‹ƒg
+        return Matrix::Identity; // ã‚¨ãƒ©ãƒ¼æ™‚ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
     }
     Transform* m_transform = nullptr;
-private: // ŠeƒXƒe[ƒW‚ª“Æ©‚Ì Transform ‚ğ‚Â
+private: // å„ã‚¹ãƒ†ãƒ¼ã‚¸ãŒç‹¬è‡ªã® Transform ã‚’æŒã¤
 
 };

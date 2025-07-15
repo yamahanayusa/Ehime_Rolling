@@ -2,39 +2,39 @@
 #include "Stage04.h" 
 
 Stage04::Stage04()
-// BaseStage ‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğŒÄ‚Ño‚µAStage4 ‚Ìƒ‚ƒfƒ‹ƒpƒX‚ğ“n‚·
+// BaseStage ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’å‘¼ã³å‡ºã—ã€Stage4 ã®ãƒ¢ãƒ‡ãƒ«ãƒ‘ã‚¹ã‚’æ¸¡ã™
     : BaseStage("Assets/Stage4/stage4.tkm")
 {
-    // ‚±‚±‚Å Stage04 “Æ©‚Ì m_transform ‚ğ¶¬
+    // ã“ã“ã§ Stage04 ç‹¬è‡ªã® m_transform ã‚’ç”Ÿæˆ
     m_transform = new Transform();
 }
 
 Stage04::~Stage04()
 {
-    // ‚±‚±‚Å Stage04 “Æ©‚Ì m_transform ‚ğíœ
+    // ã“ã“ã§ Stage04 ç‹¬è‡ªã® m_transform ã‚’å‰Šé™¤
     delete m_transform;
 }
 
-// Start ƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh: BaseStage ‚Ì Start ‚É©g‚Ì m_transform ‚ğ“n‚·
+// Start ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰: BaseStage ã® Start ã«è‡ªèº«ã® m_transform ã‚’æ¸¡ã™
 bool Stage04::Start()
 {
-    return BaseStage::Start(m_transform); // BaseStage::Start ‚É m_transform ‚ğ“n‚·
+    return BaseStage::Start(m_transform); // BaseStage::Start ã« m_transform ã‚’æ¸¡ã™
 }
 
-// Update ƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh: BaseStage ‚Ì Update ‚É©g‚Ì m_transform ‚ğ“n‚·
+// Update ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰: BaseStage ã® Update ã«è‡ªèº«ã® m_transform ã‚’æ¸¡ã™
 void Stage04::Update()
 {
-    BaseStage::Update(m_transform); // BaseStage::Update ‚É m_transform ‚ğ“n‚·
+    BaseStage::Update(m_transform); // BaseStage::Update ã« m_transform ã‚’æ¸¡ã™
 }
 
-// Rotation ƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh: BaseStage ‚Ì Rotation ‚É©g‚Ì m_transform ‚ğ“n‚·
-void Stage04::Rotation(Transform* transform) // ‚±‚±‚É Transform* transform ‚ğ’Ç‰Á
+// Rotation ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰: BaseStage ã® Rotation ã«è‡ªèº«ã® m_transform ã‚’æ¸¡ã™
+void Stage04::Rotation(Transform* transform) // ã“ã“ã« Transform* transform ã‚’è¿½åŠ 
 {
-    BaseStage::Rotation(transform); // BaseStage::Rotation ‚Éˆø”‚ğ“n‚·
+    BaseStage::Rotation(transform); // BaseStage::Rotation ã«å¼•æ•°ã‚’æ¸¡ã™
 }
 
-// Render ƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh: BaseStage ‚Ì Render ‚É©g‚Ì m_transform ‚ğ“n‚·
+// Render ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰: BaseStage ã® Render ã«è‡ªèº«ã® m_transform ã‚’æ¸¡ã™
 void Stage04::Render(RenderContext& rc)
 {
-    BaseStage::Render(rc, m_transform); // BaseStage::Render ‚É m_transform ‚ğ“n‚·
+    BaseStage::Render(rc, m_transform); // BaseStage::Render ã« m_transform ã‚’æ¸¡ã™
 }

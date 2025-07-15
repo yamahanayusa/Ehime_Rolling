@@ -23,7 +23,6 @@ bool GameClear::Start()
 	m_chest = FindGO<Flag>("flag");
 	m_timer = FindGO<Timer>("timer");
 	m_spriteRender.Init("Assets/sprite/GameClear.dds", 1920.0f, 1080.0f);
-	//m_game = FindGO<Game>("game");
 	TortalScore();
 
 	//BGM.
@@ -53,7 +52,6 @@ void GameClear::Update()
 	}
 }
 
-
 void GameClear::TortalScore()
 {
 	wchar_t scorew[256];
@@ -63,7 +61,6 @@ void GameClear::TortalScore()
 	m_fontRender.SetScale(5.0);
 	m_fontRender.SetColor(g_vec4Black);
 }
-
 
 //描画処理
 void GameClear::Render(RenderContext& rc)

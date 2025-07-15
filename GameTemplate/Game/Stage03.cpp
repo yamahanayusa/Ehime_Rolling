@@ -25,6 +25,7 @@ bool Stage03::Start()
 void Stage03::Update()
 {
     BaseStage::Update(m_transform); // BaseStage::Update に m_transform を渡す
+
 }
 
 // Rotation メソッドをオーバーライド: BaseStage の Rotation に自身の m_transform を渡す

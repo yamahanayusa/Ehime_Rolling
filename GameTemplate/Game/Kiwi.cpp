@@ -14,6 +14,7 @@ namespace {
 	const int SCORE = 200;					//キウイのスコア
 	const float FLY_UP_VELOCITY = 800.0f;	//上方向に飛ばす時の初速
 	const float FLY_UP_TIME = 0.5f;			//上昇する時間
+	const float KIWI_GET_DISTANCE = 60.0f;	// キウイ取得判定距離
 }
 
 Kiwi::Kiwi()
@@ -74,8 +75,8 @@ void Kiwi::Update()
 
 	//プレイヤーがキウイに向かうベクトルを計算。
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
-	//ベクトルの長さが120.0fより小さかったら。
-	if (diff.Length() <= 60.0f)
+	//ベクトルの長さがKIWI_GET_DISTANCEより小さかったら。
+	if (diff.Length() <= KIWI_GET_DISTANCE)
 	{
 		m_isCollected = true;
 		m_transform->m_position = m_transform->m_position;
@@ -88,8 +89,6 @@ void Kiwi::Update()
 		se->Play(false);
 
 		m_score->SdRender(SCORE);
-
-		//DeleteGO(this);
 
 		return;
 	}

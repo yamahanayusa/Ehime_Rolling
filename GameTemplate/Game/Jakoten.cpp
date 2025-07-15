@@ -5,7 +5,6 @@
 #include "Score.h"
 #include "Mikan.h"
 #include "Timer.h"
-//#include "Stage03.h"j
 #include "Stage05.h"
 #include "Transform.h"
 #include "sound/SoundSource.h"
@@ -13,10 +12,11 @@
 
 //定数。
 namespace {
-	const float BUFF_MULTIPIER = 2.0f;		//バフの倍率。
-	const float BUFF_TIME = 10.0f;			//バフの継続時間。
-	const float FLY_UP_VELOCITY = 800.0f;	//上方向に飛ばす時の初速
-	const float FLY_UP_TIME = 0.5f;			//上昇する時間
+	const float BUFF_MULTIPIER = 2.0f;			//バフの倍率。
+	const float BUFF_TIME = 10.0f;				//バフの継続時間。
+	const float FLY_UP_VELOCITY = 800.0f;		//上方向に飛ばす時の初速
+	const float FLY_UP_TIME = 0.5f;				//上昇する時間
+	const float JAKOTEN_GET_DISTANCE = 60.0f;	// じゃこ天取得判定距離
 }
 
 Jakoten::Jakoten()
@@ -38,7 +38,6 @@ bool Jakoten::Start()
 	m_player = FindGO<Player>("player");
 	m_score = FindGO<Score>("score");
 	m_timer = FindGO<Timer>("timer");
-	//m_stage03 = FindGO<Stage03>("stage03");
 	m_stage05 = FindGO<Stage05>("stage05");
 	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/GetItem.wav");	//音の読み込み。
 
@@ -80,7 +79,7 @@ void Jakoten::Update()
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
 
 	//アイテムの獲得。
-	if (diff.Length() <= 60.0f)
+	if (diff.Length() <= JAKOTEN_GET_DISTANCE)
 	{
 		m_isCollected = true;									//取得済みフラグを立てる。
 		m_transform->m_position = m_position;					//初期位置に戻さずにその場て飛ばす
@@ -91,7 +90,6 @@ void Jakoten::Update()
 		SoundSource* se = NewGO<SoundSource>(0);
 		se->Init(5);
 		se->Play(false);
-		//DeleteGO(this);
 		return;
 	}		
 	return;

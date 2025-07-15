@@ -4,6 +4,10 @@
 #include "Stage03.h"
 #include "Transform.h"
 
+namespace {
+	const float ICE_FLOOR_EFFECT_DISTANCE = 150.0f; // 氷床効果の発動距離
+}
+
 IceFloor::IceFloor()
 {
 	m_transform = new Transform();
@@ -51,7 +55,7 @@ void IceFloor::Slide()
 	}
 	//プレイヤーと氷の道の距離感を求める
 	Vector3 distance = m_player->rbPos - m_icepos;
-	if (distance.Length() < 150.0f)
+	if (distance.Length() < ICE_FLOOR_EFFECT_DISTANCE)
 	{
 		m_player->rbInitData.mass = 0.0f;
 		m_player->rbInitData.restitution = 1000;

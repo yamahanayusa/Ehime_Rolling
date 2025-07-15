@@ -69,7 +69,6 @@ void Timer::Update()
 	if (m_time <= 0.0f)
 	{
 		m_game->m_gameState = m_game->enTimeOver;
-		//m_game->GameStateUpdate();
 	}
 }
 
@@ -77,5 +76,4 @@ void Timer::Render(RenderContext& rc)
 {
 	m_spriteRender.Draw(rc);
 	m_fontRender.Draw(rc);
-	
 }

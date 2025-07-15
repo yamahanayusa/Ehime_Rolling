@@ -7,7 +7,7 @@
 
 Title::Title()
 {
-	//画像を読み込む
+	//画像を読み込む。
 	m_spriteRender.Init("Assets/sprite/Title.dds", 1920.0f, 1080.0f);
 }
 
@@ -18,7 +18,7 @@ Title::~Title()
 
 bool Title::Start()
 {
-	//BGM.
+	//BGM。
 	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/title.wav");
 	m_soundSource = NewGO<SoundSource>(0);
 	//ResistWaveFileBankで指定した番号。

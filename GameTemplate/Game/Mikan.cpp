@@ -14,9 +14,10 @@
 #include "sound/SoundEngine.h"
 
 namespace {
-	const int	SCORE = 100;					//みかんのスコア
+	const int	SCORE = 100;				//みかんのスコア
 	const float FLY_UP_VELOCITY = 800.0f;	//上方向に飛ばす時の初速
 	const float FLY_UP_TIME = 0.5f;			//上昇する時間
+	const float MIKAN_GET_DISTANCE = 60.0f; //みかん取得の距離
 }
 
 Mikan::Mikan()
@@ -92,14 +93,13 @@ void Mikan::Update()
 
 	//プレイヤーがみかんに向かうベクトルを計算。
 	Vector3 diff = m_player->rbPos - m_transform->m_position;
-	//ベクトルの長さが120.0fより小さかったら。
+	//ベクトルの長さがMIKAN_GET_DISTANCEより小さかったら。
 
-	if (diff.Length() <= 60.0f&&!m_isCollected)
+	if (diff.Length() <= MIKAN_GET_DISTANCE && !m_isCollected)
 	{
 		m_isCollected = true;							//取得済みフラグを立てる。
 		m_velocity = Vector3(0, FLY_UP_VELOCITY, 0);	// 上方向にぶっ飛ばす
 		m_flyUpTimer = 0.0f;							// 上昇時間をリセット
-		//DeleteGO(this);
 		//スコアの加算。
 		m_score->AddItemGetScore(SCORE);
 		SoundSource* se = NewGO<SoundSource>(0);

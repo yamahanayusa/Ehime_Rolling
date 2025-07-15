@@ -12,6 +12,10 @@
 #include "Stage05.h"
 #include "Transform.h"
 
+namespace {
+	const float CLEAR_DISTANCE_THRESHOLD = 25.0f;
+}
+
 Flag::Flag()
 {
 	m_transform = new Transform();
@@ -69,8 +73,8 @@ void Flag::Update()
 	//プレイヤーからチェストに向かうベクトルを計算。
 	Vector3	diff = m_player->rbPos - m_transform->m_position;
 
-	//ベクトルの長さが120.0fより小さかったら。
-	if (diff.Length() <= 25.0f)
+	//ベクトルの長さが25.0fより小さかったら。
+	if (diff.Length() <= CLEAR_DISTANCE_THRESHOLD)
 	{
 		m_clearFlag = true;
 		if (m_clearFlag == true)
